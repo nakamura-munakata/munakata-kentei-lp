@@ -636,6 +636,10 @@
         @media (min-width: 768px) {
             nav {
                 padding: 1rem 2rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: nowrap;
             }
 
             .nav-links {
@@ -645,12 +649,52 @@
                 background: transparent;
                 padding: 0;
                 box-shadow: none;
-                gap: 2rem;
+                gap: 3rem;
+                flex: 1;
+                margin-left: 3rem;
+                align-items: center;
+            }
+
+            .nav-links li {
+                width: auto;
+                white-space: nowrap;
             }
 
             .nav-links a {
-                padding: 0.5rem 0;
+                padding: 0.75rem 0;
                 min-height: auto;
+                font-size: 1rem;
+                color: var(--navy);
+                border-bottom: 2px solid transparent;
+                transition: border-color 0.3s, color 0.3s;
+            }
+
+            .nav-links a:hover {
+                color: var(--vermilion);
+                border-bottom-color: var(--vermilion);
+            }
+
+            .nav-links a:active {
+                background: transparent;
+                color: var(--vermilion);
+            }
+
+            .nav-links li:last-child a {
+                background: var(--vermilion);
+                color: white;
+                padding: 0.75rem 1.5rem;
+                border-radius: 50px;
+                border-bottom: none;
+                font-weight: 700;
+                min-height: 48px;
+                display: inline-flex;
+                align-items: center;
+            }
+
+            .nav-links li:last-child a:hover {
+                background: #c73d0f;
+                box-shadow: 0 4px 12px rgba(216, 67, 21, 0.3);
+                transform: translateY(-2px);
             }
 
             .hamburger {
@@ -695,6 +739,19 @@
         }
 
         @media (min-width: 1024px) {
+            nav {
+                padding: 1.25rem 3rem;
+            }
+
+            .nav-links {
+                gap: 4rem;
+                margin-left: 4rem;
+            }
+
+            .nav-links a {
+                font-size: 1.05rem;
+            }
+
             section {
                 padding: 5rem 2rem;
             }
