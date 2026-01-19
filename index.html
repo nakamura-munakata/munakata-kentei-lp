@@ -1102,19 +1102,56 @@
             });
         });
 
-        // Stats Counter (Mock Data)
+        // Stats Counter - 正式版（localStorageベース）
         function updateStats() {
-            const stats = {
-                totalExams: Math.floor(Math.random() * 5000) + 1000,
-                passRate: Math.floor(Math.random() * 30) + 70,
-                todayExams: Math.floor(Math.random() * 100) + 10
-            };
-
-            document.getElementById('totalExams').textContent = stats.totalExams.toLocaleString();
-            document.getElementById('passRate').textContent = stats.passRate + '%';
-            document.getElementById('todayExams').textContent = stats.todayExams;
-
-            localStorage.setItem('munakata_stats', JSON.stringify(stats));
+            // クイズサイトから共有されるデータを取得
+            const quizData = JSON.parse(localStorage.getItem('munakata_quiz_stats') || '{}');
+            
+            // 累計受験者数（クイズサイトで記録された実際の数値）
+            const totalExams = quizData.totalExams || 0;
+            
+            // 合格者数と受験者数から合格率を計算
+            const totalPassed = quizData.totalPassed || 0;
+            const passRate = totalExams > 0 ? Math.round((totalPassed / totalExams) * 100) : 0;
+            
+            // 本日の受験者数（日付でリセット）
+            const today = new Date().toDateString();
+            const todayData = JSON.parse(localStorage.getItem('munakata_today_stats') || '{}');
+            const todayExams = todayData.date === today ? (todayData.count || 0) : 0;
+            
+            // アニメーション付きでカウンターを更新
+            animateCounter('totalExams', totalExams);
+            animateCounter('passRate', passRate, '%');
+            animateCounter('todayExams', todayExams);
+        }
+        
+        // カウンターアニメーション関数
+        function animateCounter(elementId, targetValue, suffix = '') {
+            const element = document.getElementById(elementId);
+            const duration = 1500; // アニメーション時間（ミリ秒）
+            const startTime = performance.now();
+            const startValue = 0;
+            
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // イージング関数（easeOutQuart）
+                const easeProgress = 1 - Math.pow(1 - progress, 4);
+                const currentValue = Math.floor(startValue + (targetValue - startValue) * easeProgress);
+                
+                if (suffix === '%') {
+                    element.textContent = currentValue + suffix;
+                } else {
+                    element.textContent = currentValue.toLocaleString();
+                }
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+            
+            requestAnimationFrame(update);
         }
 
         // Initialize on load
