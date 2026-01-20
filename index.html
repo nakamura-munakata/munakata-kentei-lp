@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="世界遺産・宗像の歴史を紐解き、デジタル認定証と地域特典をその手に。24時間365日、どこからでも挑戦可能な宗像検定。">
+    <meta name="description" content="宗像市民、全員出題者。みんなの「知ってる？」を結集した参加型ご当地クイズ「宗像検定」を作りたい！クラウドファンディング実施中。">
     <meta name="theme-color" content="#1a2332">
-    <title>宗像検定 - 神宿る島への知の巡礼</title>
+    <title>宗像検定 - 宗像市民、全員出題者。</title>
     <!-- OGP Meta Tags -->
-    <meta property="og:title" content="宗像検定 - 神宿る島への知の巡礼">
-    <meta property="og:description" content="世界遺産・宗像の歴史を紐解き、デジタル認定証と地域特典をその手に。24時間365日、どこからでも挑戦可能。">
+    <meta property="og:title" content="宗像検定 - 宗像市民、全員出題者。">
+    <meta property="og:description" content="みんなの「知ってる？」を結集した参加型ご当地クイズ。あなたの地元ネタが、未来の宗像の教科書になる。">
     <meta property="og:image" content="https://nakamura-munakata.github.io/munakata-kentei-lp/images/ogp_image.png">
     <meta property="og:url" content="https://nakamura-munakata.github.io/munakata-kentei-lp/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="宗像検定 - 神宿る島への知の巡礼">
-    <meta name="twitter:description" content="世界遺産・宗像の歴史を紐解き、デジタル認定証と地域特典をその手に。">
+    <meta name="twitter:title" content="宗像検定 - 宗像市民、全員出題者。">
+    <meta name="twitter:description" content="みんなの「知ってる？」を結集した参加型ご当地クイズ。クラウドファンディング実施中！">
     <meta name="twitter:image" content="https://nakamura-munakata.github.io/munakata-kentei-lp/images/ogp_image.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,9 +24,12 @@
             --navy: #1a2332;
             --deep-navy: #0f1419;
             --vermilion: #d84315;
+            --vermilion-dark: #bf360c;
             --gold: #c9a961;
             --off-white: #f5f3ed;
             --light-gray: #e8e6e0;
+            --cf-green: #00c853;
+            --cf-green-dark: #00a844;
             --tap-size: 48px;
             --tap-gap: 12px;
         }
@@ -100,6 +103,25 @@
             width: auto;
         }
 
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 12px;
+            min-width: 48px;
+            min-height: 48px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--navy);
+            transition: 0.3s;
+        }
+
         .nav-links {
             display: none;
             position: absolute;
@@ -109,9 +131,8 @@
             background: white;
             flex-direction: column;
             padding: 1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             list-style: none;
-            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-            gap: 0.5rem;
         }
 
         .nav-links.active {
@@ -119,187 +140,307 @@
         }
 
         .nav-links li {
-            width: 100%;
+            margin: 0;
         }
 
         .nav-links a {
             display: block;
+            padding: 1rem;
             color: var(--navy);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
-            padding: 12px 1rem;
             min-height: 48px;
             display: flex;
             align-items: center;
             border-radius: 8px;
+            transition: background 0.2s;
         }
 
         .nav-links a:active {
-            background: rgba(216, 67, 21, 0.1);
-            color: var(--vermilion);
+            background: var(--light-gray);
         }
 
-        /* Hamburger Menu */
-        .hamburger {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 8px;
-            min-height: 48px;
-            min-width: 48px;
-            align-items: center;
+        .nav-links a.cta-button {
+            background: var(--vermilion);
+            color: white;
             justify-content: center;
+            margin-top: 0.5rem;
             border-radius: 8px;
-            transition: background 0.3s;
         }
 
-        .hamburger:active {
-            background: rgba(0,0,0,0.05);
+        .nav-links a.cf-button {
+            background: var(--cf-green);
+            color: white;
+            justify-content: center;
+            margin-top: 0.5rem;
+            border-radius: 8px;
+            font-weight: 700;
         }
 
-        .hamburger span {
-            width: 24px;
-            height: 2.5px;
-            background: var(--navy);
-            transition: 0.3s;
-            border-radius: 2px;
+        /* Crowdfunding Banner - Fixed at top */
+        .cf-banner {
+            background: linear-gradient(135deg, var(--cf-green) 0%, #00a844 100%);
+            color: white;
+            padding: 0.75rem 1rem;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1001;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .cf-banner a {
+            color: white;
+            text-decoration: underline;
+            font-weight: 700;
+        }
+
+        .cf-banner .cf-badge {
+            background: white;
+            color: var(--cf-green);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        header {
+            top: 40px;
         }
 
         /* Hero Section */
         .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/hero_okinoshima.jpg') center/cover;
-            background-attachment: fixed;
+            background: linear-gradient(rgba(26, 35, 50, 0.7), rgba(26, 35, 50, 0.8)), url('images/hero_okinoshima.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+            padding: calc(100px + env(safe-area-inset-top)) 1.5rem 3rem;
             color: white;
-            position: relative;
-            margin-top: 56px;
         }
 
         .hero-content {
-            max-width: 90vw;
-            padding: 2rem 1.5rem;
-            animation: fadeInUp 1s ease-out;
+            max-width: 800px;
         }
 
         .hero h1 {
-            font-size: clamp(1.75rem, 5vw, 3rem);
-            margin-bottom: 1rem;
-            line-height: 1.3;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .hero p {
-            font-size: clamp(0.95rem, 3vw, 1.2rem);
+            font-size: clamp(0.95rem, 2.5vw, 1.2rem);
             margin-bottom: 2rem;
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-            line-height: 1.6;
+            opacity: 0.95;
+            line-height: 1.8;
         }
 
-        .hero .cta-button {
-            font-size: clamp(1rem, 2vw, 1.1rem);
-            padding: 14px 28px;
-            min-height: 48px;
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .cta-button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-        }
-
-        /* Stats Counter */
-        .stats-banner {
-            background: var(--navy);
-            color: white;
-            padding: 1.5rem 1rem;
-            margin-top: 0;
-        }
-
-        .stats-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 1.5rem;
-            justify-items: center;
-        }
-
-        .stat-item {
-            text-align: center;
-            min-width: 100px;
-        }
-
-        .stat-number {
-            font-size: clamp(1.75rem, 4vw, 2.5rem);
-            font-weight: 700;
-            color: var(--gold);
-            font-family: 'Noto Serif JP', serif;
-            line-height: 1;
-        }
-
-        .stat-label {
-            font-size: 0.8rem;
-            opacity: 0.9;
-            margin-top: 0.5rem;
-        }
-
-        /* CTA Button */
-        .cta-button {
             background: var(--vermilion);
             color: white;
-            padding: 12px 24px;
+            padding: 1rem 2rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
-            transition: transform 0.2s, box-shadow 0.2s;
-            border: none;
-            cursor: pointer;
-            min-height: 48px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
             font-size: 1rem;
-            user-select: none;
+            min-height: 56px;
+            min-width: 200px;
+            transition: all 0.2s;
+            box-shadow: 0 4px 15px rgba(216, 67, 21, 0.3);
         }
 
         .cta-button:active {
             transform: scale(0.98);
-            box-shadow: 0 3px 10px rgba(216, 67, 21, 0.3);
+            background: var(--vermilion-dark);
         }
 
-        .cta-button:focus {
-            outline: 2px solid var(--gold);
-            outline-offset: 2px;
-        }
-
-        /* Secondary Button */
-        .secondary-button {
-            background: var(--navy);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.2s, background 0.2s;
-            border: none;
-            cursor: pointer;
-            min-height: 48px;
+        .cf-cta-button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.95rem;
-            user-select: none;
+            background: var(--cf-green);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            min-height: 56px;
+            min-width: 200px;
+            transition: all 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 200, 83, 0.3);
+            animation: pulse 2s infinite;
         }
 
-        .secondary-button:active {
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .cf-cta-button:active {
             transform: scale(0.98);
-            background: var(--deep-navy);
+            background: var(--cf-green-dark);
         }
 
-        /* Section Styles */
+        /* Crowdfunding Section */
+        .crowdfunding {
+            background: linear-gradient(135deg, #1a2332 0%, #2d3a4f 100%);
+            color: white;
+            padding: 3rem 1.5rem;
+            text-align: center;
+        }
+
+        .cf-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .cf-badge-large {
+            display: inline-block;
+            background: var(--cf-green);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        .cf-title {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .cf-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cf-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+
+        .cf-stat {
+            text-align: center;
+        }
+
+        .cf-stat-number {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 700;
+            color: var(--cf-green);
+        }
+
+        .cf-stat-label {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-top: 0.25rem;
+        }
+
+        .cf-progress {
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            height: 20px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .cf-progress-bar {
+            background: linear-gradient(90deg, var(--cf-green), #4caf50);
+            height: 100%;
+            border-radius: 10px;
+            width: 0%;
+            transition: width 1s ease-out;
+        }
+
+        .cf-features {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .cf-feature {
+            background: rgba(255,255,255,0.1);
+            padding: 1.25rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .cf-feature-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .cf-feature-text h4 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        .cf-feature-text p {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            line-height: 1.6;
+        }
+
+        .cf-button-large {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--cf-green);
+            color: white;
+            padding: 1.25rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            min-height: 60px;
+            transition: all 0.2s;
+            box-shadow: 0 6px 20px rgba(0, 200, 83, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        .cf-button-large:active {
+            transform: scale(0.98);
+        }
+
+        /* Section Common */
         section {
             padding: 3rem 1.5rem;
         }
@@ -310,15 +451,15 @@
         }
 
         .section-title {
-            font-size: clamp(1.75rem, 5vw, 2.5rem);
             text-align: center;
+            font-size: clamp(1.5rem, 4vw, 2rem);
             margin-bottom: 2rem;
             color: var(--navy);
         }
 
-        /* Concept Section */
+        /* Concept Section - Redesigned */
         .concept {
-            background: white;
+            background: var(--light-gray);
         }
 
         .concept-content {
@@ -330,25 +471,75 @@
 
         .concept-image {
             width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
 
         .concept-text h3 {
-            font-size: clamp(1.3rem, 4vw, 1.8rem);
-            margin-bottom: 1rem;
+            font-size: 1.3rem;
             color: var(--vermilion);
+            margin-bottom: 1rem;
         }
 
         .concept-text p {
-            font-size: 1rem;
-            line-height: 1.8;
             margin-bottom: 1rem;
+            font-size: 1rem;
+            line-height: 1.9;
+        }
+
+        .concept-highlight {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--vermilion);
+            margin: 1.5rem 0;
+        }
+
+        .concept-highlight p {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin: 0;
+            color: var(--navy);
+        }
+
+        /* Features Grid */
+        .features {
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .feature-card {
+            background: var(--light-gray);
+            padding: 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+            color: var(--navy);
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.7;
         }
 
         /* Courses Section */
         .courses {
-            background: var(--light-gray);
+            background: var(--off-white);
         }
 
         .courses-grid {
@@ -359,20 +550,14 @@
 
         .course-card {
             background: white;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .course-card:active {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
         }
 
         .course-image {
             width: 100%;
-            height: 200px;
+            height: 180px;
             object-fit: cover;
         }
 
@@ -382,9 +567,8 @@
 
         .course-level {
             display: inline-block;
-            background: var(--gold);
-            color: white;
-            padding: 6px 12px;
+            background: var(--light-gray);
+            padding: 0.25rem 0.75rem;
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 600;
@@ -437,138 +621,93 @@
             font-size: 0.9rem;
         }
 
-        /* Learning Section */
-        .learning {
-            background: white;
-        }
-
-        .learning-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-
-        .learning-item {
-            background: var(--light-gray);
-            padding: 1.5rem;
-            border-radius: 12px;
-            border-left: 4px solid var(--vermilion);
-        }
-
-        .learning-item h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.75rem;
-            color: var(--navy);
-        }
-
-        .learning-item p {
-            font-size: 0.95rem;
-            color: #666;
-            line-height: 1.6;
-        }
-
-        /* Benefits Section */
-        .benefits {
+        /* Genre Section */
+        .genres {
             background: var(--light-gray);
         }
 
-        .benefits-grid {
+        .genres-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
         }
 
-        .benefit-item {
+        .genre-card {
             background: white;
-            padding: 1.5rem;
+            padding: 1.25rem;
             border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
         }
 
-        .benefit-item h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.75rem;
+        .genre-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .genre-card h4 {
+            font-size: 1rem;
             color: var(--navy);
+            margin-bottom: 0.25rem;
         }
 
-        .benefit-item p {
-            font-size: 0.95rem;
-            color: #666;
-            line-height: 1.6;
-        }
-
-        /* Ranking Section */
-        .ranking {
-            background: white;
-        }
-
-        .ranking-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-        }
-
-        .ranking-list {
-            background: var(--light-gray);
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        .ranking-title {
-            background: var(--navy);
-            color: white;
-            padding: 1rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .ranking-item {
-            padding: 1rem;
-            border-bottom: 1px solid #ddd;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            min-height: 56px;
-        }
-
-        .ranking-item:last-child {
-            border-bottom: none;
-        }
-
-        .ranking-rank {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--gold);
-            min-width: 40px;
-        }
-
-        .ranking-info {
-            flex: 1;
-            margin: 0 1rem;
-            min-width: 0;
-        }
-
-        .ranking-name {
-            font-weight: 600;
-            color: var(--navy);
-            font-size: 0.95rem;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .ranking-detail {
+        .genre-card p {
             font-size: 0.8rem;
-            color: #999;
-            margin-top: 0.25rem;
+            color: #888;
         }
 
-        .ranking-score {
+        /* Timeline Section */
+        .timeline {
+            background: white;
+        }
+
+        .timeline-list {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .timeline-date {
+            min-width: 100px;
             font-weight: 700;
             color: var(--vermilion);
-            font-size: 0.95rem;
-            min-width: 60px;
-            text-align: right;
+            font-size: 0.9rem;
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding-bottom: 1.5rem;
+            border-left: 2px solid var(--light-gray);
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            left: -7px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: var(--vermilion);
+            border-radius: 50%;
+        }
+
+        .timeline-content h4 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+            color: var(--navy);
+        }
+
+        .timeline-content p {
+            font-size: 0.9rem;
+            color: #666;
         }
 
         /* Footer */
@@ -600,105 +739,58 @@
             display: block;
             color: rgba(255,255,255,0.8);
             text-decoration: none;
-            font-size: 0.9rem;
-            padding: 6px 0;
+            padding: 0.5rem 0;
             min-height: 44px;
             display: flex;
             align-items: center;
-            transition: color 0.3s;
+            transition: color 0.2s;
         }
 
-        .footer-section a:active {
-            color: var(--gold);
+        .footer-section a:hover {
+            color: white;
         }
 
         .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.2);
-            padding-top: 1rem;
             text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
             font-size: 0.85rem;
-            opacity: 0.8;
+            opacity: 0.7;
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Tablet and Desktop */
+        /* Responsive - Tablet */
         @media (min-width: 768px) {
-            nav {
-                padding: 1rem 2rem;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                flex-wrap: nowrap;
-            }
-
-            .nav-links {
-                display: flex !important;
-                position: static;
-                flex-direction: row;
-                background: transparent;
-                padding: 0;
-                box-shadow: none;
-                gap: 3rem;
-                flex: 1;
-                margin-left: 3rem;
-                align-items: center;
-            }
-
-            .nav-links li {
-                width: auto;
-                white-space: nowrap;
-            }
-
-            .nav-links a {
-                padding: 0.75rem 0;
-                min-height: auto;
+            .cf-banner {
                 font-size: 1rem;
-                color: var(--navy);
-                border-bottom: 2px solid transparent;
-                transition: border-color 0.3s, color 0.3s;
-            }
-
-            .nav-links a:hover {
-                color: var(--vermilion);
-                border-bottom-color: var(--vermilion);
-            }
-
-            .nav-links a:active {
-                background: transparent;
-                color: var(--vermilion);
-            }
-
-            .nav-links li:last-child a {
-                background: var(--vermilion);
-                color: white;
-                padding: 0.75rem 1.5rem;
-                border-radius: 50px;
-                border-bottom: none;
-                font-weight: 700;
-                min-height: 48px;
-                display: inline-flex;
-                align-items: center;
-            }
-
-            .nav-links li:last-child a:hover {
-                background: #c73d0f;
-                box-shadow: 0 4px 12px rgba(216, 67, 21, 0.3);
-                transform: translateY(-2px);
             }
 
             .hamburger {
                 display: none;
+            }
+
+            .nav-links {
+                display: flex;
+                position: static;
+                flex-direction: row;
+                padding: 0;
+                box-shadow: none;
+                background: transparent;
+                gap: 2rem;
+            }
+
+            .nav-links a {
+                padding: 0.5rem 1rem;
+            }
+
+            .nav-links a.cta-button,
+            .nav-links a.cf-button {
+                margin-top: 0;
+                padding: 0.5rem 1.25rem;
+            }
+
+            .hero-buttons {
+                flex-direction: row;
+                gap: 1.5rem;
             }
 
             section {
@@ -710,31 +802,25 @@
                 gap: 3rem;
             }
 
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
             .courses-grid {
                 grid-template-columns: repeat(3, 1fr);
                 gap: 2rem;
             }
 
-            .learning-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 2rem;
+            .genres-grid {
+                grid-template-columns: repeat(4, 1fr);
             }
 
-            .benefits-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
-            }
-
-            .ranking-container {
+            .cf-features {
                 grid-template-columns: repeat(2, 1fr);
             }
 
             .footer-content {
                 grid-template-columns: repeat(3, 1fr);
-            }
-
-            .stats-container {
-                gap: 4rem;
             }
         }
 
@@ -744,20 +830,15 @@
             }
 
             .nav-links {
-                gap: 4rem;
-                margin-left: 4rem;
-            }
-
-            .nav-links a {
-                font-size: 1.05rem;
+                gap: 3rem;
             }
 
             section {
                 padding: 5rem 2rem;
             }
 
-            .benefits-grid {
-                grid-template-columns: repeat(3, 1fr);
+            .features-grid {
+                grid-template-columns: repeat(4, 1fr);
             }
 
             .footer-content {
@@ -773,37 +854,16 @@
                 transition-duration: 0.01ms !important;
             }
         }
-
-        /* Dark mode support */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color: #1a1a1a;
-            }
-
-            header {
-                background: rgba(26, 35, 50, 0.95);
-            }
-
-            .nav-links {
-                background: #1a1a1a;
-            }
-
-            section {
-                background-color: #1a1a1a;
-                color: #f5f3ed;
-            }
-
-            .concept {
-                background: #2a2a2a;
-            }
-
-            .concept-text h3 {
-                color: #ff7043;
-            }
-        }
     </style>
 </head>
 <body>
+    <!-- Crowdfunding Banner -->
+    <div class="cf-banner">
+        <span class="cf-badge">🎉 CF実施中</span>
+        <span>みんなで作る宗像検定！支援者募集中</span>
+        <a href="https://camp-fire.jp/projects/920270/view" target="_blank">詳細を見る →</a>
+    </div>
+
     <!-- Header -->
     <header>
         <nav>
@@ -818,9 +878,9 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="#concept">検定とは</a></li>
                 <li><a href="#courses">コース紹介</a></li>
-                <li><a href="#benefits">合格特典</a></li>
-                <li><a href="#learning">学習</a></li>
-                <li><a href="https://nakamura-munakata.github.io/munakata-kentei/" class="cta-button">受験する</a></li>
+                <li><a href="#timeline">スケジュール</a></li>
+                <li><a href="https://camp-fire.jp/projects/920270/view" target="_blank" class="cf-button">支援する</a></li>
+                <li><a href="https://nakamura-munakata.github.io/munakata-kentei/" class="cta-button">体験する</a></li>
             </ul>
         </nav>
     </header>
@@ -828,27 +888,69 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>「神宿る島」への知の巡礼。<br>あなたのスマホが、参道になる。</h1>
-            <p>世界遺産・宗像の歴史を紐解き、デジタル認定証と地域特典をその手に。<br>24時間365日、どこからでも挑戦可能。</p>
-            <a href="https://nakamura-munakata.github.io/munakata-kentei/" class="cta-button">今すぐ検定に挑戦する（無料）</a>
+            <h1>宗像市民、全員出題者。<br>みんなの「知ってる？」を<br>結集した検定を作りたい！</h1>
+            <p>「宗像大社の裏話、知ってる？」「有名なあのお店の看板メニューは？」<br>そんな他愛もない日常会話こそが、この街の貴重な財産です。<br>あなたの地元ネタが、未来の宗像の教科書になる。</p>
+            <div class="hero-buttons">
+                <a href="https://camp-fire.jp/projects/920270/view" target="_blank" class="cf-cta-button">🎉 クラウドファンディングを見る</a>
+                <a href="https://nakamura-munakata.github.io/munakata-kentei/" class="cta-button">無料で体験する</a>
+            </div>
         </div>
     </section>
 
-    <!-- Stats Banner -->
-    <section class="stats-banner">
-        <div class="stats-container">
-            <div class="stat-item">
-                <div class="stat-number" id="totalExams">0</div>
-                <div class="stat-label">累計受験者数</div>
+    <!-- Crowdfunding Section -->
+    <section class="crowdfunding" id="crowdfunding">
+        <div class="cf-container">
+            <span class="cf-badge-large">🚀 クラウドファンディング実施中！</span>
+            <h2 class="cf-title">あなたの「知ってる？」が<br>宗像検定の問題になる</h2>
+            <p class="cf-subtitle">支援者の皆さん自身が考えたクイズを「公式問題」として採用。<br>あなたの名前入りで出題されます。</p>
+            
+            <div class="cf-stats">
+                <div class="cf-stat">
+                    <div class="cf-stat-number">¥500,000</div>
+                    <div class="cf-stat-label">目標金額</div>
+                </div>
+                <div class="cf-stat">
+                    <div class="cf-stat-number">51日</div>
+                    <div class="cf-stat-label">残り日数</div>
+                </div>
+                <div class="cf-stat">
+                    <div class="cf-stat-number">All-In</div>
+                    <div class="cf-stat-label">方式</div>
+                </div>
             </div>
-            <div class="stat-item">
-                <div class="stat-number" id="passRate">0%</div>
-                <div class="stat-label">平均合格率</div>
+
+            <div class="cf-features">
+                <div class="cf-feature">
+                    <span class="cf-feature-icon">✍️</span>
+                    <div class="cf-feature-text">
+                        <h4>問題作成権</h4>
+                        <p>あなたが考えたクイズが公式問題として採用され、名前入りで出題されます。</p>
+                    </div>
+                </div>
+                <div class="cf-feature">
+                    <span class="cf-feature-icon">🎮</span>
+                    <div class="cf-feature-text">
+                        <h4>β版先行体験</h4>
+                        <p>一般公開前にテストプレイヤーとして参加。ご意見を反映して最終調整を行います。</p>
+                    </div>
+                </div>
+                <div class="cf-feature">
+                    <span class="cf-feature-icon">🏪</span>
+                    <div class="cf-feature-text">
+                        <h4>法人・店舗向け</h4>
+                        <p>お店の公式サイトやSNSへのリンクを設定可能。来店促進にご活用ください。</p>
+                    </div>
+                </div>
+                <div class="cf-feature">
+                    <span class="cf-feature-icon">🃏</span>
+                    <div class="cf-feature-text">
+                        <h4>カードゲーム化</h4>
+                        <p>ストレッチゴール達成で、実際に手にとって遊べる物理版カードゲームを制作！</p>
+                    </div>
+                </div>
             </div>
-            <div class="stat-item">
-                <div class="stat-number" id="todayExams">0</div>
-                <div class="stat-label">本日の受験者</div>
-            </div>
+
+            <a href="https://camp-fire.jp/projects/920270/view" target="_blank" class="cf-button-large">CAMPFIREで支援する →</a>
         </div>
     </section>
 
@@ -857,12 +959,75 @@
         <div class="container">
             <h2 class="section-title">宗像検定とは</h2>
             <div class="concept-content">
-                <img src="images/national_treasure.jpg" alt="国宝展示" class="concept-image">
+                <img src="images/tourism_scene.jpg" alt="宗像の風景" class="concept-image">
                 <div class="concept-text">
-                    <h3>8万点の国宝が語る、古代の国際交流。</h3>
-                    <p>宗像・沖ノ島は、4世紀から9世紀にかけて行われた古代祭祀の舞台です。ここには、ヤマト王権と大陸を結ぶ「海の道」の記憶が眠っています。</p>
-                    <p>宗像検定は、単なる知識テストではありません。この歴史物語を深く理解し、未来へ守り伝えるための「知のパスポート」です。</p>
-                    <p>スマートフォンひとつで、いつでもどこでも受験可能。合格者には、デジタル認定証と市内協力店舗で使える特典をご用意しています。</p>
+                    <h3>ただの「試験」ではありません。<br>宗像が好きな人と一緒に遊ぶ「エンターテイメント」です。</h3>
+                    <p>スマホひとつで、誰でも無料で楽しめる「ご当地クイズゲーム」。アプリのダウンロード不要で、QRコードを読み込むだけで、そこはもう宗像のディープな知識への入り口。</p>
+                    
+                    <div class="concept-highlight">
+                        <p>「宗像って、何もないよね」とは言わせない。<br>この街には、語り尽くせないほどの「物語」があります。</p>
+                    </div>
+                    
+                    <p>世界遺産「神宿る島」沖ノ島の歴史はもちろん、日々の暮らしの中にある「宗像の面白さ」を、クイズという楽しいパッケージにして未来へ手渡す活動です。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">宗像検定の特徴</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>スマホで完結</h3>
+                    <p>アプリ不要。ブラウザからすぐにアクセス。通勤通学のスキマ時間に楽しめます。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🆓</div>
+                    <h3>完全無料</h3>
+                    <p>誰でも無料で何度でも挑戦可能。宗像ファンを増やすための検定です。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>市民参加型</h3>
+                    <p>問題を作るのはあなた。みんなで作り上げる「参加型の検定クイズ」です。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>認定証発行</h3>
+                    <p>合格者にはデジタル認定証を発行。SNSでシェアして宗像愛をアピール！</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Genres Section -->
+    <section class="genres">
+        <div class="container">
+            <h2 class="section-title">出題ジャンル</h2>
+            <p style="text-align: center; margin-bottom: 2rem; color: #666;">「世界遺産」から「焼き鳥」まで、宗像のすべてが問題に。</p>
+            <div class="genres-grid">
+                <div class="genre-card">
+                    <div class="genre-icon">⛩️</div>
+                    <h4>歴史・伝統</h4>
+                    <p>沖ノ島、宗像大社、古代祭祀</p>
+                </div>
+                <div class="genre-card">
+                    <div class="genre-icon">🍽️</div>
+                    <h4>グルメ</h4>
+                    <p>玄ちゃんアジ、とらふく、焼き鳥</p>
+                </div>
+                <div class="genre-card">
+                    <div class="genre-icon">🏔️</div>
+                    <h4>自然・地理</h4>
+                    <p>玄界灘、大島、地島、孔大寺山</p>
+                </div>
+                <div class="genre-card">
+                    <div class="genre-icon">🎭</div>
+                    <h4>カルチャー</h4>
+                    <p>地元企業、あるあるネタ</p>
                 </div>
             </div>
         </div>
@@ -871,7 +1036,8 @@
     <!-- Courses Section -->
     <section class="courses" id="courses">
         <div class="container">
-            <h2 class="section-title">コース選択</h2>
+            <h2 class="section-title">難易度選択</h2>
+            <p style="text-align: center; margin-bottom: 2rem; color: #666;">「課長」「部長」「市長」の3段階。あなたはどこまで極められる？</p>
             <div class="courses-grid">
                 <!-- 課長コース -->
                 <div class="course-card">
@@ -879,7 +1045,7 @@
                     <div class="course-content">
                         <span class="course-level">初級 ★☆☆</span>
                         <h3 class="course-title">課長コース</h3>
-                        <p class="course-description">まずはここから。宗像の基礎を知る旅へ。世界遺産の基礎知識や特産品など、観光をもっと楽しむための入門編。</p>
+                        <p class="course-description">まずはここから。観光客の方がガイドブック代わりに楽しめる内容です。</p>
                         <div class="course-buttons">
                             <a href="https://nakamura-munakata.github.io/munakata-kentei/?course=beginner" class="course-button">課長コースを受験</a>
                             <a href="https://nakamura-munakata.github.io/munakata-kentei/?course=beginner&trial=true" class="course-button trial">無料体験3問</a>
@@ -893,7 +1059,7 @@
                     <div class="course-content">
                         <span class="course-level">中級 ★★☆</span>
                         <h3 class="course-title">部長コース</h3>
-                        <p class="course-description">歴史の深淵へ。古代祭祀と信仰を読み解く。沖ノ島の祭祀変遷や出土品など、歴史ファンも唸る専門知識を問います。</p>
+                        <p class="course-description">地元民でも「へぇ〜！」と驚く、ディープな宗像知識を問います。</p>
                         <div class="course-buttons">
                             <a href="https://nakamura-munakata.github.io/munakata-kentei/?course=intermediate" class="course-button">部長コースを受験</a>
                             <a href="https://nakamura-munakata.github.io/munakata-kentei/?course=intermediate&trial=true" class="course-button trial">無料体験3問</a>
@@ -907,7 +1073,7 @@
                     <div class="course-content">
                         <span class="course-level">上級 ★★★</span>
                         <h3 class="course-title">市長コース</h3>
-                        <p class="course-description">極める知性。宗像の魅力を世界へ発信せよ。古代史から現代の環境保全活動まで。宗像の全てを語れるリーダーへ。</p>
+                        <p class="course-description">「えっ、知らんやった！」と頭を抱える超難問。宗像マスターへの道。</p>
                         <div class="course-buttons">
                             <a href="https://nakamura-munakata.github.io/munakata-kentei/?course=advanced" class="course-button">市長コースを受験</a>
                             <a href="https://nakamura-munakata.github.io/munakata-kentei/?course=advanced&trial=true" class="course-button trial">無料体験3問</a>
@@ -918,137 +1084,44 @@
         </div>
     </section>
 
-    <!-- Learning Section -->
-    <section class="learning" id="learning">
+    <!-- Timeline Section -->
+    <section class="timeline" id="timeline">
         <div class="container">
-            <h2 class="section-title">過去と未来をつなぐ、学びの羅針盤</h2>
-            <div class="learning-grid">
-                <div class="learning-item">
-                    <h3>海の道むなかた館</h3>
-                    <p>現地での予習が合格への近道。公式テキストもこちらで入手できます。3Dシアターで古代の世界を体験。</p>
-                </div>
-                <div class="learning-item">
-                    <h3>デジタルアーカイブ</h3>
-                    <p>8万点の国宝をオンラインで鑑賞。細部まで拡大して観察できる高精細画像で、いつでもどこでも学習可能。</p>
-                </div>
-                <div class="learning-item">
-                    <h3>過去問・模擬テスト</h3>
-                    <p>実際の試験形式で練習できる模擬テスト。弱点を把握して効率的に学習を進めましょう。</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Benefits Section -->
-    <section class="benefits" id="benefits">
-        <div class="container">
-            <h2 class="section-title">知識は、街を楽しむパスポートになる。</h2>
-            <div class="benefits-grid">
-                <div class="benefit-item">
-                    <h3>デジタル認定証</h3>
-                    <p>合格者には、スマートフォンで表示できる美しいデジタル認定証を発行。SNSでシェアして、あなたの知識を誇りましょう。金色のバッジは、宗像の歴史を深く理解した証です。</p>
-                </div>
-                <div class="benefit-item">
-                    <h3>市内クーポン（周遊促進）</h3>
-                    <p>合格証提示で、市内協力店舗での食事が特別価格に。「玄ちゃんアジ」「鐘崎天然とらふく」などの絶品料理を堪能できます。道の駅でのお買い物もお得に楽しめます。</p>
-                </div>
-                <div class="benefit-item">
-                    <h3>アンバサダー認定</h3>
-                    <p>市長コース合格者は「宗像検定アンバサダー」として認定。地域イベントでの活動機会や、限定特典へのアクセスが得られます。</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Ranking Section -->
-    <section class="ranking">
-        <div class="container">
-            <h2 class="section-title">ランキング</h2>
-            <div class="ranking-container">
-                <div class="ranking-list">
-                    <div class="ranking-title">🏆 今月の高得点者</div>
-                    <div id="topScorers">
-                        <div class="ranking-item">
-                            <span class="ranking-rank">1</span>
-                            <div class="ranking-info">
-                                <div class="ranking-name">宗像太郎</div>
-                                <div class="ranking-detail">市長コース</div>
-                            </div>
-                            <div class="ranking-score">100点</div>
-                        </div>
-                        <div class="ranking-item">
-                            <span class="ranking-rank">2</span>
-                            <div class="ranking-info">
-                                <div class="ranking-name">玄界花子</div>
-                                <div class="ranking-detail">市長コース</div>
-                            </div>
-                            <div class="ranking-score">98点</div>
-                        </div>
-                        <div class="ranking-item">
-                            <span class="ranking-rank">3</span>
-                            <div class="ranking-info">
-                                <div class="ranking-name">大島一郎</div>
-                                <div class="ranking-detail">市長コース</div>
-                            </div>
-                            <div class="ranking-score">95点</div>
-                        </div>
-                        <div class="ranking-item">
-                            <span class="ranking-rank">4</span>
-                            <div class="ranking-info">
-                                <div class="ranking-name">沖ノ島次郎</div>
-                                <div class="ranking-detail">部長コース</div>
-                            </div>
-                            <div class="ranking-score">100点</div>
-                        </div>
-                        <div class="ranking-item">
-                            <span class="ranking-rank">5</span>
-                            <div class="ranking-info">
-                                <div class="ranking-name">赤間三郎</div>
-                                <div class="ranking-detail">部長コース</div>
-                            </div>
-                            <div class="ranking-score">98点</div>
-                        </div>
+            <h2 class="section-title">スケジュール</h2>
+            <div class="timeline-list">
+                <div class="timeline-item">
+                    <div class="timeline-date">2026年2月</div>
+                    <div class="timeline-content">
+                        <h4>クラウドファンディング開始</h4>
+                        <p>CAMPFIREにてプロジェクト公開</p>
                     </div>
                 </div>
-
-                <div class="ranking-list">
-                    <div class="ranking-title">📊 地域別受験者数</div>
-                    <div id="regionRanking">
-                        <div class="ranking-item">
-                            <span class="ranking-rank">1</span>
-                            <div class="ranking-info">
-                                <div class="ranking-name">福岡県</div>
-                            </div>
-                            <div class="ranking-score">1,234人</div>
-                        </div>
-                        <div class="ranking-item">
-                            <span class="ranking-rank">2</span>
-                            <div class="ranking-info">
-                                <div class="ranking-name">東京都</div>
-                            </div>
-                            <div class="ranking-score">567人</div>
-                        </div>
-                        <div class="ranking-item">
-                            <span class="ranking-rank">3</span>
-                            <div class="ranking-info">
-                                <div class="ranking-name">大阪府</div>
-                            </div>
-                            <div class="ranking-score">345人</div>
-                        </div>
-                        <div class="ranking-item">
-                            <span class="ranking-rank">4</span>
-                            <div class="ranking-info">
-                                <div class="ranking-name">神奈川県</div>
-                            </div>
-                            <div class="ranking-score">234人</div>
-                        </div>
-                        <div class="ranking-item">
-                            <span class="ranking-rank">5</span>
-                            <div class="ranking-info">
-                                <div class="ranking-name">愛知県</div>
-                            </div>
-                            <div class="ranking-score">189人</div>
-                        </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2026年3月</div>
+                    <div class="timeline-content">
+                        <h4>クラウドファンディング終了</h4>
+                        <p>目標金額達成を目指します</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2026年4月</div>
+                    <div class="timeline-content">
+                        <h4>開発・問題選定</h4>
+                        <p>Webシステム開発、ファクトチェック</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2026年5月</div>
+                    <div class="timeline-content">
+                        <h4>β版完成</h4>
+                        <p>支援者限定で先行公開・テストプレイ</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2026年6月</div>
+                    <div class="timeline-content">
+                        <h4>一般公開リリース！</h4>
+                        <p>宗像検定（Web版）正式オープン</p>
                     </div>
                 </div>
             </div>
@@ -1063,28 +1136,34 @@
                 <ul>
                     <li><a href="#concept">検定とは</a></li>
                     <li><a href="#courses">コース紹介</a></li>
-                    <li><a href="#benefits">合格特典</a></li>
+                    <li><a href="#timeline">スケジュール</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>クラウドファンディング</h4>
+                <ul>
+                    <li><a href="https://camp-fire.jp/projects/920270/view" target="_blank">CAMPFIREで支援する</a></li>
+                    <li><a href="https://camp-fire.jp/projects/920270/view" target="_blank">リターン一覧</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h4>関連サイト</h4>
                 <ul>
-                    <li><a href="https://munakata.keizai.biz/">宗像経済新聞</a></li>
-                    <li><a href="https://www.city.munakata.fukuoka.jp/">宗像市公式サイト</a></li>
-                    <li><a href="https://www.munakata-taisha.or.jp/">宗像大社</a></li>
+                    <li><a href="https://munakata.keizai.biz/" target="_blank">宗像経済新聞</a></li>
+                    <li><a href="https://www.city.munakata.fukuoka.jp/" target="_blank">宗像市公式サイト</a></li>
+                    <li><a href="https://www.munakata-taisha.or.jp/" target="_blank">宗像大社</a></li>
                 </ul>
             </div>
             <div class="footer-section">
-                <h4>その他</h4>
+                <h4>運営</h4>
                 <ul>
-                    <li><a href="#">プライバシーポリシー</a></li>
-                    <li><a href="#">特定商取引法に基づく表記</a></li>
+                    <li><a href="#">宗像検定 制作実行委員会</a></li>
                     <li><a href="#">お問い合わせ</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 宗像検定 All Rights Reserved.</p>
+            <p>&copy; 2026 宗像検定 制作実行委員会 All Rights Reserved.</p>
         </div>
     </footer>
 
@@ -1101,88 +1180,6 @@
                 document.getElementById('navLinks').classList.remove('active');
             });
         });
-
-        // Stats Counter - 正式版（localStorageベース）
-        function updateStats() {
-            // クイズサイトから共有されるデータを取得
-            const quizData = JSON.parse(localStorage.getItem('munakata_quiz_stats') || '{}');
-            
-            // 累計受験者数（クイズサイトで記録された実際の数値）
-            const totalExams = quizData.totalExams || 0;
-            
-            // 合格者数と受験者数から合格率を計算
-            const totalPassed = quizData.totalPassed || 0;
-            const passRate = totalExams > 0 ? Math.round((totalPassed / totalExams) * 100) : 0;
-            
-            // 本日の受験者数（日付でリセット）
-            const today = new Date().toDateString();
-            const todayData = JSON.parse(localStorage.getItem('munakata_today_stats') || '{}');
-            const todayExams = todayData.date === today ? (todayData.count || 0) : 0;
-            
-            // アニメーション付きでカウンターを更新
-            animateCounter('totalExams', totalExams);
-            animateCounter('passRate', passRate, '%');
-            animateCounter('todayExams', todayExams);
-        }
-        
-        // カウンターアニメーション関数
-        function animateCounter(elementId, targetValue, suffix = '') {
-            const element = document.getElementById(elementId);
-            const duration = 1500; // アニメーション時間（ミリ秒）
-            const startTime = performance.now();
-            const startValue = 0;
-            
-            function update(currentTime) {
-                const elapsed = currentTime - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-                
-                // イージング関数（easeOutQuart）
-                const easeProgress = 1 - Math.pow(1 - progress, 4);
-                const currentValue = Math.floor(startValue + (targetValue - startValue) * easeProgress);
-                
-                if (suffix === '%') {
-                    element.textContent = currentValue + suffix;
-                } else {
-                    element.textContent = currentValue.toLocaleString();
-                }
-                
-                if (progress < 1) {
-                    requestAnimationFrame(update);
-                }
-            }
-            
-            requestAnimationFrame(update);
-        }
-
-        // Initialize on load
-        window.addEventListener('load', updateStats);
-
-        // Smooth scroll for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href !== '#') {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                }
-            });
-        });
-
-        // Prevent zoom on double tap
-        let lastTouchEnd = 0;
-        document.addEventListener('touchend', function(event) {
-            const now = Date.now();
-            if (now - lastTouchEnd <= 300) {
-                event.preventDefault();
-            }
-            lastTouchEnd = now;
-        }, false);
     </script>
 </body>
 </html>
