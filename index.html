@@ -450,11 +450,18 @@
         .cf-deadline {
             font-size: 0.9rem;
             opacity: 0.85;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.5rem;
             padding: 0.75rem 1rem;
             background: rgba(255,255,255,0.05);
             border-radius: var(--radius-md);
             display: inline-block;
+        }
+
+        .cf-allin {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-bottom: 1.5rem;
+            color: var(--cf-green-light);
         }
 
         .cf-features {
@@ -613,6 +620,17 @@
             font-weight: 500;
             margin: 0;
             color: var(--navy);
+        }
+
+        .concept-cta {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--vermilion);
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, rgba(216, 67, 21, 0.08) 0%, rgba(216, 67, 21, 0.04) 100%);
+            border-radius: var(--radius-md);
+            text-align: center;
         }
 
         /* Features Grid */
@@ -876,6 +894,186 @@
             color: #666;
         }
 
+        /* Ranking Section */
+        .ranking {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--deep-navy) 100%);
+            color: white;
+        }
+
+        .ranking .section-title {
+            color: white;
+        }
+
+        .ranking .section-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .ranking-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .ranking-tab {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            min-height: 44px;
+        }
+
+        .ranking-tab:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+        }
+
+        .ranking-tab.active {
+            background: var(--vermilion);
+            border-color: var(--vermilion);
+            color: white;
+        }
+
+        .ranking-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .ranking-panel {
+            display: none;
+        }
+
+        .ranking-panel.active {
+            display: block;
+        }
+
+        .ranking-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .ranking-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 1rem 1.25rem;
+            border-radius: var(--radius-md);
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .ranking-item:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateX(4px);
+        }
+
+        .ranking-item.rank-1 {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.25) 0%, rgba(255, 215, 0, 0.1) 100%);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+        }
+
+        .ranking-item.rank-2 {
+            background: linear-gradient(135deg, rgba(192, 192, 192, 0.2) 0%, rgba(192, 192, 192, 0.08) 100%);
+            border: 1px solid rgba(192, 192, 192, 0.3);
+        }
+
+        .ranking-item.rank-3 {
+            background: linear-gradient(135deg, rgba(205, 127, 50, 0.2) 0%, rgba(205, 127, 50, 0.08) 100%);
+            border: 1px solid rgba(205, 127, 50, 0.3);
+        }
+
+        .ranking-position {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .rank-1 .ranking-position {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: var(--navy);
+        }
+
+        .rank-2 .ranking-position {
+            background: linear-gradient(135deg, #C0C0C0 0%, #A0A0A0 100%);
+            color: var(--navy);
+        }
+
+        .rank-3 .ranking-position {
+            background: linear-gradient(135deg, #CD7F32 0%, #8B4513 100%);
+            color: white;
+        }
+
+        .ranking-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .ranking-name {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .ranking-score {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        .ranking-badge {
+            background: var(--vermilion);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .ranking-note {
+            text-align: center;
+            font-size: 0.85rem;
+            opacity: 0.6;
+            margin-top: 1.5rem;
+        }
+
+        .ranking-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .ranking-stat-item {
+            text-align: center;
+        }
+
+        .ranking-stat-number {
+            display: block;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--cf-green);
+            margin-bottom: 0.25rem;
+        }
+
+        .ranking-stat-label {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
         /* Footer */
         footer {
             background: var(--navy);
@@ -916,6 +1114,13 @@
 
         .footer-section a:hover {
             color: white;
+        }
+
+        .footer-text {
+            display: block;
+            color: rgba(255,255,255,0.75);
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
         }
 
         .footer-bottom {
@@ -1053,7 +1258,7 @@
     <section class="hero">
         <div class="hero-content">
             <h1>宗像市民、全員出題者。<br>みんなの「知ってる？」を<br>結集した検定を作りたい！</h1>
-            <p>「宗像大社の裏話、知ってる？」「有名なあのお店の看板メニューは？」<br>そんな他愛もない日常会話こそが、この街の貴重な財産です。<br>あなたの地元ネタが、未来の宗像の教科書になる。</p>
+            <p>「宗像大社の裏話、知ってる？」「有名なあのお店の看板メニューは？」<br>そんな他愛もない日常会話こそが、この街の「宝の山」です。<br>あなたの地元ネタが、未来の宗像の教科書になる。</p>
             <div class="hero-buttons">
                 <a href="https://camp-fire.jp/projects/920270/preview?token=3jhx8ucq" target="_blank" class="cf-cta-button">
                     <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
@@ -1085,6 +1290,7 @@
             </div>
 
             <p class="cf-deadline">募集終了：<strong>2026年3月12日（木）14:59</strong></p>
+            <p class="cf-allin">※ All-In方式：目標金額に関わらず、集まった支援金でプロジェクトを実行します</p>
 
             <div class="cf-features">
                 <div class="cf-feature">
@@ -1143,10 +1349,11 @@
                     <p>スマホひとつで、誰でも無料で楽しめる「ご当地クイズゲーム」。アプリのダウンロード不要で、QRコードを読み込むだけで、そこはもう宗像のディープな知識への入り口。</p>
                     
                     <div class="concept-highlight">
-                        <p>「宗像って、何もないよね」とは言わせない。<br>この街には、語り尽くせないほどの「物語」があります。</p>
+                        <p>「宗像って、何もないよね」とは言ってほしくない。<br>この街には、語り尽くせないほどの「物語」があります。</p>
                     </div>
                     
                     <p>世界遺産「神宿る島」沖ノ島の歴史はもちろん、日々の暮らしの中にある「宗像の面白さ」を、クイズという楽しいパッケージにして未来へ手渡す活動です。</p>
+                    <p class="concept-cta">必要なのは、あなたの知識と、少しの遊び心です。</p>
                 </div>
             </div>
         </div>
@@ -1278,6 +1485,172 @@
         </div>
     </section>
 
+    <!-- Ranking Section -->
+    <section class="ranking" id="ranking">
+        <div class="container">
+            <h2 class="section-title">検定ランキング</h2>
+            <p class="section-subtitle">宗像愛あふれるトッププレイヤーたち</p>
+            
+            <div class="ranking-tabs">
+                <button class="ranking-tab active" data-tab="daily">本日</button>
+                <button class="ranking-tab" data-tab="monthly">月間</button>
+                <button class="ranking-tab" data-tab="yearly">年間</button>
+            </div>
+
+            <div class="ranking-content">
+                <!-- 本日ランキング -->
+                <div class="ranking-panel active" id="daily-ranking">
+                    <div class="ranking-list">
+                        <div class="ranking-item rank-1">
+                            <span class="ranking-position">1</span>
+                            <div class="ranking-info">
+                                <span class="ranking-name">※ データ取得中</span>
+                                <span class="ranking-score">-- 点</span>
+                            </div>
+                            <span class="ranking-badge">市長</span>
+                        </div>
+                        <div class="ranking-item rank-2">
+                            <span class="ranking-position">2</span>
+                            <div class="ranking-info">
+                                <span class="ranking-name">※ データ取得中</span>
+                                <span class="ranking-score">-- 点</span>
+                            </div>
+                            <span class="ranking-badge">部長</span>
+                        </div>
+                        <div class="ranking-item rank-3">
+                            <span class="ranking-position">3</span>
+                            <div class="ranking-info">
+                                <span class="ranking-name">※ データ取得中</span>
+                                <span class="ranking-score">-- 点</span>
+                            </div>
+                            <span class="ranking-badge">課長</span>
+                        </div>
+                        <div class="ranking-item">
+                            <span class="ranking-position">4</span>
+                            <div class="ranking-info">
+                                <span class="ranking-name">※ データ取得中</span>
+                                <span class="ranking-score">-- 点</span>
+                            </div>
+                        </div>
+                        <div class="ranking-item">
+                            <span class="ranking-position">5</span>
+                            <div class="ranking-info">
+                                <span class="ranking-name">※ データ取得中</span>
+                                <span class="ranking-score">-- 点</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="ranking-note">※ ランキングは検定正式リリース後に更新されます</p>
+                </div>
+
+                <!-- 月間ランキング -->
+                <div class="ranking-panel" id="monthly-ranking">
+                    <div class="ranking-list">
+                        <div class="ranking-item rank-1">
+                            <span class="ranking-position">1</span>
+                            <div class="ranking-info">
+                                <span class="ranking-name">※ データ取得中</span>
+                                <span class="ranking-score">-- 点</span>
+                            </div>
+                            <span class="ranking-badge">市長</span>
+                        </div>
+                        <div class="ranking-item rank-2">
+                            <span class="ranking-position">2</span>
+                            <div class="ranking-info">
+                                <span class="ranking-name">※ データ取得中</span>
+                                <span class="ranking-score">-- 点</span>
+                            </div>
+                            <span class="ranking-badge">部長</span>
+                        </div>
+                        <div class="ranking-item rank-3">
+                            <span class="ranking-position">3</span>
+                            <div class="ranking-info">
+                                <span class="ranking-name">※ データ取得中</span>
+                                <span class="ranking-score">-- 点</span>
+                            </div>
+                            <span class="ranking-badge">課長</span>
+                        </div>
+                        <div class="ranking-item">
+                            <span class="ranking-position">4</span>
+                            <div class="ranking-info">
+                                <span class="ranking-name">※ データ取得中</span>
+                                <span class="ranking-score">-- 点</span>
+                            </div>
+                        </div>
+                        <div class="ranking-item">
+                            <span class="ranking-position">5</span>
+                            <div class="ranking-info">
+                                <span class="ranking-name">※ データ取得中</span>
+                                <span class="ranking-score">-- 点</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="ranking-note">※ ランキングは検定正式リリース後に更新されます</p>
+                </div>
+
+                <!-- 年間ランキング -->
+                <div class="ranking-panel" id="yearly-ranking">
+                    <div class="ranking-list">
+                        <div class="ranking-item rank-1">
+                            <span class="ranking-position">1</span>
+                            <div class="ranking-info">
+                                <span class="ranking-name">※ データ取得中</span>
+                                <span class="ranking-score">-- 点</span>
+                            </div>
+                            <span class="ranking-badge">市長</span>
+                        </div>
+                        <div class="ranking-item rank-2">
+                            <span class="ranking-position">2</span>
+                            <div class="ranking-info">
+                                <span class="ranking-name">※ データ取得中</span>
+                                <span class="ranking-score">-- 点</span>
+                            </div>
+                            <span class="ranking-badge">部長</span>
+                        </div>
+                        <div class="ranking-item rank-3">
+                            <span class="ranking-position">3</span>
+                            <div class="ranking-info">
+                                <span class="ranking-name">※ データ取得中</span>
+                                <span class="ranking-score">-- 点</span>
+                            </div>
+                            <span class="ranking-badge">課長</span>
+                        </div>
+                        <div class="ranking-item">
+                            <span class="ranking-position">4</span>
+                            <div class="ranking-info">
+                                <span class="ranking-name">※ データ取得中</span>
+                                <span class="ranking-score">-- 点</span>
+                            </div>
+                        </div>
+                        <div class="ranking-item">
+                            <span class="ranking-position">5</span>
+                            <div class="ranking-info">
+                                <span class="ranking-name">※ データ取得中</span>
+                                <span class="ranking-score">-- 点</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="ranking-note">※ ランキングは検定正式リリース後に更新されます</p>
+                </div>
+            </div>
+
+            <div class="ranking-stats">
+                <div class="ranking-stat-item">
+                    <span class="ranking-stat-number" id="totalPlayers">--</span>
+                    <span class="ranking-stat-label">総受験者数</span>
+                </div>
+                <div class="ranking-stat-item">
+                    <span class="ranking-stat-number" id="todayPlayers">--</span>
+                    <span class="ranking-stat-label">本日の受験者</span>
+                </div>
+                <div class="ranking-stat-item">
+                    <span class="ranking-stat-number" id="passRate">--%</span>
+                    <span class="ranking-stat-label">平均合格率</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Timeline Section -->
     <section class="timeline" id="timeline">
         <div class="container">
@@ -1352,6 +1725,7 @@
                 <h4>運営</h4>
                 <ul>
                     <li><a href="#">宗像検定 制作実行委員会</a></li>
+                    <li><span class="footer-text">実行委員長：中村 昌史</span></li>
                     <li><a href="mailto:info@munakata.keizai.biz">お問い合わせ</a></li>
                 </ul>
             </div>
@@ -1399,6 +1773,22 @@
         
         // Update every hour
         setInterval(updateRemainingDays, 3600000);
+
+        // Ranking Tab Switching
+        document.querySelectorAll('.ranking-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                document.querySelectorAll('.ranking-tab').forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Hide all panels
+                document.querySelectorAll('.ranking-panel').forEach(panel => panel.classList.remove('active'));
+                // Show corresponding panel
+                const tabName = tab.getAttribute('data-tab');
+                document.getElementById(tabName + '-ranking').classList.add('active');
+            });
+        });
     </script>
 </body>
 </html>
