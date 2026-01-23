@@ -890,6 +890,32 @@
             font-weight: 600;
         }
 
+        .course-coming-soon {
+            position: relative;
+        }
+
+        .course-preview {
+            background: linear-gradient(135deg, #fff8f0 0%, #fff3e6 100%);
+            border: 1px solid var(--vermilion);
+            border-radius: var(--radius-sm);
+            padding: 12px 16px;
+            margin-bottom: 16px;
+        }
+
+        .release-date {
+            color: var(--vermilion);
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+
+        .preview-hint {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
         /* Timeline Section */
         .timeline {
             background: white;
@@ -1515,12 +1541,16 @@
                 </div>
 
                 <!-- 部長コース -->
-                <div class="course-card">
+                <div class="course-card course-coming-soon">
                     <img src="images/course_bucho.webp" alt="部長コース" class="course-image" loading="lazy">
                     <div class="course-content">
                         <span class="course-level">中級 ★★☆</span>
                         <h3 class="course-title">部長コース</h3>
                         <p class="course-description">地元民でも「へぇ〜！」と驚く、ディープな宗像知識を問います。</p>
+                        <div class="course-preview">
+                            <p class="release-date">2026年夏 リリース予定</p>
+                            <p class="preview-hint">出題予告：「宗像大社の知られざる神事」「地元企業の歴史」「島々の秘密」</p>
+                        </div>
                         <div class="course-buttons">
                             <span class="course-status">現在制作中</span>
                         </div>
@@ -1528,12 +1558,16 @@
                 </div>
 
                 <!-- 市長コース -->
-                <div class="course-card">
+                <div class="course-card course-coming-soon">
                     <img src="images/course_shicho.webp" alt="市長コース" class="course-image" loading="lazy">
                     <div class="course-content">
                         <span class="course-level">上級 ★★★</span>
                         <h3 class="course-title">市長コース</h3>
                         <p class="course-description">「えっ、知らんやった！」と頭を抱える超難問。宗像マスターへの道。</p>
+                        <div class="course-preview">
+                            <p class="release-date">2026年秋 リリース予定</p>
+                            <p class="preview-hint">出題予告：「沖ノ島の古代祈禄」「宗像の知られざる偉人」「幻の郷土料理」</p>
+                        </div>
                         <div class="course-buttons">
                             <span class="course-status">現在制作中</span>
                         </div>
