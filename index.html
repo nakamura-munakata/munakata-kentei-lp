@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -18,7 +19,9 @@
     <meta name="twitter:image" content="https://nakamura-munakata.github.io/munakata-kentei-lp/images/ogp_image.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --navy: #1a2332;
@@ -33,9 +36,9 @@
             --cf-green-light: #69f0ae;
             --tap-size: 48px;
             --tap-gap: 12px;
-            --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
-            --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
-            --shadow-lg: 0 8px 32px rgba(0,0,0,0.16);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
             --radius-sm: 8px;
             --radius-md: 12px;
             --radius-lg: 16px;
@@ -63,7 +66,9 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        h1, h2, h3 {
+        h1,
+        h2,
+        h3 {
             font-family: 'Noto Serif JP', serif;
             font-weight: 700;
         }
@@ -226,14 +231,14 @@
             color: white;
             text-decoration: none;
             font-weight: 700;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             padding: 0.25rem 0.75rem;
             border-radius: 20px;
             transition: background 0.2s;
         }
 
         .cf-banner a:hover {
-            background: rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.3);
         }
 
         .cf-banner .cf-badge {
@@ -258,8 +263,15 @@
         }
 
         @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
         }
 
         header {
@@ -292,7 +304,7 @@
             font-size: clamp(1.5rem, 5vw, 2.5rem);
             margin-bottom: 1.5rem;
             line-height: 1.5;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
             letter-spacing: 0.02em;
             text-align: center;
             width: 100%;
@@ -303,7 +315,7 @@
             margin-bottom: 2rem;
             opacity: 0.95;
             line-height: 1.9;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
             text-align: center;
             width: 100%;
         }
@@ -368,8 +380,15 @@
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.02);
+            }
         }
 
         .cf-cta-button:active {
@@ -434,10 +453,10 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 1rem;
             margin-bottom: 2rem;
-            background: rgba(255,255,255,0.08);
+            background: rgba(255, 255, 255, 0.08);
             border-radius: var(--radius-lg);
             padding: 1.5rem;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .cf-stat {
@@ -463,7 +482,7 @@
             opacity: 0.85;
             margin-bottom: 0.5rem;
             padding: 0.75rem 1rem;
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: var(--radius-md);
             display: inline-block;
         }
@@ -484,18 +503,18 @@
         }
 
         .cf-feature {
-            background: rgba(255,255,255,0.08);
+            background: rgba(255, 255, 255, 0.08);
             padding: 1.25rem;
             border-radius: var(--radius-md);
             display: flex;
             align-items: flex-start;
             gap: 1rem;
-            border: 1px solid rgba(255,255,255,0.08);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             transition: background 0.2s;
         }
 
         .cf-feature:hover {
-            background: rgba(255,255,255,0.12);
+            background: rgba(255, 255, 255, 0.12);
         }
 
         .cf-feature-icon {
@@ -1179,7 +1198,7 @@
 
         .footer-section a {
             display: block;
-            color: rgba(255,255,255,0.75);
+            color: rgba(255, 255, 255, 0.75);
             text-decoration: none;
             padding: 0.5rem 0;
             min-height: 44px;
@@ -1195,7 +1214,7 @@
 
         .footer-text {
             display: block;
-            color: rgba(255,255,255,0.75);
+            color: rgba(255, 255, 255, 0.75);
             padding: 0.5rem 0;
             font-size: 0.95rem;
         }
@@ -1203,7 +1222,7 @@
         .footer-bottom {
             text-align: center;
             padding-top: 1.5rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 0.85rem;
             opacity: 0.7;
         }
@@ -1312,12 +1331,13 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Crowdfunding Banner -->
     <div class="cf-banner">
         <span class="cf-badge">CF実施中</span>
         <span>みんなで作る宗像検定！支援者募集中</span>
-        <a href="https://camp-fire.jp/projects/920270/preview?token=3jhx8ucq" target="_blank">詳細を見る →</a>
+        <a href="https://camp-fire.jp/projects/view/768784" target="_blank">詳細を見る →</a>
     </div>
 
     <!-- Header -->
@@ -1335,8 +1355,8 @@
                 <li><a href="#concept">検定とは</a></li>
                 <li><a href="#courses">コース紹介</a></li>
                 <li><a href="#timeline">スケジュール</a></li>
-                <li><a href="https://camp-fire.jp/projects/920270/preview?token=3jhx8ucq" target="_blank" class="cf-button">支援する</a></li>
-                <li><a href="https://nakamura-munakata.github.io/munakata-kentei/" class="cta-button">体験する</a></li>
+                <li><a href="https://camp-fire.jp/projects/view/768784" target="_blank" class="cf-button">支援する</a></li>
+                <li><a href="./quiz/index.html" class="cta-button">体験する</a></li>
             </ul>
         </nav>
     </header>
@@ -1346,10 +1366,17 @@
         <div class="hero-content">
             <h1>宗像市民、全員出題者。<br>みんなの「知ってる？」を<br>結集した検定を作りたい！</h1>
             <p>「宗像大社の裏話、知ってる？」「有名なあのお店の看板メニューは？」<br>そんな他愛もない日常会話こそが、この街の「宝の山」です。<br>あなたの地元ネタが、未来の宗像の教科書になる。</p>
-            <div class="hero-buttons">
-                <a href="https://camp-fire.jp/projects/920270/preview?token=3jhx8ucq" target="_blank" class="cf-cta-button">
-                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                    クラウドファンディングを見る
+            <div class="hero-buttons" style="justify-content: center;">
+                <a href="./quiz/index.html" class="cta-button"
+                    onclick="gtag('event', 'click', {'event_category': 'button', 'event_label': 'hero_start'});"
+                    style="padding: 1.2rem 3rem; font-size: 1.1rem;">
+                    宗像検定を体験する
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        style="margin-left: 8px;">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
                 </a>
             </div>
         </div>
@@ -1358,69 +1385,159 @@
     <!-- Crowdfunding Section -->
     <section class="crowdfunding" id="crowdfunding">
         <div class="cf-container">
-            <span class="cf-badge-large">
-                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                クラウドファンディング実施中！
-            </span>
-            <h2 class="cf-title">あなたの「知ってる？」が<br>宗像検定の問題になる</h2>
+            <h2 class="cf-title"
+                style="font-size: 2.2rem; background: linear-gradient(transparent 70%, rgba(255, 235, 59, 0.4) 70%); display: inline-block;">
+                あなたの「知ってる？」が<br>宗像検定の問題になる</h2>
             <p class="cf-subtitle">支援者の皆さん自身が考えたクイズを「公式問題」として採用。<br>あなたの名前入りで出題されます。</p>
-            
-            <div class="cf-stats">
-                <div class="cf-stat">
-                    <div class="cf-stat-number">¥500,000</div>
-                    <div class="cf-stat-label">目標金額</div>
-                </div>
-                <div class="cf-stat">
-                    <div class="cf-stat-number" id="daysRemaining">--</div>
-                    <div class="cf-stat-label">残り日数</div>
+
+            <div class="cf-message"
+                style="text-align: left; max-width: 800px; margin: 3rem auto; background: rgba(0,0,0,0.2); padding: 2.5rem; border-radius: 12px; line-height: 1.8; color: rgba(255,255,255,0.95);">
+                <p style="font-weight: bold; font-size: 1.2rem; margin-bottom: 2rem; color: #fff; text-align: center;">
+                    「宗像って、何もないよね」とは言わせたくない。</p>
+                <p>宗像経済新聞の取材を通じて知った、神話からの歴史、食、そして街を愛する人々。<br>宗像には語り尽くせない「物語」がありますが、ただ少し「知られていない」だけです。</p>
+                <p style="margin-top: 1.5rem;">「宗像検定」は、そんな埋もれた魅力を掘り起こし、クイズという形で未来へ手渡すプロジェクト。<br>必要なのは、あなたの知識と遊び心です。</p>
+                <p style="font-weight: bold; font-size: 1.1rem; margin-top: 2rem; text-align: center;">合言葉は「宗像市民、全員出題者」。
+                </p>
+                <p style="margin-top: 1.5rem;">皆さんと一緒にこの検定を作るため、クラウドファンディングに挑戦します。<br>どうか、あなたの力を貸してください！</p>
+
+                <div style="margin-top: 3rem; text-align: right; line-height: 1.6; font-size: 0.95rem;">
+                    <p>宗像検定 制作実行委員会　代表<br>宗像経済新聞　編集長<br><span style="font-size: 1.1rem; font-weight: bold;">中村 昌史</span>
+                    </p>
                 </div>
             </div>
 
-            <p class="cf-deadline">募集終了：<strong>2026年3月12日（木）14:59</strong></p>
-            <p class="cf-allin">※ All-In方式：目標金額に関わらず、集まった支援金でプロジェクトを実行します</p>
-
-            <div class="cf-features">
-                <div class="cf-feature">
-                    <span class="cf-feature-icon">
-                        <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
-                    </span>
-                    <div class="cf-feature-text">
-                        <h4>問題作成権</h4>
-                        <p>あなたが考えたクイズが公式問題として採用され、名前入りで出題されます。</p>
-                    </div>
-                </div>
-                <div class="cf-feature">
-                    <span class="cf-feature-icon">
-                        <svg viewBox="0 0 24 24"><path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4-3c-.83 0-1.5-.67-1.5-1.5S18.67 9 19.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
-                    </span>
-                    <div class="cf-feature-text">
-                        <h4>β版先行体験</h4>
-                        <p>一般公開前にテストプレイヤーとして参加。ご意見を反映して最終調整を行います。</p>
-                    </div>
-                </div>
-                <div class="cf-feature">
-                    <span class="cf-feature-icon">
-                        <svg viewBox="0 0 24 24"><path d="M20 4H4v2h16V4zm1 10v-2l-1-5H4l-1 5v2h1v6h10v-6h4v6h2v-6h1zm-9 4H6v-4h6v4z"/></svg>
-                    </span>
-                    <div class="cf-feature-text">
-                        <h4>法人・店舗向け</h4>
-                        <p>お店の公式サイトやSNSへのリンクを設定可能。来店促進にご活用ください。</p>
-                    </div>
-                </div>
-                <div class="cf-feature">
-                    <span class="cf-feature-icon">
-                        <svg viewBox="0 0 24 24"><path d="M21.47 4.35l-1.34-.56v9.03l2.43-5.86c.41-1.02-.06-2.19-1.09-2.61zm-19.5 3.7L6.93 20a2.01 2.01 0 001.81 1.26c.26 0 .53-.05.79-.16l7.37-3.05c.75-.31 1.21-1.05 1.23-1.79.01-.26-.04-.55-.13-.81L13 3.5a1.954 1.954 0 00-1.81-1.25c-.26 0-.52.06-.77.15L3.06 5.45a1.994 1.994 0 00-1.09 2.6zm16.15-3.8a2 2 0 00-2-2h-1.45l3.45 8.34V4.25z"/></svg>
-                    </span>
-                    <div class="cf-feature-text">
-                        <h4>カードゲーム化</h4>
-                        <p>ストレッチゴール達成で、実際に手にとって遊べる物理版カードゲームを制作！</p>
-                    </div>
-                </div>
+            <div class="cf-dates"
+                style="text-align: center; margin: 3rem 0; font-weight: 700; font-size: 1.1rem; background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 8px; display: inline-block;">
+                <p>クラウドファンディング実施期間：<br class="sp-only">2026年2月13日（金） 〜 2026年3月31日（火）</p>
             </div>
 
-            <a href="https://camp-fire.jp/projects/920270/preview?token=3jhx8ucq" target="_blank" class="cf-button-large">
-                CAMPFIREで支援する
-                <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+            <div class="cf-returns"
+                style="margin: 2rem 0; text-align: left; background: rgba(255,255,255,0.05); padding: 2.5rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);">
+                <h3
+                    style="text-align: center; margin-bottom: 2rem; color: white; font-size: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 1rem; display: inline-block; padding-left: 2rem; padding-right: 2rem;">
+                    プロジェクトのリターン（返礼品）</h3>
+                <ul class="returns-list" style="list-style: none; padding: 0; display: grid; gap: 2rem;">
+                    <li
+                        style="display: flex; gap: 1rem; align-items: flex-start; background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 12px;">
+                        <span
+                            style="color: var(--cf-green-light); font-weight: bold; font-size: 1.2rem; margin-top: -0.2rem;">●</span>
+                        <div>
+                            <strong
+                                style="display: block; margin-bottom: 0.5rem; font-size: 1.1rem; color: #fff;">お礼メール・HPにお名前掲載</strong>
+                            <p style="font-size: 0.95rem; line-height: 1.8; margin: 0; color: rgba(255,255,255,0.9);">
+                                感謝の気持ちを込めたサンクスメールをお送りします。また、宗像検定公式サイトの特設ページに、プロジェクトの「サポーター」としてお名前（またはニックネーム）を掲載させていただきます。
+                            </p>
+                        </div>
+                    </li>
+                    <li
+                        style="display: flex; gap: 1rem; align-items: flex-start; background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 12px;">
+                        <span
+                            style="color: var(--cf-green-light); font-weight: bold; font-size: 1.2rem; margin-top: -0.2rem;">●</span>
+                        <div>
+                            <strong
+                                style="display: block; margin-bottom: 0.5rem; font-size: 1.1rem; color: #fff;">Web版「宗像検定」体験会の招待・いち早く検定を試せる権利</strong>
+                            <p style="font-size: 0.95rem; line-height: 1.8; margin: 0; color: rgba(255,255,255,0.9);">
+                                一般公開に先駆け、開発中のWeb版「宗像検定」をプレイできる限定URLを発行します。誰よりも早く宗像知識をテストできる、先行体験リターンです。</p>
+                        </div>
+                    </li>
+                    <li
+                        style="display: flex; gap: 1rem; align-items: flex-start; background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 12px;">
+                        <span
+                            style="color: var(--cf-green-light); font-weight: bold; font-size: 1.2rem; margin-top: -0.2rem;">●</span>
+                        <div>
+                            <strong
+                                style="display: block; margin-bottom: 0.5rem; font-size: 1.1rem; color: #fff;">リアル早押しクイズ大会への参加権</strong>
+                            <p style="font-size: 0.95rem; line-height: 1.8; margin: 0; color: rgba(255,255,255,0.9);">
+                                宗像市内で開催予定の「リアル早押しクイズ大会」への出場権です。早押しボタンを使ったテレビ番組のような緊張感と興奮を、ライブで体験していただけます。</p>
+                        </div>
+                    </li>
+                    <li
+                        style="display: flex; gap: 1rem; align-items: flex-start; background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 12px;">
+                        <span
+                            style="color: var(--cf-green-light); font-weight: bold; font-size: 1.2rem; margin-top: -0.2rem;">●</span>
+                        <div>
+                            <strong
+                                style="display: block; margin-bottom: 0.5rem; font-size: 1.1rem; color: #fff;">宗像検定運営委員会のオンライン会議
+                                参加権</strong>
+                            <p style="font-size: 0.95rem; line-height: 1.8; margin: 0; color: rgba(255,255,255,0.9);">
+                                プロジェクトの裏側を覗ける「運営会議」にオブザーバーとして参加できます。検定がどのように作られていくのか、制作プロセスや議論の様子をリアルタイムで視聴可能です。</p>
+                        </div>
+                    </li>
+                    <li
+                        style="display: flex; gap: 1rem; align-items: flex-start; background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 12px;">
+                        <span
+                            style="color: var(--cf-green-light); font-weight: bold; font-size: 1.2rem; margin-top: -0.2rem;">●</span>
+                        <div>
+                            <strong
+                                style="display: block; margin-bottom: 0.5rem; font-size: 1.1rem; color: #fff;">公式問題作成権（1問）・自分の考えた問題が採用されます</strong>
+                            <p style="font-size: 0.95rem; line-height: 1.8; margin: 0; color: rgba(255,255,255,0.9);">
+                                あなたが考えた「宗像に関するクイズ」が公式問題として採用されます。出題時の解説文には「作成者：○○様」とクレジットを表記し、あなたの知識を検定に残します。</p>
+                        </div>
+                    </li>
+                    <li
+                        style="display: flex; gap: 1rem; align-items: flex-start; background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 12px;">
+                        <span
+                            style="color: var(--cf-green-light); font-weight: bold; font-size: 1.2rem; margin-top: -0.2rem;">●</span>
+                        <div>
+                            <strong style="display: block; margin-bottom: 0.5rem; font-size: 1.1rem; color: #fff;">宗像検定
+                                リリース記念イベント 参加券</strong>
+                            <p style="font-size: 0.95rem; line-height: 1.8; margin: 0; color: rgba(255,255,255,0.9);">
+                                検定リリース時に関係者やサポーターが集まる記念イベントへご招待します。開発秘話の公開や、参加者同士の交流・ネットワーキングを楽しめる特別な場です。</p>
+                        </div>
+                    </li>
+                    <li
+                        style="display: flex; gap: 1rem; align-items: flex-start; background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 12px;">
+                        <span
+                            style="color: var(--cf-green-light); font-weight: bold; font-size: 1.2rem; margin-top: -0.2rem;">●</span>
+                        <div>
+                            <strong
+                                style="display: block; margin-bottom: 0.5rem; font-size: 1.1rem; color: #fff;">宗像経済新聞編集部と行く「宗像ミステリーツアー」</strong>
+                            <p style="font-size: 0.95rem; line-height: 1.8; margin: 0; color: rgba(255,255,255,0.9);">
+                                地元メディア「宗像経済新聞」の編集部と共に、ガイドブックには載らないディープな宗像のスポットを巡ります。取材の裏話も聞ける、少人数限定の特別なツアーです。</p>
+                        </div>
+                    </li>
+                    <li
+                        style="display: flex; gap: 1rem; align-items: flex-start; background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 12px;">
+                        <span
+                            style="color: var(--cf-green-light); font-weight: bold; font-size: 1.2rem; margin-top: -0.2rem;">●</span>
+                        <div>
+                            <strong
+                                style="display: block; margin-bottom: 0.5rem; font-size: 1.1rem; color: #fff;">PRクイズ作成権（1問）・クイズを通して自然にお店や商品を宣伝</strong>
+                            <p style="font-size: 0.95rem; line-height: 1.8; margin: 0; color: rgba(255,255,255,0.9);">
+                                あなたのお店や商品に関するクイズを1問作成し、公式問題に組み込みます。ユーザーが楽しみながら回答することで、自然な形での認知拡大・PRにつながります。</p>
+                        </div>
+                    </li>
+                    <li
+                        style="display: flex; gap: 1rem; align-items: flex-start; background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 12px;">
+                        <span
+                            style="color: var(--cf-green-light); font-weight: bold; font-size: 1.2rem; margin-top: -0.2rem;">●</span>
+                        <div>
+                            <strong
+                                style="display: block; margin-bottom: 0.5rem; font-size: 1.1rem; color: #fff;">宗像検定のスポンサーページでのバナー掲載（1年間）</strong>
+                            <p style="font-size: 0.95rem; line-height: 1.8; margin: 0; color: rgba(255,255,255,0.9);">
+                                宗像検定公式サイト内のスポンサー一覧ページに、貴社のバナーを1年間掲載します。地域に関心の高いユーザー層へ向けた、継続的なブランディングが可能です。</p>
+                        </div>
+                    </li>
+                    <li
+                        style="display: flex; gap: 1rem; align-items: flex-start; background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 12px;">
+                        <span
+                            style="color: var(--cf-green-light); font-weight: bold; font-size: 1.2rem; margin-top: -0.2rem;">●</span>
+                        <div>
+                            <strong
+                                style="display: block; margin-bottom: 0.5rem; font-size: 1.1rem; color: #fff;">出張リアル宗像検定大会
+                                開催権</strong>
+                            <p style="font-size: 0.95rem; line-height: 1.8; margin: 0; color: rgba(255,255,255,0.9);">
+                                運営チームが機材一式を持って、あなたの会社やイベントへ出張します。社内レクリエーションや地域の催しとして、本格的な「宗像クイズ大会」を開催できます。</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <a href="https://camp-fire.jp/projects/view/768784" target="_blank" class="cf-button-large">
+                クラウドファンディングを見る
+                <svg viewBox="0 0 24 24">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                </svg>
             </a>
         </div>
     </section>
@@ -1434,11 +1551,11 @@
                 <div class="concept-text">
                     <h3>ただの「試験」ではありません。<br>宗像が好きな人と一緒に遊ぶ「エンターテイメント」です。</h3>
                     <p>スマホひとつで、誰でも無料で楽しめる「ご当地クイズゲーム」。アプリのダウンロード不要で、QRコードを読み込むだけで、そこはもう宗像のディープな知識への入り口。</p>
-                    
+
                     <div class="concept-highlight">
                         <p>「宗像って、何もないよね」とは言ってほしくない。<br>この街には、語り尽くせないほどの「物語」があります。</p>
                     </div>
-                    
+
                     <p>世界遺産「神宿る島」沖ノ島の歴史はもちろん、日々の暮らしの中にある「宗像の面白さ」を、クイズという楽しいパッケージにして未来へ手渡す活動です。</p>
                     <p class="concept-cta">必要なのは、あなたの知識と、少しの遊び心です。</p>
                 </div>
@@ -1447,75 +1564,113 @@
     </section>
 
     <!-- Features Section -->
-    <section class="features">
+    <section class="features" style="padding: 4rem 1rem;">
         <div class="container">
             <h2 class="section-title">宗像検定の特徴</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon feature-icon-img">
-                        <img src="images/icons/feature_smartphone.webp" alt="スマホで完結" loading="lazy">
+            <div class="features-grid"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem;">
+                <div class="feature-card"
+                    style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); height: 100%;">
+                    <div class="feature-image" style="width: 100%; height: 200px; overflow: hidden;">
+                        <img src="images/icons/feature_smartphone.webp" alt="スマホで完結" loading="lazy"
+                            style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
                     </div>
-                    <h3>スマホで完結</h3>
-                    <p>アプリ不要。ブラウザからすぐにアクセス。通勤通学のスキマ時間に楽しめます。</p>
+                    <div class="feature-content" style="padding: 1.5rem;">
+                        <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem; color: #333;">スマホで完結</h3>
+                        <p style="font-size: 0.95rem; line-height: 1.6; color: #666;">
+                            アプリ不要。ブラウザからすぐにアクセス。通勤通学のスキマ時間に楽しめます。</p>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon feature-icon-img">
-                        <img src="images/icons/feature_free.webp" alt="完全無料" loading="lazy">
+                <div class="feature-card"
+                    style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); height: 100%;">
+                    <div class="feature-image" style="width: 100%; height: 200px; overflow: hidden;">
+                        <img src="images/icons/feature_free.webp" alt="完全無料" loading="lazy"
+                            style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
                     </div>
-                    <h3>完全無料</h3>
-                    <p>誰でも無料で何度でも挑戦可能。宗像ファンを増やすための検定です。</p>
+                    <div class="feature-content" style="padding: 1.5rem;">
+                        <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem; color: #333;">完全無料</h3>
+                        <p style="font-size: 0.95rem; line-height: 1.6; color: #666;">誰でも無料で何度でも挑戦可能。宗像ファンを増やすための検定です。
+                        </p>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon feature-icon-img">
-                        <img src="images/icons/feature_community.webp" alt="市民参加型" loading="lazy">
+                <div class="feature-card"
+                    style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); height: 100%;">
+                    <div class="feature-image" style="width: 100%; height: 200px; overflow: hidden;">
+                        <img src="images/icons/feature_community.webp" alt="市民参加型" loading="lazy"
+                            style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
                     </div>
-                    <h3>市民参加型</h3>
-                    <p>問題を作るのはあなた。みんなで作り上げる「参加型の検定クイズ」です。</p>
+                    <div class="feature-content" style="padding: 1.5rem;">
+                        <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem; color: #333;">市民参加型</h3>
+                        <p style="font-size: 0.95rem; line-height: 1.6; color: #666;">問題を作るのはあなた。みんなで作り上げる「参加型の検定クイズ」です。
+                        </p>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon feature-icon-img">
-                        <img src="images/icons/feature_certificate.webp" alt="認定証発行" loading="lazy">
+                <div class="feature-card"
+                    style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); height: 100%;">
+                    <div class="feature-image" style="width: 100%; height: 200px; overflow: hidden;">
+                        <img src="images/icons/feature_certificate.webp" alt="認定証発行" loading="lazy"
+                            style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
                     </div>
-                    <h3>認定証発行</h3>
-                    <p>合格者にはデジタル認定証を発行。SNSでシェアして宗像愛をアピール！</p>
+                    <div class="feature-content" style="padding: 1.5rem;">
+                        <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem; color: #333;">認定証発行</h3>
+                        <p style="font-size: 0.95rem; line-height: 1.6; color: #666;">合格者にはデジタル認定証を発行。SNSでシェアして宗像愛をアピール！
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Genres Section -->
-    <section class="genres">
+    <section class="genres" style="background: #f9f9f9; padding: 4rem 1rem;">
         <div class="container">
             <h2 class="section-title">出題ジャンル</h2>
             <p class="section-subtitle">「世界遺産」から「街ネタ」まで、宗像のすべてが問題に。</p>
-            <div class="genres-grid">
-                <div class="genre-card">
-                    <div class="genre-icon genre-icon-img">
-                        <img src="images/icons/genre_history.webp" alt="歴史・伝統" loading="lazy">
+            <div class="genres-grid"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem;">
+                <div class="genre-card"
+                    style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <div class="genre-image" style="width: 100%; height: 180px; overflow: hidden;">
+                        <img src="images/icons/genre_history.webp" alt="歴史・伝統" loading="lazy"
+                            style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
-                    <h4>歴史・伝統</h4>
-                    <p>沖ノ島、宗像大社、古代祭祀</p>
+                    <div class="genre-content" style="padding: 1.5rem; text-align: center;">
+                        <h3 style="margin-bottom: 0.5rem;">歴史・伝統</h3>
+                        <p style="font-size: 0.9rem; color: #666;">沖ノ島、宗像大社、古代祭祀</p>
+                    </div>
                 </div>
-                <div class="genre-card">
-                    <div class="genre-icon genre-icon-img">
-                        <img src="images/icons/genre_gourmet.webp" alt="グルメ" loading="lazy">
+                <div class="genre-card"
+                    style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <div class="genre-image" style="width: 100%; height: 180px; overflow: hidden;">
+                        <img src="images/icons/genre_gourmet.webp" alt="グルメ" loading="lazy"
+                            style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
-                    <h4>グルメ</h4>
-                    <p>玄ちゃんアジ、とらふく、焼き鳥</p>
+                    <div class="genre-content" style="padding: 1.5rem; text-align: center;">
+                        <h3 style="margin-bottom: 0.5rem;">グルメ</h3>
+                        <p style="font-size: 0.9rem; color: #666;">玄ちゃんアジ、とらふく、焼き鳥</p>
+                    </div>
                 </div>
-                <div class="genre-card">
-                    <div class="genre-icon genre-icon-img">
-                        <img src="images/icons/genre_nature.webp" alt="自然・地理" loading="lazy">
+                <div class="genre-card"
+                    style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <div class="genre-image" style="width: 100%; height: 180px; overflow: hidden;">
+                        <img src="images/icons/genre_nature.webp" alt="自然・地理" loading="lazy"
+                            style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
-                    <h4>自然・地理</h4>
-                    <p>玄界灘、大島、地島、孔大寺山</p>
+                    <div class="genre-content" style="padding: 1.5rem; text-align: center;">
+                        <h3 style="margin-bottom: 0.5rem;">自然・地理</h3>
+                        <p style="font-size: 0.9rem; color: #666;">玄界灘、大島、地島、孔大寺山</p>
+                    </div>
                 </div>
-                <div class="genre-card">
-                    <div class="genre-icon genre-icon-img">
-                        <img src="images/icons/genre_culture.webp" alt="カルチャー" loading="lazy">
+                <div class="genre-card"
+                    style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <div class="genre-image" style="width: 100%; height: 180px; overflow: hidden;">
+                        <img src="images/icons/genre_culture.webp" alt="カルチャー" loading="lazy"
+                            style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
-                    <h4>カルチャー</h4>
-                    <p>地元企業、あるあるネタ</p>
+                    <div class="genre-content" style="padding: 1.5rem; text-align: center;">
+                        <h3 style="margin-bottom: 0.5rem;">カルチャー</h3>
+                        <p style="font-size: 0.9rem; color: #666;">地元企業、あるあるネタ</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1535,7 +1690,15 @@
                         <h3 class="course-title">課長コース</h3>
                         <p class="course-description">まずはここから。観光客の方がガイドブック代わりに楽しめる内容です。</p>
                         <div class="course-buttons">
-                            <a href="https://nakamura-munakata.github.io/munakata-kentei/?course=beginner" class="course-button">課長コースを受験</a>
+                            <a href="./quiz/index.html?course=beginner" class="course-button"
+                                style="background: linear-gradient(135deg, #d84315 0%, #bf360c 100%); color: white; border: none; font-weight: bold; padding: 1rem 2rem; border-radius: 50px; box-shadow: 0 4px 15px rgba(216, 67, 21, 0.4); transform: translateY(0); transition: all 0.3s ease; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; text-decoration: none;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                </svg>
+                                課長コースに挑戦する！
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -1547,12 +1710,20 @@
                         <span class="course-level">中級 ★★☆</span>
                         <h3 class="course-title">部長コース</h3>
                         <p class="course-description">地元民でも「へぇ〜！」と驚く、ディープな宗像知識を問います。</p>
-                        <div class="course-preview">
-                            <p class="release-date">2026年夏 リリース予定</p>
-                            <p class="preview-hint">出題予告：「宗像大社の知られざる神事」「地元企業の歴史」「島々の秘密」</p>
+                        <div class="course-preview"
+                            style="background: rgba(255, 243, 224, 0.5); border: 1px dashed #ffb74d; padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                            <p class="release-date" style="color: #e65100; font-weight: bold; margin-bottom: 0.5rem;">
+                                🎯 2026年夏 解禁予定</p>
+                            <p class="preview-hint" style="font-size: 0.9rem; color: #555; line-height: 1.6;">
+                                こんな問題が出るかも…？<br>
+                                「宗像大社の神事、その裏側とは」<br>
+                                「地元で愛される老舗企業のヒミツ」
+                            </p>
                         </div>
-                        <div class="course-buttons">
-                            <span class="course-status">現在制作中</span>
+                        <div class="course-buttons" style="margin-top: 1.5rem;">
+                            <span class="course-status"
+                                style="background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); color: #e65100; padding: 0.8rem 1.5rem; border-radius: 50px; font-weight: bold; display: inline-block; width: 100%; text-align: center;">🔜
+                                もうすぐ公開！お楽しみに</span>
                         </div>
                     </div>
                 </div>
@@ -1564,16 +1735,27 @@
                         <span class="course-level">上級 ★★★</span>
                         <h3 class="course-title">市長コース</h3>
                         <p class="course-description">「えっ、知らんやった！」と頭を抱える超難問。宗像マスターへの道。</p>
-                        <div class="course-preview">
-                            <p class="release-date">2026年秋 リリース予定</p>
-                            <p class="preview-hint">出題予告：「沖ノ島の古代祈禄」「宗像の知られざる偉人」「幻の郷土料理」</p>
+                        <div class="course-preview"
+                            style="background: rgba(255, 243, 224, 0.5); border: 1px dashed #ffb74d; padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                            <p class="release-date" style="color: #e65100; font-weight: bold; margin-bottom: 0.5rem;">
+                                🏆 2026年秋 解禁予定</p>
+                            <p class="preview-hint" style="font-size: 0.9rem; color: #555; line-height: 1.6;">
+                                こんな問題が出るかも…？<br>
+                                「沖ノ島の古代祭祀、その全貌に迫る」<br>
+                                「幻の郷土料理、その名前を答えよ」
+                            </p>
                         </div>
-                        <div class="course-buttons">
-                            <span class="course-status">現在制作中</span>
+                        <div class="course-buttons" style="margin-top: 1.5rem;">
+                            <span class="course-status"
+                                style="background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); color: #e65100; padding: 0.8rem 1.5rem; border-radius: 50px; font-weight: bold; display: inline-block; width: 100%; text-align: center;">🔜
+                                もうすぐ公開！お楽しみに</span>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        </div>
+        </div>
         </div>
     </section>
 
@@ -1582,7 +1764,7 @@
         <div class="container">
             <h2 class="section-title">検定ランキング</h2>
             <p class="section-subtitle">宗像愛あふれるトッププレイヤーたち</p>
-            
+
             <div class="ranking-tabs">
                 <button class="ranking-tab active" data-tab="daily">本日</button>
                 <button class="ranking-tab" data-tab="monthly">月間</button>
@@ -1756,7 +1938,7 @@
                     </div>
                 </div>
                 <div class="timeline-item">
-                    <div class="timeline-date">2026年3月12日</div>
+                    <div class="timeline-date">2026年3月31日</div>
                     <div class="timeline-content">
                         <h4>クラウドファンディング終了</h4>
                         <p>目標金額達成を目指します</p>
@@ -1801,8 +1983,9 @@
             <div class="footer-section">
                 <h4>クラウドファンディング</h4>
                 <ul>
-                    <li><a href="https://camp-fire.jp/projects/920270/preview?token=3jhx8ucq" target="_blank">CAMPFIREで支援する</a></li>
-                    <li><a href="https://camp-fire.jp/projects/920270/preview?token=3jhx8ucq" target="_blank">リターン一覧</a></li>
+                    <li><a href="https://camp-fire.jp/projects/view/768784" target="_blank">CAMPFIREで支援する</a></li>
+                    <li><a href="https://camp-fire.jp/projects/view/768784" target="_blank">リターン一覧</a>
+                    </li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -1842,27 +2025,23 @@
         });
 
         // Calculate remaining days dynamically
-        function updateRemainingDays() {
-            const endDate = new Date('2026-03-12T14:59:59+09:00');
+        function calculateDaysRemaining() {
+            const endDate = new Date('2026-03-12T14:59:00');
             const now = new Date();
-            const diffTime = endDate - now;
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            
-            const daysElement = document.getElementById('daysRemaining');
-            if (daysElement) {
-                if (diffDays > 0) {
-                    daysElement.textContent = diffDays + '日';
-                } else if (diffDays === 0) {
-                    daysElement.textContent = '本日終了';
-                } else {
-                    daysElement.textContent = '終了';
-                }
+            const timeDiff = endDate - now;
+
+            if (timeDiff <= 0) {
+                document.getElementById('daysRemaining').textContent = '終了';
+                return;
             }
+
+            const daysRemaining = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+            document.getElementById('daysRemaining').innerText = daysRemaining + '日';
         }
 
         // Run on page load
         updateRemainingDays();
-        
+
         // Update every hour
         setInterval(updateRemainingDays, 3600000);
 
@@ -1873,7 +2052,7 @@
                 document.querySelectorAll('.ranking-tab').forEach(t => t.classList.remove('active'));
                 // Add active class to clicked tab
                 tab.classList.add('active');
-                
+
                 // Hide all panels
                 document.querySelectorAll('.ranking-panel').forEach(panel => panel.classList.remove('active'));
                 // Show corresponding panel
@@ -1883,4 +2062,5 @@
         });
     </script>
 </body>
+
 </html>

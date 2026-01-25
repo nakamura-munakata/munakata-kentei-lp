@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宗像検定 2025年12月版</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, 'Hiragino Sans', 'ヒラギノ角ゴ Pro';
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .overview {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #667eea;
+        }
+
+        .overview h2 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .overview p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .overview ul {
+            margin-left: 20px;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .overview li {
+            margin-bottom: 8px;
+        }
+
+        /* 難易度選択画面 */
+        .difficulty-selection {
+            display: block;
+        }
+
+        .difficulty-selection.hidden {
+            display: none;
+        }
+
+        .difficulty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .difficulty-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            border: 3px solid #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .difficulty-card:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
+        }
+
+        .difficulty-card.beginner {
+            border-color: #4caf50;
+        }
+
+        .difficulty-card.beginner:hover {
+            border-color: #4caf50;
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.2);
+        }
+
+        .difficulty-card.intermediate {
+            border-color: #ff9800;
+        }
+
+        .difficulty-card.intermediate:hover {
+            border-color: #ff9800;
+            box-shadow: 0 10px 25px rgba(255, 152, 0, 0.2);
+        }
+
+        .difficulty-card.advanced {
+            border-color: #f44336;
+        }
+
+        .difficulty-card.advanced:hover {
+            border-color: #f44336;
+            box-shadow: 0 10px 25px rgba(244, 67, 54, 0.2);
+        }
+
+        .difficulty-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .difficulty-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .difficulty-description {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .difficulty-details {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: left;
+            color: #555;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .difficulty-details li {
+            margin-bottom: 5px;
+            margin-left: 20px;
+        }
+
+        .select-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .select-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* 問題表示画面 */
+        .exam-section {
+            display: none;
+        }
+
+        .exam-section.active {
+            display: block;
+        }
+
+        .back-btn {
+            background: #999;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #666;
+        }
+
+        .exam-header {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #667eea;
+        }
+
+        .exam-header h2 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .exam-header p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .question-block {
+            background: #f8f9fa;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .question-number {
+            font-size: 0.9em;
+            color: #667eea;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .question-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .question-text {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.7;
+            font-size: 1.05em;
+        }
+
+        .options {
+            margin-bottom: 20px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .option input[type="radio"] {
+            margin-right: 12px;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+
+        .option label {
+            cursor: pointer;
+            flex: 1;
+            color: #333;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            font-size: 1em;
+            font-family: inherit;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+        }
+
+        textarea.input-field {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .scoring-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .scoring-table th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 700;
+        }
+
+        .scoring-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .scoring-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .scoring-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .evaluation-section {
+            background: #fff3e0;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #ff9800;
+        }
+
+        .evaluation-section h3 {
+            color: #e65100;
+            margin-bottom: 15px;
+        }
+
+        .evaluation-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ffe0b2;
+        }
+
+        .evaluation-item:last-child {
+            border-bottom: none;
+        }
+
+        .evaluation-score {
+            font-weight: 700;
+            color: #e65100;
+        }
+
+        .evaluation-desc {
+            color: #555;
+        }
+
+        footer {
+            background: #f8f9fa;
+            padding: 20px 30px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+            border-top: 1px solid #ddd;
+        }
+
+        .submit-section {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #ddd;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 6px;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .result-section {
+            display: none;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 30px;
+            color: white;
+        }
+
+        .result-section.show {
+            display: block;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-score {
+            font-size: 4em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .result-message {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .result-evaluation {
+            font-size: 1.2em;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            margin-top: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .result-details {
+            margin-top: 30px;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .result-details h3 {
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .result-detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .result-detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .retry-btn {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .retry-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .user-count {
+            font-size: 1.3em;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .share-section {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .share-title {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: white;
+            color: #667eea;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95em;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .share-btn.twitter {
+            color: #1DA1F2;
+        }
+
+        .share-btn.facebook {
+            color: #1877F2;
+        }
+
+        .share-btn.line {
+            color: #00B900;
+        }
+
+        .share-btn.copy {
+            color: #667eea;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .difficulty-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .result-score {
+                font-size: 2.5em;
+            }
+
+            .result-message {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎓 宗像検定</h1>
+            <p>2025年12月版 - 宗像経済新聞から出題</p>
+        </header>
+
+        <div class="content">
+            <!-- 難易度選択画面 -->
+            <div id="selectionScreen" class="difficulty-selection">
+                <div class="overview">
+                    <h2>📋 宗像検定について</h2>
+                    <p>本検定は、宗像経済新聞の2025年12月1日〜12月31日に掲載された記事を基に、宗像地域の最新の活性化事業、イベント、産業動向を理解することを目的としています。</p>
+                    <p style="margin-top: 15px;"><strong>課長・部長・市長の3段階の難易度から選択してください。</strong></p>
+                </div>
+
+                <div class="difficulty-grid">
+                    <!-- 課長 -->
+                    <div class="difficulty-card beginner" onclick="startExam('beginner')">
+                        <div class="difficulty-icon">👨‍💼</div>
+                        <div class="difficulty-title">課長</div>
+                        <div class="difficulty-description">基本情報をしっかり理解しよう</div>
+                        <div class="difficulty-details">
+                            <ul>
+                                <li>問題数：10問</li>
+                                <li>形式：選択肢10問</li>
+                                <li>配点：100点</li>
+                                <li>難易度：★★★</li>
+                            </ul>
+                        </div>
+                        <button class="select-btn">課長を選択</button>
+                    </div>
+
+                    <!-- 部長 -->
+                    <div class="difficulty-card intermediate" onclick="startExam('intermediate')">
+                        <div class="difficulty-icon">👨‍💼</div>
+                        <div class="difficulty-title">部長</div>
+                        <div class="difficulty-description">詳細な情報を理解しよう</div>
+                        <div class="difficulty-details">
+                            <ul>
+                                <li>問題数：10問</li>
+                                <li>形式：選択肢＋記述</li>
+                                <li>配点：150点</li>
+                                <li>難易度：★★☆</li>
+                            </ul>
+                        </div>
+                        <button class="select-btn">部長を選択</button>
+                    </div>
+
+                    <!-- 市長 -->
+                    <div class="difficulty-card advanced" onclick="startExam('advanced')">
+                        <div class="difficulty-icon">👨‍💼</div>
+                        <div class="difficulty-title">市長</div>
+                        <div class="difficulty-description">複合的な分析力を試そう</div>
+                        <div class="difficulty-details">
+                            <ul>
+                                <li>問題数：10問</li>
+                                <li>形式：選択肢問題、記述問題</li>
+                                <li>配点：100点</li>
+                                <li>難易度：★★★</li>
+                            </ul>
+                        </div>
+                        <button class="select-btn">市長を選択</button>
+                    </div>
+                </div>
+
+                <div style="margin-top: 40px;">
+                    <h3 style="color: #333; margin-bottom: 20px; font-size: 1.3em;">📊 採点基準</h3>
+                    <table class="scoring-table">
+                        <thead>
+                            <tr>
+                                <th>階級</th>
+                                <th>問題数</th>
+                                <th>形式</th>
+                                <th>配点</th>
+                                <th>合計</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>課長</td>
+                                <td>10問</td>
+                                <td>選択肢10問</td>
+                                <td>各10点</td>
+                                <td>100点</td>
+                            </tr>
+                            <tr>
+                                <td>部長</td>
+                                <td>10問</td>
+                                <td>選択肢8問+記述2問</td>
+                                <td>選択肢10点、記述25点</td>
+                                <td>100点</td>
+                            </tr>
+                            <tr>
+                                <td>市長</td>
+                                <td>10問</td>
+                                <td>選択肢9問+記述1問</td>
+                                <td>選択肢10点、記述100点</td>
+                                <td>100点</td>
+                            </tr>
+                            <tr style="background: #667eea; color: white; font-weight: 700;">
+                                <td>合計</td>
+                                <td>30問</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>300点</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="evaluation-section">
+                        <h3>🎯 評価基準（各階級ごと）</h3>
+                        <div class="evaluation-item">
+                            <span class="evaluation-desc">80点以上</span>
+                            <span class="evaluation-score">合格</span>
+                        </div>
+                        <div class="evaluation-item">
+                            <span class="evaluation-desc">80点未満</span>
+                            <span class="evaluation-score">再受検推奨</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 試験画面 -->
+            <div id="examScreen" class="exam-section">
+                <button class="back-btn" onclick="backToSelection()">← 難易度選択に戻る</button>
+
+                <div class="exam-header">
+                    <h2 id="examTitle">課長</h2>
+                    <p id="examDescription">宗像地域の基本情報を問う問題です。各記事から出題された基本的な情報を確認しましょう。</p>
+                </div>
+
+                <div id="questionsContainer"></div>
+
+                <div class="submit-section">
+                    <button class="submit-btn" onclick="submitAnswers()">
+                        <span id="submitText">採点する</span>
+                    </button>
+                    <p style="color: #666; margin-top: 20px;">全ての問題に回答してから採点ボタンを押してください。</p>
+                </div>
+
+                <!-- 結果表示 -->
+                <div id="resultSection" class="result-section">
+                    <div class="result-score" id="resultScore">0 / 350</div>
+                    <div class="result-message" id="resultMessage">素晴らしい成績です！</div>
+                    <div class="result-evaluation" id="resultEvaluation">優秀</div>
+                    <div class="result-details">
+                        <h3>📈 詳細結果</h3>
+                        <div class="result-detail-item">
+                            <span id="resultDetailLabel"></span>
+                            <span id="resultDetailScore"></span>
+                        </div>
+                    </div>
+                    <div class="user-count" id="userCountDisplay"></div>
+                    <div class="share-section">
+                        <div class="share-title">結果をシェアしよう！</div>
+                        <div class="share-buttons">
+                            <button class="share-btn twitter" onclick="shareTwitter()">𝕏でシェア</button>
+                            <button class="share-btn facebook" onclick="shareFacebook()">Facebookでシェア</button>
+                            <button class="share-btn line" onclick="shareLine()">LINEでシェア</button>
+                            <button class="share-btn copy" onclick="copyLink()">リンクをコピー</button>
+                        </div>
+                    </div>
+                    <button class="retry-btn" onclick="retakeExam()">もう一度受験する</button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 株式会社Comunion - 宗像経済新聞</p>
+            <p>このページは宗像地域の活性化を目的として作成されました。</p>
+        </footer>
+    </div>
+
+    <script>
+        // 問題データ
+        const questions = {
+            beginner: [
+                {
+                    id: 'q1',
+                    number: '問題1',
+                    title: '自由ヶ丘クリスマスイベントの開催場所',
+                    text: '宗像・自由ヶ丘地区のクリスマスイベントが12月21日に開催された2つの会場は、自由ヶ丘地区コミュニティ・センターと、もう一つどこだったでしょうか？',
+                    type: 'choice',
+                    options: [
+                        { value: 'a', label: 'ザビエル記念ホール' },
+                        { value: 'b', label: '赤馬館' },
+                        { value: 'c', label: '宗像ユリックス' }
+                    ],
+                    correct: 'a',
+                    points: 10
+                },
+                {
+                    id: 'q2',
+                    number: '問題2',
+                    title: 'クリスマスマーケットの開催場所',
+                    text: 'JR赤間駅北口で初開催されたクリスマスマーケットは、従来どこで開催されていたイルミネーション企画を移したものでしょうか？',
+                    type: 'choice',
+                    options: [
+                        { value: 'a', label: '玄海横丁' },
+                        { value: 'b', label: '道の駅むなかた' },
+                        { value: 'c', label: 'なまずの郷' }
+                    ],
+                    correct: 'b',
+                    points: 10
+                },
+                {
+                    id: 'q3',
+                    number: '問題3',
+                    title: '宗像サーモンの販売場所',
+                    text: '宗像サーモンの販売が12月6日に開始された場所は？',
+                    type: 'choice',
+                    options: [
+                        { value: 'a', label: '道の駅むなかた' },
+                        { value: 'b', label: '玄海横丁' },
+                        { value: 'c', label: 'JR赤間駅北口' }
+                    ],
+                    correct: 'a',
+                    points: 10
+                },
+                {
+                    id: 'q4',
+                    number: '問題4',
+                    title: '24時間駅伝の新企画',
+                    text: '「宗像ユリックス24時間駅伝」に新たに設置された部門は？',
+                    type: 'choice',
+                    options: [
+                        { value: 'a', label: '120分部門' },
+                        { value: 'b', label: '180分部門' },
+                        { value: 'c', label: '240分部門' }
+                    ],
+                    correct: 'c',
+                    points: 10
+                },
+                {
+                    id: 'q5',
+                    number: '問題5',
+                    title: '子どもおとな会議の参加者数',
+                    text: '自由ヶ丘地区の「子どもおとな会議」の現在の参加者数は約何人でしょうか？',
+                    type: 'choice',
+                    options: [
+                        { value: 'a', label: '約20人' },
+                        { value: 'b', label: '約40人' },
+                        { value: 'c', label: '約60人' }
+                    ],
+                    correct: 'b',
+                    points: 10
+                },
+                {
+                    id: 'q6',
+                    number: '問題6',
+                    title: 'クリスマスマーケットの出店数',
+                    text: 'JR赤間駅北口のクリスマスマーケットに出店した飲食店やキッチンカーの数は？',
+                    type: 'choice',
+                    options: [
+                        { value: 'a', label: '約10店' },
+                        { value: 'b', label: '約15店' },
+                        { value: 'c', label: '約20店' }
+                    ],
+                    correct: 'b',
+                    points: 10
+                },
+                {
+                    id: 'q7',
+                    number: '問題7',
+                    title: '宗像サーモンの年間生産予定量',
+                    text: '宗像陸上養殖が来年秋以降に予定している年間生産量は？',
+                    type: 'choice',
+                    options: [
+                        { value: 'a', label: '年間300トン' },
+                        { value: 'b', label: '年間400トン' },
+                        { value: 'c', label: '年間500トン' }
+                    ],
+                    correct: 'c',
+                    points: 10
+                },
+                {
+                    id: 'q8',
+                    number: '問題8',
+                    title: 'なまずの郷のイベント',
+                    text: 'なまずの郷で12月13日に開催された「パレット・ピクニック」にはどのような企画が含まれていたでしょうか？',
+                    type: 'choice',
+                    options: [
+                        { value: 'a', label: 'フードコート、キャンプ場' },
+                        { value: 'b', label: '音楽ステージ、雑貨・食品販売' },
+                        { value: 'c', label: 'アート展示、ワークショップ' }
+                    ],
+                    correct: 'b',
+                    points: 10
+                },
+                {
+                    id: 'q9',
+                    number: '問題9',
+                    title: '宗像リゾートホテルのカキ小屋',
+                    text: '宗像リゾートホテルの「和食処 勝広」がカキ小屋をオープンした時期は？',
+                    type: 'choice',
+                    options: [
+                        { value: 'a', label: '12月10日' },
+                        { value: 'b', label: '12月20日' },
+                        { value: 'c', label: '12月25日' }
+                    ],
+                    correct: 'b',
+                    points: 10
+                },
+                {
+                    id: 'q10',
+                    number: '問題10',
+                    title: '公園ミライ会議の開催場所',
+                    text: '宗像で12月21日に開催された「公園ミライ会議」の開催場所は？',
+                    type: 'choice',
+                    options: [
+                        { value: 'a', label: 'JR赤間駅前' },
+                        { value: 'b', label: '宗像ユリックス' },
+                        { value: 'c', label: '自由ヶ丘地区' }
+                    ],
+                    correct: 'a',
+                    points: 10
+                }
+            ],
+            intermediate: [
+                {
+                    id: 'q11',
+                    number: '問題1',
+                    title: '自由ヶ丘クリスマスイベントの開业場所',
+                    text: '宗像・自由ヶ丘地区のクリスマスイベントが12月21日に開业された2つの会場は、自由ヶ丘地区コミュニティ・センターと、もう一つどこだったでしょうか？',
+                    type: 'choice',
+                    options: [
+                        { value: 'a', label: 'ザビエル記念ホール' },
+                        { value: 'b', label: '赤馬館' },
+                        { value: 'c', label: '宗像ユリックス' }
+                    ],
+                    correct: 'a',
+                    points: 10
+                },
+                {
+                    id: 'q12',
+                    number: '問題2',
+                    title: 'クリスマスマーケットの開催場所',
+                    text: 'JR赤間駅北口で初開催されたクリスマスマーケットは、従来どこで開催されていたイルミネーション企画を移したものでしょうか？',
+                    type: 'choice',
+                    options: [
+                        { value: 'a', label: '玄海横丁' },
+                        { value: 'b', label: '道の駅むなかた' },
+                        { value: 'c', label: 'なまずの郷' }
+                    ],
+                    correct: 'b',
+                    points: 10
+                },
+                {
+                    id: 'q13',
+                    number: '問題3',
+                    title: '宗像サーモンの販売場所',
+                    text: '宗像サーモンの販売が12月6日に開始された場所は？',
+                    type: 'choice',
+                    options: [
+                        { value: 'a', label: '道の駅むなかた' },
+                        { value: 'b', label: '玄海横丁' },
+                        { value: 'c', label: 'JR赤間駅北口' }
+                    ],
+                    correct: 'a',
+                    points: 10
+                },
+                {
+                    id: 'q14',
+                    number: '問題4',
+                    title: '24時間駅伝の新企画',
+                    text: '「宗像ユリックス24時間駅伝」に新たに設置された部門は？',
+                    type: 'choice',
+                    options: [
+                        { value: 'a', label: '120分部門' },
+                        { value: 'b', label: '180分部門' },
+                        { value: 'c', label: '240分部門' }
+                    ],
+                    correct: 'c',
+                    points: 10
+                },
+                {
+                    id: 'q15',
+                    number: '問題5',
+                    title: '子どもおとな会議の参加者数',
+                    text: '自由ヶ丘地区の「子どもおとな会議」の現在の参加者数は約何人でしょうか？',
+                    type: 'choice',
+                    options: [
+                        { value: 'a', label: '約20人' },
+                        { value: 'b', label: '約40人' },
+                        { value: 'c', label: '約60人' }
+                    ],
+                    correct: 'b',
+                    points: 10
+                },
+                {
+                    id: 'q16',
+                    number: '問題6',
+                    title: 'クリスマスマーケットの出店数',
+                    text: 'JR赤間駅北口のクリスマスマーケットに出店した飲食店やキッチンカーの数は？',
+                    type: 'choice',
+                    options: [
+                        { value: 'a', label: '約10店' },
+                        { value: 'b', label: '約15店' },
+                        { value: 'c', label: '約20店' }
+                    ],
+                    correct: 'b',
+                    points: 10
+                },
+                {
+                    id: 'q17',
+                    number: '問題7',
+                    title: '宗像サーモンの年間生産予定量',
+                    text: '宗像陸上養殖が来年秋以降に予定している年間生産量は？',
+                    type: 'choice',
+                    options: [
+                        { value: 'a', label: '年間300トン' },
+                        { value: 'b', label: '年間400トン' },
+                        { value: 'c', label: '年間500トン' }
+                    ],
+                    correct: 'c',
+                    points: 10
+                },
+                {
+                    id: 'q18',
+                    number: '問題8',
+                    title: 'なまずの郷のイベント',
+                    text: 'なまずの郷で12月13日に開催された「パレット・ピクニック」にはどのような企画が含まれていたでしょうか？',
+                    type: 'choice',
+                    options: [
+                        { value: 'a', label: 'フードコート、キャンプ場' },
+                        { value: 'b', label: '音楽ステージ、雑貨・食品販売' },
+                        { value: 'c', label: 'アート展示、ワークショップ' }
+                    ],
+                    correct: 'b',
+                    points: 10
+                },
+                {
+                    id: 'q19',
+                    number: '問題9',
+                    title: '宗像サーモンの特征',
+                    text: '宗像サーモンが地下水を利用することで、どのような寄生虫が混入しないようになっているか答えてください。',
+                    type: 'text',
+                    correct: 'アニサキス',
+                    points: 25
+                },
+                {
+                    id: 'q20',
+                    number: '問題10',
+                    title: '子どもおとな会議の発足と活動',
+                    text: '自由ヶ丘地区の「子どもおとな会議」が発足した年度と、その活動の目的を答えてください。',
+                    type: 'textarea',
+                    keywords: ['2022年度', '自由ヶ丘地区を盛り上げる', '子ども目線', 'まちづくり'],
+                    points: 25
+                }
+            ],
+            advanced: [
+                {
+                    id: 'q21',
+                    number: '問題1',
+                    title: '宗像地域の2つの活性化戦略',
+                    text: '2025年12月の宗像地域では、「子どもおとな会議」によるクリスマスイベントと「宗像陸上養殖」による宗像サーモン販売という、2つの異なる活性化戦略が展開されています。これら2つの取り組みが、宗像地域にもたらす効果の違いと共通点を説明してください。',
+                    type: 'textarea',
+                    keywords: ['効果の違い', '共通点', '世代間連携', '経済的', 'ブランド', '資源'],
+                    points: 15
+                },
+                {
+                    id: 'q22',
+                    number: '問題2',
+                    title: '宗像地域の持続可能な発展',
+                    text: '2025年12月に宗像地域で展開されたイベントや事業から、宗像地域が目指す「持続可能な発展」の形を分析し、今後の課題と可能性について述べてください。',
+                    type: 'textarea',
+                    keywords: ['持続可能', '官民連携', 'コミュニティ', 'ブランド化', '地域資源', '世代間'],
+                    points: 10
+                },
+                {
+                    id: 'q23',
+                    number: '問題3',
+                    title: '子どもおとな会議の意義',
+                    text: '自由ヶ丘地区の「子どもおとな会議」が、宗像地域のまちづくりにおいて果たす役割と、その継続性について述べてください。',
+                    type: 'textarea',
+                    keywords: ['子ども目線', 'まちづくり', '世代間連携', '継続性', '地域活性化'],
+                    points: 10
+                },
+                {
+                    id: 'q24',
+                    number: '問題4',
+                    title: '宗像サーモンのブランド化',
+                    text: '宗像陸上養殖による「宗像サーモン」が、宗像地域の産業振興にどのように貢献するか、その戦略と展望を述べてください。',
+                    type: 'textarea',
+                    keywords: ['ブランド化', '産業振興', '地域資源', '経済効果', '西日本最大級'],
+                    points: 10
+                },
+                {
+                    id: 'q25',
+                    number: '問題5',
+                    title: '官民連携による地域づくり',
+                    text: 'JR赤間駅前での「公園ミライ会議」など、官民連携による地域づくりの重要性と、宗像地域における今後の展開について述べてください。',
+                    type: 'textarea',
+                    keywords: ['官民連携', '持続可能な運営', '公園', 'コミュニティ', '地域づくり'],
+                    points: 10
+                },
+                {
+                    id: 'q26',
+                    number: '問題6',
+                    title: 'クリスマスマーケットの戦略的意義',
+                    text: 'JR赤間駅前でのクリスマスマーケット初開事業が、宗像地域の中心市街地を活性化させるためにどのような戦略的意義を持っているか、述べてください。',
+                    type: 'textarea',
+                    keywords: ['中心市街地活性化', '集客数', '地域経済', '市街地を盛り上げる', '活性化戦略'],
+                    points: 10
+                },
+                {
+                    id: 'q27',
+                    number: '問題7',
+                    title: '宗像サーモンの食文化と観光資源化',
+                    text: '宗像陸上養殖の「宗像サーモン」が、宗像地域の食文化と観光資源化にどのように貢献し、市場を拡大していくかを述べてください。',
+                    type: 'textarea',
+                    keywords: ['食文化', '観光資源', '地域特産', 'ブランド化', '市場拡大'],
+                    points: 10
+                },
+                {
+                    id: 'q28',
+                    number: '問題8',
+                    title: '子どもを中心としたまちづくりの会議体',
+                    text: '自由ヶ丘地区の「子どもおとな会議」を例に、子どもを中心としたまちづくりの会議体が、宗像地域の活性化にどのように機能し、今後の拡大可能性を述べてください。',
+                    type: 'textarea',
+                    keywords: ['子ども中心', '会議体', 'まちづくり', '活性化', '拡大可能性'],
+                    points: 10
+                },
+                {
+                    id: 'q29',
+                    number: '問題9',
+                    title: '宗像地域のイベント統程と今後の展開',
+                    text: '2025年12月の宗像地域で展開された複数のイベントを整理し、宗像地域が盤にしている活性化の方向性を分析し、今後の展開を述べてください。',
+                    type: 'textarea',
+                    keywords: ['イベント統程', '活性化の方向性', '戦略', '持続可能', '今後の展開'],
+                    points: 10
+                },
+                {
+                    id: 'q30',
+                    number: '問題10',
+                    title: '宗像検定受験を通じた宗像地域理解',
+                    text: '本宗像検定を受験してみて、あなたが宗像地域のどのような特性を最も強いと感じたか、また、今後宗像地域をどのように発展させたいかを述べてください。',
+                    type: 'textarea',
+                    keywords: ['宗像地域の特性', '活性化', '発展', '宗像検定', '地域理解'],
+                    points: 100
+                }
+            ]
+        };
+
+        let currentDifficulty = null;
+
+        function startExam(difficulty) {
+            currentDifficulty = difficulty;
+            document.getElementById('selectionScreen').classList.add('hidden');
+            document.getElementById('examScreen').classList.add('active');
+
+            const titles = {
+                beginner: '課長',
+                intermediate: '部長',
+                advanced: '市長'
+            };
+
+            const descriptions = {
+                beginner: '宗像地域の基本情報を問う問題です。各記事から出題された基本的な情報を確認しましょう。',
+                intermediate: '宗像地域の詳細な情報を問う問題です。選択肢問題と記述問題の両方に挑戦しましょう。',
+                advanced: '宗像地域の複合的な分析力を問う問題です。複数の記事を関連付けて考えましょう。'
+            };
+
+            document.getElementById('examTitle').textContent = titles[difficulty];
+            document.getElementById('examDescription').textContent = descriptions[difficulty];
+
+            renderQuestions(difficulty);
+            window.scrollTo(0, 0);
+        }
+
+        function renderQuestions(difficulty) {
+            const container = document.getElementById('questionsContainer');
+            container.innerHTML = '';
+
+            const qList = questions[difficulty];
+            qList.forEach((q, index) => {
+                const questionHTML = createQuestionHTML(q, index + 1);
+                container.innerHTML += questionHTML;
+            });
+        }
+
+        function createQuestionHTML(q, index) {
+            let html = `
+                <div class="question-block">
+                    <div class="question-number">${q.number} / ${questions[currentDifficulty].length}</div>
+                    <div class="question-title">${q.title}</div>
+                    <div class="question-text">${q.text}</div>
+            `;
+
+            if (q.type === 'choice') {
+                html += '<div class="options">';
+                q.options.forEach(opt => {
+                    html += `
+                        <div class="option">
+                            <input type="radio" name="${q.id}" value="${opt.value}" id="${q.id}_${opt.value}">
+                            <label for="${q.id}_${opt.value}">${opt.label}</label>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+            } else if (q.type === 'text') {
+                html += `<input type="text" id="${q.id}" class="input-field" placeholder="答えを入力してください">`;
+            } else if (q.type === 'textarea') {
+                html += `<textarea id="${q.id}" class="input-field" placeholder="答えを記入してください"></textarea>`;
+            }
+
+            html += '</div>';
+            return html;
+        }
+
+        function backToSelection() {
+            document.getElementById('selectionScreen').classList.remove('hidden');
+            document.getElementById('examScreen').classList.remove('active');
+            document.getElementById('resultSection').classList.remove('show');
+            currentDifficulty = null;
+        }
+
+        function submitAnswers() {
+            const submitBtn = document.querySelector('.submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="loading"></span> 採点中...';
+
+            setTimeout(() => {
+                performGrading();
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '採点する';
+            }, 1500);
+        }
+
+        function performGrading() {
+            let totalScore = 0;
+            const qList = questions[currentDifficulty];
+
+            qList.forEach(q => {
+                let score = 0;
+
+                if (q.type === 'choice') {
+                    const selected = document.querySelector(`input[name="${q.id}"]:checked`);
+                    if (selected && selected.value === q.correct) {
+                        score = q.points;
+                    }
+                } else if (q.type === 'text') {
+                    const answer = document.getElementById(q.id).value.trim();
+                    if (answer.toLowerCase().includes(q.correct.toLowerCase())) {
+                        score = q.points;
+                    }
+                } else if (q.type === 'textarea') {
+                    const answer = document.getElementById(q.id).value.toLowerCase();
+                    let matchCount = 0;
+                    q.keywords.forEach(keyword => {
+                        if (answer.includes(keyword.toLowerCase())) {
+                            matchCount++;
+                        }
+                    });
+
+                    if (matchCount >= q.keywords.length * 0.8) {
+                        score = q.points;
+                    } else if (matchCount >= q.keywords.length * 0.5) {
+                        score = Math.floor(q.points * 0.75);
+                    } else if (matchCount >= q.keywords.length * 0.3) {
+                        score = Math.floor(q.points * 0.5);
+                    } else if (matchCount > 0) {
+                        score = Math.floor(q.points * 0.25);
+                    }
+                }
+
+                totalScore += score;
+            });
+
+            displayResults(totalScore);
+        }
+
+        function displayResults(total) {
+            const resultSection = document.getElementById('resultSection');
+            const resultScore = document.getElementById('resultScore');
+            const resultMessage = document.getElementById('resultMessage');
+            const resultEvaluation = document.getElementById('resultEvaluation');
+
+            const maxScore = questions[currentDifficulty].reduce((sum, q) => sum + q.points, 0);
+            resultScore.textContent = `${total} / ${maxScore}`;
+
+            let message = '';
+            let evaluation = '';
+
+            const percentage = (total / maxScore) * 100;
+
+            if (percentage >= 80) {
+                message = '✅ 合格です！';
+                evaluation = '合格 - 宗像地域をよく理解しています。';
+            } else {
+                message = '📚 もう一度チャレンジしてみましょう！';
+                evaluation = '再受検推奨 - もう一度記事を読んで、知識を深めてから再受検してください。';
+            }
+
+            resultMessage.textContent = message;
+            resultEvaluation.textContent = evaluation;
+
+            document.getElementById('resultDetailLabel').textContent = `${currentDifficulty === 'beginner' ? '課長' : currentDifficulty === 'intermediate' ? '部長' : '市長'}`;
+            document.getElementById('resultDetailScore').textContent = `${total} / ${maxScore}点`;
+
+            // ユーザーカウント表示
+            incrementUserCount();
+            const userCount = getUserCount();
+            document.getElementById('userCountDisplay').textContent = `あなたは${userCount}番目の受講生です！`;
+
+            // グローバル変数に現在のスコアを保存
+            window.currentScore = total;
+            window.maxScore = maxScore;
+            window.currentDifficultyLabel = currentDifficulty === 'beginner' ? '課長' : currentDifficulty === 'intermediate' ? '部長' : '市長';
+
+            resultSection.classList.add('show');
+            resultSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function getUserCount() {
+            let count = localStorage.getItem('munakatakentei_usercount');
+            return count ? parseInt(count) : 0;
+        }
+
+        function incrementUserCount() {
+            let count = getUserCount();
+            count++;
+            localStorage.setItem('munakatakentei_usercount', count);
+        }
+
+        function shareTwitter() {
+            const text = `宗像検定に合格しました！\n${window.currentDifficultyLabel}：${window.currentScore}/${window.maxScore}点\n\n宗像地域の知識を試してみませんか？`;
+            const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(window.location.href)}`;
+            window.open(url, '_blank');
+        }
+
+        function shareFacebook() {
+            const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`;
+            window.open(url, '_blank');
+        }
+
+        function shareLine() {
+            const text = `宗像検定に合格しました！${window.currentDifficultyLabel}：${window.currentScore}/${window.maxScore}点`;
+            const url = `https://line.me/R/msg/text/${encodeURIComponent(text + ' ' + window.location.href)}`;
+            window.open(url, '_blank');
+        }
+
+        function copyLink() {
+            const text = `宗像検定に挑戦してみてください！${window.location.href}`;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('リンクをコピーしました！');
+            }).catch(() => {
+                alert('コピーに失敗しました。');
+            });
+        }
+
+        function retakeExam() {
+            const qList = questions[currentDifficulty];
+            qList.forEach(q => {
+                if (q.type === 'choice') {
+                    document.querySelectorAll(`input[name="${q.id}"]`).forEach(input => {
+                        input.checked = false;
+                    });
+                } else {
+                    document.getElementById(q.id).value = '';
+                }
+            });
+
+            document.getElementById('resultSection').classList.remove('show');
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宗像検定 2025年12月版</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, 'Hiragino Sans', 'ヒラギノ角ゴ Pro';
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .overview {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #667eea;
+        }
+
+        .overview h2 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .overview p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .difficulty-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .difficulty-btn {
+            padding: 12px 24px;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .difficulty-btn:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        .difficulty-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .question-section {
+            display: none;
+        }
+
+        .question-section.active {
+            display: block;
+        }
+
+        .question-block {
+            background: #f8f9fa;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .question-number {
+            font-size: 0.9em;
+            color: #667eea;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .question-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .question-text {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.7;
+            font-size: 1.05em;
+        }
+
+        .options {
+            margin-bottom: 20px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .option input[type="radio"] {
+            margin-right: 12px;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+
+        .option label {
+            cursor: pointer;
+            flex: 1;
+            color: #333;
+        }
+
+        .answer-section {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: #e8f5e9;
+            border-radius: 6px;
+            border-left: 4px solid #4caf50;
+        }
+
+        .answer-section.show {
+            display: block;
+        }
+
+        .answer-label {
+            font-weight: 700;
+            color: #2e7d32;
+            margin-bottom: 8px;
+        }
+
+        .answer-text {
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .explanation {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #a5d6a7;
+            color: #333;
+            font-size: 0.95em;
+        }
+
+        .explanation-label {
+            font-weight: 600;
+            color: #2e7d32;
+            margin-bottom: 5px;
+        }
+
+        .show-answer-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .show-answer-btn:hover {
+            background: #764ba2;
+        }
+
+        .show-answer-btn.hide {
+            background: #999;
+        }
+
+        .scoring-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .scoring-table th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 700;
+        }
+
+        .scoring-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .scoring-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .scoring-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .evaluation-section {
+            background: #fff3e0;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #ff9800;
+        }
+
+        .evaluation-section h3 {
+            color: #e65100;
+            margin-bottom: 15px;
+        }
+
+        .evaluation-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ffe0b2;
+        }
+
+        .evaluation-item:last-child {
+            border-bottom: none;
+        }
+
+        .evaluation-score {
+            font-weight: 700;
+            color: #e65100;
+        }
+
+        .evaluation-desc {
+            color: #555;
+        }
+
+        footer {
+            background: #f8f9fa;
+            padding: 20px 30px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+            border-top: 1px solid #ddd;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #ddd;
+            border-radius: 3px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .submit-section {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #ddd;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 6px;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .result-section {
+            display: none;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 30px;
+            color: white;
+        }
+
+        .result-section.show {
+            display: block;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-score {
+            font-size: 4em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .result-message {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .result-evaluation {
+            font-size: 1.2em;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            margin-top: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .result-details {
+            margin-top: 30px;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .result-details h3 {
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .result-detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .result-detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .retry-btn {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .retry-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .answer-feedback {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .answer-feedback.correct {
+            background: #c8e6c9;
+            color: #2e7d32;
+        }
+
+        .answer-feedback.incorrect {
+            background: #ffcdd2;
+            color: #c62828;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            font-size: 1em;
+            font-family: inherit;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+        }
+
+        textarea.input-field {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .difficulty-tabs {
+                flex-direction: column;
+            }
+
+            .difficulty-btn {
+                width: 100%;
+            }
+
+            .result-score {
+                font-size: 2.5em;
+            }
+
+            .result-message {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎓 宗像検定</h1>
+            <p>2025年12月版 - 宗像経済新聞から出題</p>
+        </header>
+
+        <div class="content">
+            <div class="overview">
+                <h2>📋 検定について</h2>
+                <p>本検定は、宗像経済新聞の2025年12月1日〜12月31日に掲載された記事を基に、宗像地域の最新の活性化事業、イベント、産業動向を理解することを目的としています。初級から上級まで3段階の難易度で構成されており、宗像地域への理解を深めることができます。</p>
+            </div>
+
+            <div class="difficulty-tabs">
+                <button class="difficulty-btn active" onclick="switchDifficulty('beginner')">初級</button>
+                <button class="difficulty-btn" onclick="switchDifficulty('intermediate')">中級</button>
+                <button class="difficulty-btn" onclick="switchDifficulty('advanced')">上級</button>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <!-- 初級 -->
+            <div id="beginner" class="question-section active">
+                <h2 style="color: #667eea; margin-bottom: 20px; font-size: 1.5em;">初級（基本情報）</h2>
+
+                <!-- 問題1 -->
+                <div class="question-block">
+                    <div class="question-number">問題1 / 10</div>
+                    <div class="question-title">自由ヶ丘クリスマスイベントの開催場所</div>
+                    <div class="question-text">宗像・自由ヶ丘地区のクリスマスイベントが12月21日に開催された2つの会場は、自由ヶ丘地区コミュニティ・センターと、もう一つどこだったでしょうか？</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" name="q1" value="a" id="q1a">
+                            <label for="q1a">ザビエル記念ホール</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" name="q1" value="b" id="q1b">
+                            <label for="q1b">赤馬館</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" name="q1" value="c" id="q1c">
+                            <label for="q1c">宗像ユリックス</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 問題2 -->
+                <div class="question-block">
+                    <div class="question-number">問題2 / 10</div>
+                    <div class="question-title">クリスマスマーケットの開催場所</div>
+                    <div class="question-text">JR赤間駅北口で初開催されたクリスマスマーケットは、従来どこで開催されていたイルミネーション企画を移したものでしょうか？</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" name="q2" value="a" id="q2a">
+                            <label for="q2a">玄海横丁</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" name="q2" value="b" id="q2b">
+                            <label for="q2b">道の駅むなかた</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" name="q2" value="c" id="q2c">
+                            <label for="q2c">なまずの郷</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 問題3 -->
+                <div class="question-block">
+                    <div class="question-number">問題3 / 10</div>
+                    <div class="question-title">宗像サーモンの販売場所</div>
+                    <div class="question-text">宗像サーモンの販売が12月6日に開始された場所は？</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" name="q3" value="a" id="q3a">
+                            <label for="q3a">道の駅むなかた</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" name="q3" value="b" id="q3b">
+                            <label for="q3b">玄海横丁</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" name="q3" value="c" id="q3c">
+                            <label for="q3c">JR赤間駅北口</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 問題4 -->
+                <div class="question-block">
+                    <div class="question-number">問題4 / 10</div>
+                    <div class="question-title">24時間駅伝の新企画</div>
+                    <div class="question-text">「宗像ユリックス24時間駅伝」に新たに設置された部門は？</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" name="q4" value="a" id="q4a">
+                            <label for="q4a">120分部門</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" name="q4" value="b" id="q4b">
+                            <label for="q4b">180分部門</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" name="q4" value="c" id="q4c">
+                            <label for="q4c">240分部門</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 中級 -->
+            <div id="intermediate" class="question-section">
+                <h2 style="color: #667eea; margin-bottom: 20px; font-size: 1.5em;">中級（詳細情報）</h2>
+
+                <!-- 問題5 -->
+                <div class="question-block">
+                    <div class="question-number">問題5 / 10</div>
+                    <div class="question-title">子どもおとな会議の参加者数</div>
+                    <div class="question-text">自由ヶ丘地区の「子どもおとな会議」の現在の参加者数は約何人でしょうか？</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" name="q5" value="a" id="q5a">
+                            <label for="q5a">約20人</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" name="q5" value="b" id="q5b">
+                            <label for="q5b">約40人</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" name="q5" value="c" id="q5c">
+                            <label for="q5c">約60人</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 問題6 -->
+                <div class="question-block">
+                    <div class="question-number">問題6 / 10</div>
+                    <div class="question-title">クリスマスマーケットの出店数</div>
+                    <div class="question-text">JR赤間駅北口のクリスマスマーケットに出店した飲食店やキッチンカーの数は？</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" name="q6" value="a" id="q6a">
+                            <label for="q6a">約10店</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" name="q6" value="b" id="q6b">
+                            <label for="q6b">約15店</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" name="q6" value="c" id="q6c">
+                            <label for="q6c">約20店</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 問題7 -->
+                <div class="question-block">
+                    <div class="question-number">問題7 / 10</div>
+                    <div class="question-title">宗像サーモンの年間生産予定量</div>
+                    <div class="question-text">宗像陸上養殖が来年秋以降に予定している年間生産量は？</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" name="q7" value="a" id="q7a">
+                            <label for="q7a">年間300トン</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" name="q7" value="b" id="q7b">
+                            <label for="q7b">年間400トン</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" name="q7" value="c" id="q7c">
+                            <label for="q7c">年間500トン</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 問題8 -->
+                <div class="question-block">
+                    <div class="question-number">問題8 / 10</div>
+                    <div class="question-title">宗像サーモンの特徴</div>
+                    <div class="question-text">宗像サーモンが地下水を利用することで、どのような寄生虫が混入しないようになっているか答えてください。</div>
+                    <input type="text" id="q8" class="input-field" placeholder="答えを入力してください">
+                </div>
+
+                <!-- 問題9 -->
+                <div class="question-block">
+                    <div class="question-number">問題9 / 10</div>
+                    <div class="question-title">子どもおとな会議の発足と活動</div>
+                    <div class="question-text">自由ヶ丘地区の「子どもおとな会議」が発足した年度と、その活動の目的を答えてください。</div>
+                    <textarea id="q9" class="input-field" placeholder="発足年度と活動目的を記入してください"></textarea>
+                </div>
+            </div>
+
+            <!-- 上級 -->
+            <div id="advanced" class="question-section">
+                <h2 style="color: #667eea; margin-bottom: 20px; font-size: 1.5em;">上級（複合問題）</h2>
+
+                <!-- 問題10 -->
+                <div class="question-block">
+                    <div class="question-number">問題10 / 10</div>
+                    <div class="question-title">宗像地域の2つの活性化戦略</div>
+                    <div class="question-text">2025年12月の宗像地域では、「子どもおとな会議」によるクリスマスイベントと「宗像陸上養殖」による宗像サーモン販売という、2つの異なる活性化戦略が展開されています。これら2つの取り組みが、宗像地域にもたらす効果の違いと共通点を説明してください。</div>
+                    <textarea id="q10" class="input-field" placeholder="効果の違いと共通点を記入してください"></textarea>
+                </div>
+            </div>
+
+            <!-- 採点情報 -->
+            <div style="margin-top: 40px;">
+                <h2 style="color: #333; margin-bottom: 20px; font-size: 1.5em;">📊 採点基準</h2>
+                <table class="scoring-table">
+                    <thead>
+                        <tr>
+                            <th>難易度</th>
+                            <th>問題数</th>
+                            <th>配点</th>
+                            <th>合計</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>初級</td>
+                            <td>4問</td>
+                            <td>各10点</td>
+                            <td>40点</td>
+                        </tr>
+                        <tr>
+                            <td>中級（選択肢）</td>
+                            <td>3問</td>
+                            <td>各10点</td>
+                            <td>30点</td>
+                        </tr>
+                        <tr>
+                            <td>中級（記述）</td>
+                            <td>2問</td>
+                            <td>各15点</td>
+                            <td>30点</td>
+                        </tr>
+                        <tr>
+                            <td>上級</td>
+                            <td>1問</td>
+                            <td>20点</td>
+                            <td>20点</td>
+                        </tr>
+                        <tr style="background: #667eea; color: white; font-weight: 700;">
+                            <td>合計</td>
+                            <td>10問</td>
+                            <td>-</td>
+                            <td>120点</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="evaluation-section">
+                    <h3>🎯 評価基準</h3>
+                    <div class="evaluation-item">
+                        <span class="evaluation-desc">100点以上</span>
+                        <span class="evaluation-score">優秀</span>
+                    </div>
+                    <div class="evaluation-item">
+                        <span class="evaluation-desc">80点～99点</span>
+                        <span class="evaluation-score">良好</span>
+                    </div>
+                    <div class="evaluation-item">
+                        <span class="evaluation-desc">60点～79点</span>
+                        <span class="evaluation-score">合格</span>
+                    </div>
+                    <div class="evaluation-item">
+                        <span class="evaluation-desc">60点未満</span>
+                        <span class="evaluation-score">再受検推奨</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="submit-section">
+                <button class="submit-btn" onclick="submitAnswers()">
+                    <span id="submitText">採点する</span>
+                </button>
+                <p style="color: #666; margin-top: 20px;">全ての問題に回答してから採点ボタンを押してください。</p>
+            </div>
+
+            <!-- 結果表示 -->
+            <div id="resultSection" class="result-section">
+                <div class="result-score" id="resultScore">0 / 120</div>
+                <div class="result-message" id="resultMessage">素晴らしい成績です！</div>
+                <div class="result-evaluation" id="resultEvaluation">優秀</div>
+                <div class="result-details">
+                    <h3>📈 詳細結果</h3>
+                    <div class="result-detail-item">
+                        <span>初級（4問）</span>
+                        <span id="scoreBeginnerDetail">0 / 40点</span>
+                    </div>
+                    <div class="result-detail-item">
+                        <span>中級選択肢（3問）</span>
+                        <span id="scoreIntermediateChoiceDetail">0 / 30点</span>
+                    </div>
+                    <div class="result-detail-item">
+                        <span>中級記述（2問）</span>
+                        <span id="scoreIntermediateEssayDetail">0 / 30点</span>
+                    </div>
+                    <div class="result-detail-item">
+                        <span>上級（1問）</span>
+                        <span id="scoreAdvancedDetail">0 / 20点</span>
+                    </div>
+                </div>
+                <button class="retry-btn" onclick="retakeExam()">もう一度受験する</button>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 株式会社Comunion - 宗像経済新聞</p>
+            <p>このページは宗像地域の活性化を目的として作成されました。</p>
+        </footer>
+    </div>
+
+    <script>
+        // 正解データ
+        const correctAnswers = {
+            q1: 'a', // ザビエル記念ホール
+            q2: 'b', // 道の駅むなかた
+            q3: 'a', // 道の駅むなかた
+            q4: 'c', // 240分部門
+            q5: 'b', // 約40人
+            q6: 'b', // 約15店
+            q7: 'c', // 年間500トン
+            q8: 'アニサキス',
+            q9: ['2022年度', '自由ヶ丘地区を盛り上げる', '子ども目線', 'まちづくり'],
+            q10: ['効果の違い', '共通点', '世代間連携', '経済的', 'ブランド', '資源']
+        };
+
+        function switchDifficulty(difficulty) {
+            document.getElementById('beginner').classList.remove('active');
+            document.getElementById('intermediate').classList.remove('active');
+            document.getElementById('advanced').classList.remove('active');
+
+            document.querySelectorAll('.difficulty-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            document.getElementById(difficulty).classList.add('active');
+            event.target.classList.add('active');
+
+            window.scrollTo(0, 0);
+        }
+
+        function submitAnswers() {
+            const submitBtn = document.querySelector('.submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="loading"></span> 採点中...';
+
+            // AIで採点を実行（実際のAPI呼び出しの代わりに、ここでは自動採点ロジックを実装）
+            setTimeout(() => {
+                performGrading();
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '採点する';
+            }, 1500);
+        }
+
+        function performGrading() {
+            let totalScore = 0;
+            let beginnerScore = 0;
+            let intermediateChoiceScore = 0;
+            let intermediateEssayScore = 0;
+            let advancedScore = 0;
+
+            // 初級（選択肢問題）
+            for (let i = 1; i <= 4; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selected && selected.value === correctAnswers[`q${i}`]) {
+                    beginnerScore += 10;
+                    totalScore += 10;
+                }
+            }
+
+            // 中級選択肢（問題5-7）
+            for (let i = 5; i <= 7; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selected && selected.value === correctAnswers[`q${i}`]) {
+                    intermediateChoiceScore += 10;
+                    totalScore += 10;
+                }
+            }
+
+            // 中級記述（問題8）
+            const q8Answer = document.getElementById('q8').value.trim();
+            const q8Score = gradeEssay(q8Answer, correctAnswers.q8);
+            intermediateEssayScore += q8Score;
+            totalScore += q8Score;
+
+            // 中級記述（問題9）
+            const q9Answer = document.getElementById('q9').value.trim();
+            const q9Score = gradeEssay(q9Answer, correctAnswers.q9);
+            intermediateEssayScore += q9Score;
+            totalScore += q9Score;
+
+            // 上級記述（問題10）
+            const q10Answer = document.getElementById('q10').value.trim();
+            const q10Score = gradeEssay(q10Answer, correctAnswers.q10);
+            advancedScore += q10Score;
+            totalScore += q10Score;
+
+            // 結果を表示
+            displayResults(totalScore, beginnerScore, intermediateChoiceScore, intermediateEssayScore, advancedScore);
+        }
+
+        function gradeEssay(answer, keywords) {
+            if (!answer) return 0;
+
+            const answerLower = answer.toLowerCase();
+            let matchCount = 0;
+
+            if (typeof keywords === 'string') {
+                if (answerLower.includes(keywords.toLowerCase())) {
+                    return 15; // 記述問題は15点満点
+                }
+                return 0;
+            } else if (Array.isArray(keywords)) {
+                for (let keyword of keywords) {
+                    if (answerLower.includes(keyword.toLowerCase())) {
+                        matchCount++;
+                    }
+                }
+                // キーワード数に応じて点数を配分
+                if (matchCount >= keywords.length * 0.8) {
+                    return 20; // 上級は20点満点
+                } else if (matchCount >= keywords.length * 0.5) {
+                    return 15;
+                } else if (matchCount >= keywords.length * 0.3) {
+                    return 10;
+                } else if (matchCount > 0) {
+                    return 5;
+                }
+            }
+            return 0;
+        }
+
+        function displayResults(total, beginner, intermediateChoice, intermediateEssay, advanced) {
+            const resultSection = document.getElementById('resultSection');
+            const resultScore = document.getElementById('resultScore');
+            const resultMessage = document.getElementById('resultMessage');
+            const resultEvaluation = document.getElementById('resultEvaluation');
+
+            resultScore.textContent = `${total} / 120`;
+
+            // 評価メッセージと評価ランク
+            let message = '';
+            let evaluation = '';
+            if (total >= 100) {
+                message = '🌟 素晴らしい成績です！';
+                evaluation = '優秀 - 宗像地域の2025年12月の動向を十分に理解しています。';
+            } else if (total >= 80) {
+                message = '👍 良好な成績です！';
+                evaluation = '良好 - 宗像地域の主要な活性化施策を理解しています。';
+            } else if (total >= 60) {
+                message = '✅ 合格です！';
+                evaluation = '合格 - 宗像地域の基本的な情報を理解しています。';
+            } else {
+                message = '📚 もう一度チャレンジしてみましょう！';
+                evaluation = '再受検推奨 - もう一度記事を読んで、知識を深めてから再受検してください。';
+            }
+
+            resultMessage.textContent = message;
+            resultEvaluation.textContent = evaluation;
+
+            // 詳細結果
+            document.getElementById('scoreBeginnerDetail').textContent = `${beginner} / 40点`;
+            document.getElementById('scoreIntermediateChoiceDetail').textContent = `${intermediateChoice} / 30点`;
+            document.getElementById('scoreIntermediateEssayDetail').textContent = `${intermediateEssay} / 30点`;
+            document.getElementById('scoreAdvancedDetail').textContent = `${advanced} / 20点`;
+
+            // 結果セクションを表示
+            resultSection.classList.add('show');
+            resultSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function retakeExam() {
+            // 全ての回答をリセット
+            document.querySelectorAll('input[type="radio"]').forEach(input => {
+                input.checked = false;
+            });
+            document.querySelectorAll('textarea, input[type="text"]').forEach(input => {
+                input.value = '';
+            });
+
+            // 結果セクションを非表示
+            document.getElementById('resultSection').classList.remove('show');
+
+            // ページをトップにスクロール
+            window.scrollTo(0, 0);
+        }
+
+        // ページロード時の初期化
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('宗像検定ページが読み込まれました');
+        });
+    </script>
+</body>
+</html>
