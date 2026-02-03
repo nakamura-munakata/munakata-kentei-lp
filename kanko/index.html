@@ -243,6 +243,72 @@
             }
         }
 
+        /* CF Banner */
+        .cf-banner-link {
+            display: inline-block;
+            margin-top: 2rem;
+            text-decoration: none;
+        }
+
+        .cf-banner-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: linear-gradient(135deg, #00c853 0%, #00a844 100%);
+            color: white;
+            padding: clamp(0.75rem, 2vw, 1.25rem) clamp(1.5rem, 4vw, 2.5rem);
+            border-radius: 50px;
+            font-size: clamp(1rem, 3vw, 1.4rem);
+            font-weight: 700;
+            box-shadow: 0 8px 30px rgba(0, 200, 83, 0.4);
+            transition: all 0.3s;
+            animation: cfPulse 2s ease-in-out infinite;
+        }
+
+        .cf-banner-box:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(0, 200, 83, 0.5);
+        }
+
+        .cf-badge-icon {
+            font-size: clamp(1.2rem, 3vw, 1.6rem);
+        }
+
+        .cf-banner-text {
+            white-space: nowrap;
+        }
+
+        .cf-banner-arrow {
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .cf-banner-box:hover .cf-banner-arrow {
+            transform: translateX(5px);
+        }
+
+        @keyframes cfPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 8px 30px rgba(0, 200, 83, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 12px 40px rgba(0, 200, 83, 0.6);
+            }
+        }
+
+        .result-cf {
+            display: block;
+            margin-top: 1.5rem;
+        }
+
+        .result-cf .cf-banner-box {
+            width: 100%;
+            justify-content: center;
+        }
+
         .start-note {
             margin-top: 2.5rem;
             font-size: clamp(0.9rem, 2vw, 1.1rem);
@@ -789,6 +855,14 @@
                 ▶ スタート
             </button>
             <p class="start-note">✨ 所要時間：約3分</p>
+            <a href="https://camp-fire.jp/projects/920270/preview?token=3jhx8ucq" target="_blank"
+                class="cf-banner-link">
+                <div class="cf-banner-box">
+                    <span class="cf-badge-icon">🔥</span>
+                    <span class="cf-banner-text">クラウドファンディング挑戦中！</span>
+                    <span class="cf-banner-arrow">→</span>
+                </div>
+            </a>
         </div>
     </section>
 
@@ -819,6 +893,14 @@
                     <p>正解数によってあなたの宗像レベルがわかります！</p>
                 </div>
                 <button class="btn btn-primary" onclick="restartQuiz()">もう一度挑戦する</button>
+                <a href="https://camp-fire.jp/projects/920270/preview?token=3jhx8ucq" target="_blank"
+                    class="cf-banner-link result-cf">
+                    <div class="cf-banner-box">
+                        <span class="cf-badge-icon">🔥</span>
+                        <span class="cf-banner-text">クラウドファンディング挑戦中！</span>
+                        <span class="cf-banner-arrow">→</span>
+                    </div>
+                </a>
             </div>
         </section>
 
