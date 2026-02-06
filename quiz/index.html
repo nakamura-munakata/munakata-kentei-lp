@@ -4,21 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#0066cc">
+    <meta name="theme-color" content="#1a2332">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>宗像検定 2025年版</title>
+    <title>宗像検定 - クイズに挑戦</title>
     <!-- OGP Meta Tags -->
     <meta property="og:title" content="宗像検定 - 神宿る島への知の巡礼">
     <meta property="og:description" content="世界遺産・宗像の歴史を紐解き、デジタル認定証と地域特典をその手に。24時間365日、どこからでも挑戦可能。">
-    <meta property="og:image" content="https://nakamura-munakata.github.io/munakata-kentei/images/ogp_image.png">
-    <meta property="og:url" content="https://nakamura-munakata.github.io/munakata-kentei/">
+    <meta property="og:image" content="https://nakamura-munakata.github.io/munakata-kentei-lp/images/ogp_image.png">
+    <meta property="og:url" content="https://nakamura-munakata.github.io/munakata-kentei-lp/quiz/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="宗像検定 - 神宿る島への知の巡礼">
     <meta name="twitter:description" content="世界遺産・宗像の歴史を紐解き、デジタル認定証と地域特典をその手に。">
-    <meta name="twitter:image" content="https://nakamura-munakata.github.io/munakata-kentei/images/ogp_image.png">
+    <meta name="twitter:image" content="https://nakamura-munakata.github.io/munakata-kentei-lp/images/ogp_image.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+        rel="stylesheet">
     <style>
+        :root {
+            --navy: #1a2332;
+            --deep-navy: #0f1419;
+            --vermilion: #d84315;
+            --vermilion-dark: #bf360c;
+            --gold: #c9a961;
+            --off-white: #f5f3ed;
+            --light-gray: #e8e6e0;
+            --cf-green: #00c853;
+            --cf-green-dark: #00a844;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -27,8 +44,8 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, 'Hiragino Sans', 'ヒラギノ角ゴ Pro';
-            background: linear-gradient(135deg, #0066cc 0%, #0099ff 50%, #00ccff 100%);
+            font-family: 'Noto Sans JP', sans-serif;
+            background: linear-gradient(135deg, var(--navy) 0%, #2d3a4f 100%);
             background-attachment: fixed;
             min-height: 100vh;
             padding: 12px;
@@ -36,6 +53,15 @@
             font-size: 16px;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            color: var(--navy);
+            line-height: 1.8;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Noto Serif JP', serif;
+            font-weight: 700;
         }
 
         body::before {
@@ -45,8 +71,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            background: url('../images/hero_smartphone.webp');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
             pointer-events: none;
             z-index: 0;
         }
@@ -56,18 +84,18 @@
             z-index: 1;
             max-width: 900px;
             margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            background: var(--off-white);
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
             overflow: hidden;
         }
 
         header {
-            background: linear-gradient(135deg, #0066cc 0%, #0099ff 100%);
+            background: linear-gradient(135deg, var(--navy) 0%, #2d3a4f 100%);
             color: white;
             padding: 40px 30px;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+            box-shadow: 0 4px 15px rgba(26, 35, 50, 0.3);
             position: relative;
             overflow: hidden;
         }
@@ -79,9 +107,10 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,50 Q300,0 600,50 T1200,50 L1200,120 L0,120 Z" fill="rgba(255,255,255,0.1)"/></svg>') repeat-x;
-            background-size: 600px 120px;
-            opacity: 0.5;
+            background: url('../images/hero_smartphone.webp');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
         }
 
         header>* {
@@ -90,9 +119,10 @@
         }
 
         header h1 {
-            font-size: 2.5em;
+            font-size: 2.2em;
             margin-bottom: 10px;
             font-weight: 700;
+            font-family: 'Noto Serif JP', serif;
         }
 
         /* LP Link Banner */
@@ -204,18 +234,20 @@
         /* Benefits Section */
         .benefits-section {
             grid-column: 1 / -1;
-            background: linear-gradient(135deg, #f0f7ff 0%, #e8f4fd 100%);
-            border-radius: 12px;
+            background: linear-gradient(135deg, var(--navy) 0%, #2d3a4f 100%);
+            border-radius: 16px;
             padding: 25px;
             margin-bottom: 10px;
-            border: 2px solid #0066cc;
+            border: none;
+            color: white;
         }
 
         .benefits-section h3 {
-            color: #0066cc;
+            color: var(--gold);
             font-size: 1.3em;
             margin-bottom: 20px;
             text-align: center;
+            font-family: 'Noto Serif JP', serif;
         }
 
         .benefits-grid {
@@ -228,10 +260,10 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            background: white;
+            background: rgba(255, 255, 255, 0.1);
             padding: 12px 15px;
             border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .benefit-icon {
@@ -240,7 +272,7 @@
 
         .benefit-text {
             font-size: 0.95em;
-            color: #333;
+            color: white;
             font-weight: 500;
         }
 
@@ -274,13 +306,13 @@
 
         .difficulty-card {
             background: white;
-            border-radius: 12px;
-            padding: 24px 20px;
+            border-radius: 16px;
+            padding: 30px 24px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            border: 3px solid transparent;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 2px solid var(--light-gray);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -288,22 +320,35 @@
 
         .difficulty-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+            border-color: var(--vermilion);
         }
 
         .difficulty-card.beginner {
+            border-color: var(--light-gray);
+            background: white;
+        }
+
+        .difficulty-card.beginner:hover {
             border-color: #28a745;
-            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
         }
 
         .difficulty-card.intermediate {
+            border-color: var(--light-gray);
+            background: white;
+        }
+
+        .difficulty-card.intermediate:hover {
             border-color: #ffc107;
-            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
         }
 
         .difficulty-card.advanced {
+            border-color: var(--light-gray);
+            background: white;
+        }
+
+        .difficulty-card.advanced:hover {
             border-color: #dc3545;
-            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
         }
 
         .difficulty-card .icon {
@@ -384,32 +429,38 @@
         }
 
         .btn {
-            background: linear-gradient(135deg, #0066cc 0%, #0099ff 100%);
+            background: linear-gradient(135deg, var(--vermilion) 0%, var(--vermilion-dark) 100%);
             color: white;
             border: none;
-            padding: 14px 28px;
-            border-radius: 6px;
+            padding: 14px 32px;
+            border-radius: 50px;
             font-size: 1rem;
             cursor: pointer;
-            transition: all 0.2s ease;
-            font-weight: 600;
+            transition: all 0.3s ease;
+            font-weight: 700;
             position: relative;
             overflow: hidden;
-            min-height: 48px;
+            min-height: 52px;
             min-width: 48px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             user-select: none;
+            box-shadow: 0 4px 15px rgba(216, 67, 21, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(216, 67, 21, 0.4);
         }
 
         .btn:active {
             transform: scale(0.98);
-            box-shadow: 0 3px 10px rgba(0, 102, 204, 0.3);
+            box-shadow: 0 3px 10px rgba(216, 67, 21, 0.3);
         }
 
         .btn:focus {
-            outline: 2px solid #0099ff;
+            outline: 2px solid var(--vermilion);
             outline-offset: 2px;
         }
 
@@ -1170,7 +1221,7 @@
 
                 <div class="difficulty-card beginner" onclick="startExam('beginner')">
                     <div class="badge-icon">初</div>
-                    <div class="icon">👨‍💼</div>
+
                     <h3>課長</h3>
                     <p>基本情報をしっかり理解しよう</p>
                     <ul class="difficulty-info">
@@ -1184,7 +1235,7 @@
 
                 <div class="difficulty-card intermediate" onclick="startExam('intermediate')">
                     <div class="badge-icon">中</div>
-                    <div class="icon">👨‍💼</div>
+
                     <h3>部長</h3>
                     <p>詳細な情報を理解しよう</p>
                     <ul class="difficulty-info">
@@ -1198,7 +1249,7 @@
 
                 <div class="difficulty-card advanced" onclick="startExam('advanced')">
                     <div class="badge-icon">上</div>
-                    <div class="icon">👨‍💼</div>
+
                     <h3>市長</h3>
                     <p>複合的な分析力を試そう</p>
                     <ul class="difficulty-info">
