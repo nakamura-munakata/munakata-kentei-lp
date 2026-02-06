@@ -361,21 +361,32 @@
         .benefit-item {
             display: flex;
             align-items: center;
-            gap: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 12px 15px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 14px 18px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
-        .benefit-icon {
-            font-size: 1.5em;
+        .benefit-check {
+            width: 24px;
+            height: 24px;
+            background: var(--vermilion);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            flex-shrink: 0;
         }
 
         .benefit-text {
-            font-size: 0.95em;
+            font-size: 0.95rem;
             color: white;
             font-weight: 500;
+            line-height: 1.5;
         }
 
         .level-card {
@@ -499,35 +510,87 @@
         }
 
         .difficulty-card h3 {
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            color: #1a1a1a;
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            color: var(--navy);
             font-weight: 700;
         }
 
-        .difficulty-card p {
-            color: #333;
-            margin-bottom: 15px;
-            font-size: 1em;
+        .difficulty-card .difficulty-desc {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .difficulty-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 12px;
+            object-fit: contain;
+            margin-bottom: 16px;
+            background: white;
         }
 
         .difficulty-info {
-            text-align: center;
-            font-size: 0.95em;
+            text-align: left;
+            font-size: 0.95rem;
             color: #333;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            margin: 0 0 20px;
+            padding: 0;
             list-style: none;
-            padding-left: 0;
             width: 100%;
         }
 
         .difficulty-info li {
-            margin: 8px 0;
-            padding: 4px 0;
-            display: block;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .difficulty-info li:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: #666;
             font-weight: 500;
+        }
+
+        .info-value {
+            color: var(--navy);
+            font-weight: 700;
+        }
+
+        /* LP Style CTA Button */
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--vermilion);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            min-height: 56px;
+            width: 100%;
+            transition: all 0.2s;
+            box-shadow: 0 4px 15px rgba(216, 67, 21, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(216, 67, 21, 0.4);
+        }
+
+        .cta-button:active {
+            transform: scale(0.98);
+            background: var(--vermilion-dark);
         }
 
         .btn {
@@ -1330,67 +1393,61 @@
 
                     <!-- メリットセクション -->
                     <div class="benefits-section">
-                        <h3>🏆 宗像検定を受けるメリット</h3>
+                        <h3>宗像検定を受けるメリット</h3>
                         <div class="benefits-grid">
                             <div class="benefit-item">
-                                <span class="benefit-icon">📜</span>
+                                <span class="benefit-check">✓</span>
                                 <span class="benefit-text">デジタル認定証を発行</span>
                             </div>
                             <div class="benefit-item">
-                                <span class="benefit-icon">📱</span>
+                                <span class="benefit-check">✓</span>
                                 <span class="benefit-text">SNSでシェアして地元愛をアピール</span>
                             </div>
                             <div class="benefit-item">
-                                <span class="benefit-icon">👨‍👩‍👧‍👦</span>
+                                <span class="benefit-check">✓</span>
                                 <span class="benefit-text">家族や友人との話題作りに</span>
                             </div>
                             <div class="benefit-item">
-                                <span class="benefit-icon">❤️</span>
+                                <span class="benefit-check">✓</span>
                                 <span class="benefit-text">宗像のことをもっと好きになる</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="difficulty-card beginner" onclick="startExam('beginner')">
-                        <div class="badge-icon">初</div>
-
+                        <img src="images/beginner_icon.png" alt="課長" class="difficulty-icon">
                         <h3>課長</h3>
-                        <p>基本情報をしっかり理解しよう</p>
+                        <p class="difficulty-desc">基本情報をしっかり理解しよう</p>
                         <ul class="difficulty-info">
-                            <li>🎯 問題数：11問</li>
-                            <li>📝 形式：選択肢</li>
-                            <li>💯 配点：100点</li>
-                            <li>⭐ 難易度：初級</li>
+                            <li><span class="info-label">問題数</span><span class="info-value">11問</span></li>
+                            <li><span class="info-label">形式</span><span class="info-value">選択肢</span></li>
+                            <li><span class="info-label">難易度</span><span class="info-value">初級</span></li>
                         </ul>
-                        <button class="btn">課長に挑戦する →</button>
+                        <button class="cta-button">課長に挑戦する →</button>
                     </div>
 
                     <div class="difficulty-card intermediate" onclick="startExam('intermediate')">
-                        <div class="badge-icon">中</div>
-
+                        <img src="images/intermediate_icon.png" alt="部長" class="difficulty-icon">
                         <h3>部長</h3>
-                        <p>詳細な情報を理解しよう</p>
+                        <p class="difficulty-desc">詳細な情報を理解しよう</p>
                         <ul class="difficulty-info">
-                            <li>🎯 問題数：10問</li>
-                            <li>📝 形式：選択肢</li>
-                            <li>💯 配点：100点</li>
-                            <li>⭐ 難易度：中級</li>
+                            <li><span class="info-label">問題数</span><span class="info-value">10問</span></li>
+                            <li><span class="info-label">形式</span><span class="info-value">選択肢</span></li>
+                            <li><span class="info-label">難易度</span><span class="info-value">中級</span></li>
                         </ul>
-                        <button class="btn">部長に挑戦する →</button>
+                        <button class="cta-button">部長に挑戦する →</button>
                     </div>
 
                     <div class="difficulty-card advanced" onclick="startExam('advanced')">
-                        <div class="badge-icon">上</div>
-
+                        <img src="images/advanced_icon.png" alt="市長" class="difficulty-icon">
                         <h3>市長</h3>
-                        <p>複合的な分析力を試そう</p>
+                        <p class="difficulty-desc">複合的な分析力を試そう</p>
                         <ul class="difficulty-info">
-                            <li>🎯 問題数：10問</li>
-                            <li>📝 形式：選択肢</li>
-                            <li>💯 配点：100点</li>
-                            <li>⭐ 難易度：上級</li>
+                            <li><span class="info-label">問題数</span><span class="info-value">10問</span></li>
+                            <li><span class="info-label">形式</span><span class="info-value">選択肢</span></li>
+                            <li><span class="info-label">難易度</span><span class="info-value">上級</span></li>
                         </ul>
-                        <button class="btn">市長に挑戦する →</button>
+                        <button class="cta-button">市長に挑戦する →</button>
                     </div>
 
                     <!-- 波のデコレーション -->
