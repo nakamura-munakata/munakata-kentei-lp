@@ -308,6 +308,14 @@
             document.getElementById('course-intro').classList.remove('hidden');
             window.scrollTo(0, 0);
         }
+
+        // URLパラメータの処理 (自動スタート)
+        window.addEventListener('load', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('course') === 'beginner') {
+                startExam('beginner');
+            }
+        });
     </script>
 </body>
 
