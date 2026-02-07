@@ -184,21 +184,95 @@
     <!-- JavaScript Logic -->
     <script>
         // 問題データ (課長コースのみ使用)
-        const allQuestions = {
-            "beginner": [
-                { "id": "q1", "question": "福岡市と北九州市の中間に位置する宗像市。北側はどの海に面しているでしょうか？", "options": ["有明海", "玄界灘", "瀬戸内海"], "correct": 1, "explanation": "宗像市は玄界灘に面しており、この海は古代から大陸との交易の重要な航路でした。" },
-                { "id": "q2", "question": "平成29年（2017年）にユネスコ世界文化遺産に登録された遺産群の名称は、「『〇〇〇島』宗像・沖ノ島と関連遺産群」です。〇に入る言葉は？", "options": ["宝の", "神宿る", "祈りの"], "correct": 1, "explanation": "正式名称は「『神宿る島』宗像・沖ノ島と関連遺産群」で、沖ノ島は神聖な島として崇められてきました。" },
-                { "id": "q3", "question": "宗像市出身の実業家で、出光興産の創業者であり、小説『海賊とよばれた男』のモデルとしても知られる人物は誰でしょうか？", "options": ["出光佐三", "松下幸之助", "渋沢栄一"], "correct": 0, "explanation": "出光佐三は宗像市出身の実業家で、出光興産を創業し、その波乱万丈な人生は小説『海賊とよばれた男』のモデルとなりました。" },
-                { "id": "q4", "question": "宗像市の「市の木」の一つで、市内の文化施設「宗像ユリックス」の名前の由来にもなっている木は何でしょうか？", "options": ["スギ", "マツ", "クスノキ"], "correct": 2, "explanation": "クスノキは宗像市の市の木の一つで、「ユリックス」の名前は「ユリ」（市の花）と「クス」（クスノキ）から名付けられました。" },
-                { "id": "q5", "question": "宗像市の「市の魚」に制定されており、市内では「玄ちゃん」の愛称でも親しまれている魚は何でしょうか？", "options": ["マアジ", "タイ", "イカ"], "correct": 0, "explanation": "マアジが宗像市の市の魚で、玄界灘で獲れることから「玄ちゃん」という愛称で親しまれています。" },
-                { "id": "q6", "question": "宗像市の「市の花」で、市が自生の北限とされているユリの名前は何でしょうか？", "options": ["テッポウユリ", "カノコユリ", "ヤマユリ"], "correct": 1, "explanation": "カノコユリは宗像市の市の花で、宗像市がこのユリの自生の北限地とされています。" },
-                { "id": "q7", "question": "宗像大社が祀っている神様は、「宗像〇女神」と呼ばれています。数字の〇に入るのは？", "options": ["三", "五", "七"], "correct": 0, "explanation": "宗像大社は「宗像三女神」を祀っており、これらの女神は古代日本で重要な信仰対象でした。" },
-                { "id": "q8", "question": "宗像市にあるJR鹿児島本線の駅で、市役所の最寄り駅（バス利用）でもある駅はどこでしょうか？", "options": ["赤間駅", "東郷駅", "教育大前駅"], "correct": 1, "explanation": "東郷駅は宗像市役所の最寄り駅であり、多くの市民に利用されています。" },
-                { "id": "q9", "question": "宗像市で最も標高が高い山（499.0メートル）の名前は何でしょうか？", "options": ["城山", "孔大寺山", "許斐山"], "correct": 1, "explanation": "孔大寺山が最も高く499mです。なお、城山の標高は369m、許斐山は271mで、いずれも宗像の代表的な山々です。" },
-                { "id": "q10", "question": "世界遺産の構成資産の一つで、海を隔てて沖ノ島を拝むために大島に作られた場所を何というでしょうか？", "options": ["沖津宮遥拝所", "中津宮", "辺津宮"], "correct": 0, "explanation": "沖津宮遥拝所は大島に作られた場所で、沖ノ島を拝むために造営されました。" },
-                { "id": "q11", "question": "令7年12月、宗像ユリックス内に開業した、株式会社くりえいとが関わる「全天候型こども広場」の愛称は何でしょうか？", "options": ["Mu-Mo（ムーモ）", "Aso-Bo（アソボ）", "Muna-Kids（ムナキッズ）"], "correct": 0, "explanation": "令7年12月に宗像ユリックス内に開業した全天候型こども広場の愛称はMu-Mo（ムーモ）です。" }
-            ]
-        };
+        const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRtUcELj-4klc6jorQS7Ez0YxuteN-Wv_k7bqGUlzY0RHypqY9xCG8cCFwMC6P9hCFtDO9jXjGKEzrM/pub?output=csv";
+        let allQuestions = { "beginner": [] };
+
+        async function initQuiz() {
+            try {
+                const response = await fetch(SHEET_CSV_URL);
+                if (!response.ok) throw new Error('Network response was not ok');
+                const text = await response.text();
+                const rows = parseCSV(text);
+
+                // Header skip (check if first cell is ID)
+                if (rows.length > 0 && (rows[0][0] === 'ID' || rows[0][0] === 'id')) {
+                    rows.shift();
+                }
+
+                allQuestions["beginner"] = rows.map((row, index) => {
+                    // Expected: ID,Question,Opt1,Opt2,Opt3,CorrectText,Explanation
+                    // Minimum 7 columns
+                    if (row.length < 7) return null;
+
+                    const options = [row[2], row[3], row[4]];
+                    const correctText = row[5];
+                    // Find correct index by matching text
+                    let correctIndex = options.findIndex(opt => opt.trim() === correctText.trim());
+                    if (correctIndex === -1) {
+                        // Fallback check (loose match)
+                        correctIndex = options.findIndex(opt => correctText.includes(opt) || opt.includes(correctText));
+                    }
+                    if (correctIndex === -1) correctIndex = 0; // Ultimate fallback
+
+                    return {
+                        id: row[0] || `q${index + 1}`,
+                        question: row[1],
+                        options: options,
+                        correct: correctIndex,
+                        explanation: row[6]
+                    };
+                }).filter(q => q !== null);
+
+                console.log("Quiz loaded:", allQuestions["beginner"].length, "questions");
+
+            } catch (e) {
+                console.error("Quiz load failed:", e);
+                // Fallback static data could be placed here if needed
+                alert("クイズデータの読み込みに失敗しました。ページを再読み込みしてください。");
+            }
+        }
+
+        // Robust CSV Parser
+        function parseCSV(text) {
+            const rows = [];
+            let currentRow = [];
+            let currentCell = '';
+            let insideQuote = false;
+
+            for (let i = 0; i < text.length; i++) {
+                const char = text[i];
+                const nextChar = text[i + 1];
+
+                if (char === '"') {
+                    if (insideQuote && nextChar === '"') {
+                        currentCell += '"';
+                        i++;
+                    } else {
+                        insideQuote = !insideQuote;
+                    }
+                } else if (char === ',' && !insideQuote) {
+                    currentRow.push(currentCell.trim()); // Trim whitespace around cells
+                    currentCell = '';
+                } else if ((char === '\r' || char === '\n') && !insideQuote) {
+                    if (char === '\r' && nextChar === '\n') i++;
+                    if (currentRow.length > 0 || currentCell.length > 0) {
+                        currentRow.push(currentCell.trim());
+                        rows.push(currentRow);
+                        currentRow = [];
+                        currentCell = '';
+                    }
+                } else {
+                    currentCell += char;
+                }
+            }
+            if (currentRow.length > 0 || currentCell.length > 0) {
+                currentRow.push(currentCell.trim());
+                rows.push(currentRow);
+            }
+            return rows;
+        }
+
+        window.addEventListener('load', initQuiz);
 
         let currentScore = 0;
 
