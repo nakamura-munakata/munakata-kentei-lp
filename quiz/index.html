@@ -326,7 +326,7 @@
                         explanation: q.explanation
                     };
                     if (answer === q.correct) {
-                        const pointsPerQuestion = difficulty === 'beginner' ? Math.round(100 / 11 * 100) / 100 : 10;
+                        const pointsPerQuestion = Math.round(100 / questions.length * 100) / 100;
                         score += pointsPerQuestion;
                     }
                 } else {
