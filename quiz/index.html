@@ -1,305 +1,1195 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#1a2332">
+    <meta name="theme-color" content="#0066cc">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>宗像検定 - クイズに挑戦</title>
+    <title>宗像検定 2025年版</title>
     <!-- OGP Meta Tags -->
     <meta property="og:title" content="宗像検定 - 神宿る島への知の巡礼">
     <meta property="og:description" content="世界遺産・宗像の歴史を紐解き、デジタル認定証と地域特典をその手に。24時間365日、どこからでも挑戦可能。">
-    <meta property="og:image" content="https://nakamura-munakata.github.io/munakata-kentei-lp/images/ogp_image.png">
-    <meta property="og:url" content="https://nakamura-munakata.github.io/munakata-kentei-lp/quiz/">
+    <meta property="og:image" content="https://nakamura-munakata.github.io/munakata-kentei/images/ogp_image.png">
+    <meta property="og:url" content="https://nakamura-munakata.github.io/munakata-kentei/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="宗像検定 - 神宿る島への知の巡礼">
     <meta name="twitter:description" content="世界遺産・宗像の歴史を紐解き、デジタル認定証と地域特典をその手に。">
-    <meta name="twitter:image" content="https://nakamura-munakata.github.io/munakata-kentei-lp/images/ogp_image.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="../css/quiz.css">
+    <meta name="twitter:image" content="https://nakamura-munakata.github.io/munakata-kentei/images/ogp_image.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, 'Hiragino Sans', 'ヒラギノ角ゴ Pro';
+            background: linear-gradient(135deg, #0066cc 0%, #0099ff 50%, #00ccff 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 12px;
+            position: relative;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 35px, rgba(255,255,255,.05) 35px, rgba(255,255,255,.05) 70px),
+                repeating-linear-gradient(90deg, transparent, transparent 35px, rgba(255,255,255,.03) 35px, rgba(255,255,255,.03) 70px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0066cc 0%, #0099ff 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,50 Q300,0 600,50 T1200,50 L1200,120 L0,120 Z" fill="rgba(255,255,255,0.1)"/></svg>') repeat-x;
+            background-size: 600px 120px;
+            opacity: 0.5;
+        }
+
+        header > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        /* LP Link Banner */
+        .lp-banner {
+            background: linear-gradient(135deg, #1a2332 0%, #2c3e50 100%);
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .lp-banner p {
+            margin: 0;
+            font-size: 0.95em;
+        }
+
+        .lp-banner a {
+            background: #d84315;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .lp-banner a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(216, 67, 21, 0.4);
+        }
+
+        /* Hero Section with Munakata Images */
+        .hero-image {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            display: block;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            animation: floatAnimation 3s ease-in-out infinite;
+        }
+
+        @keyframes floatAnimation {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .wave-decoration {
+            width: 100%;
+            height: 120px;
+            background: url('images/genkai_sea.png');
+            background-size: cover;
+            background-position: center;
+            margin: 30px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,102,204,0.3);
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .overview {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #0066cc;
+        }
+
+        .overview h2 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .overview p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        #difficulty-selection {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        #difficulty-selection.hidden {
+            display: none;
+        }
+        .level-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .level-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .level-card:hover::before {
+            left: 100%;
+        }
+
+        .difficulty-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 3px solid transparent;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .difficulty-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .difficulty-card.beginner {
+            border-color: #28a745;
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+        }
+
+        .difficulty-card.intermediate {
+            border-color: #ffc107;
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+        }
+
+        .difficulty-card.advanced {
+            border-color: #dc3545;
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+        }
+
+        .difficulty-card .icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .difficulty-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .difficulty-card p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+
+        .difficulty-info {
+            text-align: center;
+            font-size: 0.85em;
+            color: #555;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            list-style: none;
+            padding-left: 0;
+            width: 100%;
+        }
+
+        .difficulty-info li {
+            margin: 8px 0;
+            padding: 4px 0;
+            display: block;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #0066cc 0%, #0099ff 100%);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            min-height: 48px;
+            min-width: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+            box-shadow: 0 3px 10px rgba(0, 102, 204, 0.3);
+        }
+
+        .btn:focus {
+            outline: 2px solid #0099ff;
+            outline-offset: 2px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .exam-section {
+            display: none;
+        }
+
+        .exam-section.active {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .progress-container {
+            margin-bottom: 30px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #0066cc, #0099ff, #00ccff);
+            width: 0%;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 102, 204, 0.5);
+        }
+
+        .question-item {
+            background: #f8f9fa;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #0066cc;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .question-number {
+            color: #0066cc;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .question-text {
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 14px 16px;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-height: 56px;
+        }
+
+        .option:hover {
+            border-color: #0066cc;
+            background: #f0f7ff;
+        }
+
+        .option input[type="radio"] {
+            margin-right: 12px;
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        /* Result Section Styles */
+        #result-section {
+            display: none;
+        }
+
+        #result-section.active {
+            display: block;
+        }
+
+        .result-header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .result-message {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .result-score {
+            font-size: 4em;
+            font-weight: 700;
+            color: #0066cc;
+            margin-bottom: 10px;
+        }
+
+        .result-rank {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .user-count {
+            font-size: 1em;
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        /* Digital Certificate */
+        .certificate-section {
+            background: linear-gradient(135deg, #1a2332 0%, #2c3e50 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .certificate-section h3 {
+            color: #c9a961;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .certificate-card {
+            background: linear-gradient(135deg, #f5f3ed 0%, #e8e6e0 100%);
+            border: 4px solid #c9a961;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 400px;
+            margin: 0 auto 20px;
+            color: #1a2332;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .certificate-card::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px solid #c9a961;
+            border-radius: 10px;
+            pointer-events: none;
+        }
+
+        .certificate-title {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #1a2332;
+            margin-bottom: 10px;
+        }
+
+        .certificate-level {
+            font-size: 1.2em;
+            color: #d84315;
+            margin-bottom: 15px;
+        }
+
+        .certificate-score {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #c9a961;
+            margin-bottom: 10px;
+        }
+
+        .certificate-date {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .certificate-badge {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #c9a961 0%, #d4af37 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            font-size: 2em;
+            box-shadow: 0 4px 15px rgba(201, 169, 97, 0.4);
+        }
+
+        .certificate-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .certificate-btn {
+            background: #c9a961;
+            color: #1a2332;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .certificate-btn:hover {
+            background: #d4af37;
+            transform: translateY(-2px);
+        }
+
+        /* Next Course Banner */
+        .next-course-banner {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .next-course-banner.intermediate-next {
+            background: linear-gradient(135deg, #ffc107 0%, #ffca2c 100%);
+            color: #333;
+        }
+
+        .next-course-banner.advanced-next {
+            background: linear-gradient(135deg, #dc3545 0%, #e74c3c 100%);
+        }
+
+        .next-course-banner.ambassador {
+            background: linear-gradient(135deg, #6f42c1 0%, #9b59b6 100%);
+        }
+
+        .next-course-banner h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .next-course-banner p {
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .next-course-btn {
+            background: white;
+            color: #333;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+        }
+
+        .next-course-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* LP Link Section */
+        .lp-link-section {
+            background: linear-gradient(135deg, #1a2332 0%, #0f1419 100%);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .lp-link-section h3 {
+            color: #c9a961;
+            margin-bottom: 15px;
+        }
+
+        .lp-link-section p {
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .lp-link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .lp-link-item {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .lp-link-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+        }
+
+        .lp-link-item .icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .lp-link-item .title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .lp-link-item .desc {
+            font-size: 0.85em;
+            opacity: 0.8;
+        }
+
+        /* Share Buttons */
+        .share-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .share-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            font-size: 0.9em;
+            min-height: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .share-btn:nth-child(1) { background: #1DA1F2; color: white; }
+        .share-btn:nth-child(2) { background: #4267B2; color: white; }
+        .share-btn:nth-child(3) { background: #00B900; color: white; }
+        .share-btn:nth-child(4) { background: #6c757d; color: white; }
+
+        /* Answer Review */
+        .answer-review {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .answer-review h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+
+        .answer-item {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #ddd;
+        }
+
+        .answer-item.correct {
+            border-left-color: #28a745;
+        }
+
+        .answer-item.incorrect {
+            border-left-color: #dc3545;
+        }
+
+        .answer-item-icon {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .answer-item-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .answer-item-content {
+            color: #666;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+
+        .answer-item-explanation {
+            color: #555;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #eee;
+            font-size: 0.9em;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 8px;
+            }
+
+            .container {
+                border-radius: 8px;
+            }
+
+            header {
+                padding: 24px 16px;
+            }
+
+            header h1 {
+                font-size: clamp(1.5rem, 5vw, 2rem);
+            }
+
+            header p {
+                font-size: 0.95rem;
+            }
+
+            .content {
+                padding: 16px 12px;
+            }
+
+            #difficulty-selection {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                padding: 0 8px;
+            }
+
+            .difficulty-card {
+                padding: 20px 16px;
+                min-height: auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                text-align: center;
+            }
+
+            .difficulty-card .icon {
+                font-size: 2.5em;
+                margin-bottom: 8px;
+                display: block;
+            }
+
+            .difficulty-card h3 {
+                font-size: 1.5rem;
+                margin-bottom: 8px;
+                display: block;
+                width: 100%;
+            }
+
+            .difficulty-card p {
+                font-size: 0.95rem;
+                margin-bottom: 12px;
+                display: block;
+                width: 100%;
+            }
+
+            .difficulty-info {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 8px 16px;
+                text-align: center;
+                width: 100%;
+                margin-top: 12px;
+                padding-top: 12px;
+            }
+
+            .difficulty-info li {
+                margin: 0;
+                padding: 6px 8px;
+                background: rgba(255,255,255,0.5);
+                border-radius: 6px;
+                font-size: 0.85rem;
+                white-space: nowrap;
+            }
+
+            .difficulty-card .btn {
+                width: 100%;
+                margin-top: 16px;
+                padding: 14px 20px;
+                font-size: 1.1rem;
+            }
+
+            .question-item {
+                padding: 12px;
+                margin-bottom: 16px;
+            }
+
+            .question-text {
+                font-size: 1rem;
+                margin-bottom: 16px;
+            }
+
+            .options {
+                gap: 10px;
+            }
+
+            .option {
+                padding: 12px 12px;
+                min-height: 52px;
+            }
+
+            .result-score {
+                font-size: 2.5rem;
+            }
+
+            .result-message {
+                font-size: 1.2rem;
+            }
+
+            .button-group {
+                gap: 10px;
+                margin-top: 20px;
+            }
+
+            .button-group .btn {
+                flex: 1;
+                min-width: 120px;
+            }
+
+            .lp-banner {
+                flex-direction: column;
+                gap: 10px;
+                padding: 12px 16px;
+            }
+
+            .lp-banner p {
+                font-size: 0.9rem;
+            }
+
+            .lp-banner a {
+                padding: 10px 20px;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+            }
+
+            .certificate-card {
+                max-width: 100%;
+                padding: 20px;
+            }
+
+            .share-buttons {
+                gap: 8px;
+            }
+
+            .share-btn {
+                flex: 1;
+                min-width: 80px;
+                padding: 10px 12px;
+                font-size: 0.85rem;
+            }
+
+            .lp-link-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .lp-link-item {
+                padding: 12px;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .next-course-banner {
+                padding: 16px 12px;
+            }
+
+            .next-course-btn {
+                width: 100%;
+            }
+        }
+
+        @media (min-width: 601px) and (max-width: 1024px) {
+            .difficulty-card {
+                padding: 24px;
+            }
+
+            .question-item {
+                padding: 20px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
 </head>
-
 <body>
-    <!-- Crowdfunding Banner -->
-    <div class="cf-banner">
-        <span class="cf-badge">CF実施中</span>
-        <span>みんなで作る宗像検定！支援者募集中</span>
-        <a href="https://camp-fire.jp/projects/920270/preview?token=3jhx8ucq" target="_blank">詳細を見る →</a>
-    </div>
+    <div class="container">
 
-    <!-- Header -->
-    <header class="site-header">
-        <nav>
-            <a href="../index.html" class="logo">
-                <img src="../images/logo.png" alt="宗像検定ロゴ">
-            </a>
-            <div class="hamburger" onclick="toggleMenu()" role="button" aria-label="メニュー">
-                <span></span>
-                <span></span>
-                <span></span>
+        <header>
+            <h1>🏛️ 宗像検定</h1>
+            <p>宗像地域の歴史・文化・特産品を学ぶ</p>
+            <img src="images/munakata_shrine.png" alt="宗像大社" class="hero-image">
+        </header>
+
+        <div class="content">
+            <!-- 難易度選択画面 -->
+            <div id="difficulty-selection">
+                <div class="overview">
+                    <h2>宗像検定へようこそ！</h2>
+                    <p>宗像市の歴史、文化、特産品、人物など、宗像地域に関する知識を問う検定です。あなたのレベルに合わせて、課長・部長・市長の3つの難易度から選択してください。</p>
+                </div>
+
+                <div class="difficulty-card beginner" onclick="startExam('beginner')">
+                    <div class="icon">👨‍💼</div>
+                    <h3>課長</h3>
+                    <p>基本情報をしっかり理解しよう</p>
+                    <ul class="difficulty-info">
+                        <li>問題数：11問</li>
+                        <li>形式：選択肢11問</li>
+                        <li>配点：100点</li>
+                        <li>難易度：★☆☆</li>
+                    </ul>
+                    <button class="btn">課長を選択</button>
+                </div>
+
+                <div class="difficulty-card intermediate" onclick="startExam('intermediate')">
+                    <div class="icon">👨‍💼</div>
+                    <h3>部長</h3>
+                    <p>詳細な情報を理解しよう</p>
+                    <ul class="difficulty-info">
+                        <li>問題数：10問</li>
+                        <li>形式：選択肢10問</li>
+                        <li>配点：100点</li>
+                        <li>難易度：★★☆</li>
+                    </ul>
+                    <button class="btn">部長を選択</button>
+                </div>
+
+                <div class="difficulty-card advanced" onclick="startExam('advanced')">
+                    <div class="icon">👨‍💼</div>
+                    <h3>市長</h3>
+                    <p>複合的な分析力を試そう</p>
+                    <ul class="difficulty-info">
+                        <li>問題数：10問</li>
+                        <li>形式：選択肢10問</li>
+                        <li>配点：100点</li>
+                        <li>難易度：★★★</li>
+                    </ul>
+                    <button class="btn">市長を選択</button>
+                </div>
+                
+                <!-- 波のデコレーション -->
+                <div class="wave-decoration"></div>
             </div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="../index.html#concept">検定とは</a></li>
-                <li><a href="../index.html#courses">コース紹介</a></li>
-                <li><a href="https://camp-fire.jp/projects/920270/preview?token=3jhx8ucq" target="_blank"
-                        class="cf-button">支援する</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>宗像検定に<br>挑戦しよう</h1>
-            <p>宗像市の歴史・文化・特産品・人物など<br>あなたの宗像知識を試してみませんか？</p>
-        </div>
-    </section>
-
-    <!-- Quiz Container -->
-    <div class="quiz-container">
-        <div class="container">
-            <div class="content">
-
-                <!-- 難易度選択 -->
-                <div id="difficulty-selection">
-                    <div class="overview">
-                        <h2>宗像検定へようこそ！</h2>
-                        <p>宗像市の歴史、文化、特産品、人物など、宗像地域に関する知識を問う検定です。あなたのレベルに合わせて、課長・部長・市長の3つの難易度から選択してください。</p>
+            <!-- 課長（初級）試験 -->
+            <div id="beginner-exam" class="exam-section">
+                <h2>課長 - 初級編</h2>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div id="beginner-progress" class="progress-fill"></div>
                     </div>
+                </div>
+                <div id="beginner-questions"></div>
+                <div class="button-group">
+                    <button class="btn" onclick="submitAnswers('beginner')">採点する</button>
+                    <button class="btn" onclick="backToDifficulty()" style="background: #6c757d;">難易度選択に戻る</button>
+                </div>
+            </div>
 
-                    <!-- メリットセクション -->
-                    <div class="benefits-section">
-                        <h3>宗像検定を受けるメリット</h3>
-                        <div class="benefits-grid">
-                            <div class="benefit-item">
-                                <span class="benefit-check">✓</span>
-                                <span class="benefit-text">デジタル認定証を発行</span>
-                            </div>
-                            <div class="benefit-item">
-                                <span class="benefit-check">✓</span>
-                                <span class="benefit-text">SNSでシェアして地元愛をアピール</span>
-                            </div>
-                            <div class="benefit-item">
-                                <span class="benefit-check">✓</span>
-                                <span class="benefit-text">家族や友人との話題作りに</span>
-                            </div>
-                            <div class="benefit-item">
-                                <span class="benefit-check">✓</span>
-                                <span class="benefit-text">宗像のことをもっと好きになる</span>
-                            </div>
-                        </div>
+            <!-- 部長（中級）試験 -->
+            <div id="intermediate-exam" class="exam-section">
+                <h2>部長 - 中級編</h2>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div id="intermediate-progress" class="progress-fill"></div>
                     </div>
+                </div>
+                <div id="intermediate-questions"></div>
+                <div class="button-group">
+                    <button class="btn" onclick="submitAnswers('intermediate')">採点する</button>
+                    <button class="btn" onclick="backToDifficulty()" style="background: #6c757d;">難易度選択に戻る</button>
+                </div>
+            </div>
 
-                    <div class="difficulty-card beginner" onclick="startExam('beginner')">
-                        <img src="../images/course_kacho.webp" alt="課長" class="difficulty-icon"
-                            onerror="this.src='images/beginner_icon.png'">
-                        <h3>課長</h3>
-                        <p class="difficulty-desc">基本情報をしっかり理解しよう</p>
-                        <ul class="difficulty-info">
-                            <li><span class="info-label">問題数</span><span class="info-value">11問</span></li>
-                            <li><span class="info-label">形式</span><span class="info-value">選択肢</span></li>
-                            <li><span class="info-label">難易度</span><span class="info-value">初級</span></li>
-                        </ul>
-                        <button class="cta-button">課長に挑戦する →</button>
+            <!-- 市長（上級）試験 -->
+            <div id="advanced-exam" class="exam-section">
+                <h2>市長 - 上級編</h2>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div id="advanced-progress" class="progress-fill"></div>
                     </div>
+                </div>
+                <div id="advanced-questions"></div>
+                <div class="button-group">
+                    <button class="btn" onclick="submitAnswers('advanced')">採点する</button>
+                    <button class="btn" onclick="backToDifficulty()" style="background: #6c757d;">難易度選択に戻る</button>
+                </div>
+            </div>
 
-                    <div class="difficulty-card intermediate" onclick="startExam('intermediate')">
-                        <img src="../images/course_bucho.webp" alt="部長" class="difficulty-icon"
-                            onerror="this.src='images/intermediate_icon.png'">
-                        <h3>部長</h3>
-                        <p class="difficulty-desc">詳細な情報を理解しよう</p>
-                        <ul class="difficulty-info">
-                            <li><span class="info-label">問題数</span><span class="info-value">10問</span></li>
-                            <li><span class="info-label">形式</span><span class="info-value">選択肢</span></li>
-                            <li><span class="info-label">難易度</span><span class="info-value">中級</span></li>
-                        </ul>
-                        <button class="cta-button">部長に挑戦する →</button>
-                    </div>
-
-                    <div class="difficulty-card advanced" onclick="startExam('advanced')">
-                        <img src="../images/course_shicho.webp" alt="市長" class="difficulty-icon"
-                            onerror="this.src='images/advanced_icon.png'">
-                        <h3>市長</h3>
-                        <p class="difficulty-desc">複合的な分析力を試そう</p>
-                        <ul class="difficulty-info">
-                            <li><span class="info-label">問題数</span><span class="info-value">10問</span></li>
-                            <li><span class="info-label">形式</span><span class="info-value">選択肢</span></li>
-                            <li><span class="info-label">難易度</span><span class="info-value">上級</span></li>
-                        </ul>
-                        <button class="cta-button">市長に挑戦する →</button>
-                    </div>
-
-                    <!-- 波のデコレーション -->
-                    <div class="wave-decoration"></div>
+            <!-- 結果表示 -->
+            <div id="result-section">
+                <div class="result-header">
+                    <div class="result-message" id="result-message"></div>
+                    <div class="result-score" id="result-score">0点</div>
+                    <div class="result-rank" id="result-rank"></div>
+                    <div class="user-count" id="result-user-count"></div>
                 </div>
 
-                <!-- 課長（初級）試験 -->
-                <div id="beginner-exam" class="exam-section">
-                    <h2>課長 - 初級編</h2>
-                    <div class="progress-container">
-                        <div class="progress-bar">
-                            <div id="beginner-progress" class="progress-fill"></div>
-                        </div>
+                <!-- デジタル認定証 -->
+                <div class="certificate-section" id="certificate-section" style="display: none;">
+                    <h3>🎖️ デジタル認定証</h3>
+                    <div class="certificate-card" id="certificate-card">
+                        <div class="certificate-badge" id="certificate-badge">🏛️</div>
+                        <div class="certificate-title">宗像検定</div>
+                        <div class="certificate-level" id="certificate-level">課長コース</div>
+                        <div class="certificate-score" id="certificate-score-display">合格</div>
+                        <div class="certificate-date" id="certificate-date"></div>
                     </div>
-                    <div id="beginner-questions"></div>
-                    <div class="button-group">
-                        <button class="btn" onclick="submitAnswers('beginner')">採点する</button>
-                        <button class="btn" onclick="backToDifficulty()" style="background: #6c757d;">難易度選択に戻る</button>
+                    <div class="certificate-actions">
+                        <button class="certificate-btn" onclick="downloadCertificate()">📥 認定証を保存</button>
+                        <button class="certificate-btn" onclick="shareCertificate()">📤 SNSでシェア</button>
                     </div>
                 </div>
 
-                <!-- 部長（中級）試験 -->
-                <div id="intermediate-exam" class="exam-section">
-                    <h2>部長 - 中級編</h2>
-                    <div class="progress-container">
-                        <div class="progress-bar">
-                            <div id="intermediate-progress" class="progress-fill"></div>
-                        </div>
-                    </div>
-                    <div id="intermediate-questions"></div>
-                    <div class="button-group">
-                        <button class="btn" onclick="submitAnswers('intermediate')">採点する</button>
-                        <button class="btn" onclick="backToDifficulty()" style="background: #6c757d;">難易度選択に戻る</button>
-                    </div>
+                <!-- 次のコースへの誘導 -->
+                <div class="next-course-banner" id="next-course-banner" style="display: none;">
+                    <h3 id="next-course-title">🎉 次は部長コースに挑戦！</h3>
+                    <p id="next-course-desc">課長コースをクリアしたあなたなら、部長コースも突破できるはず！</p>
+                    <button class="next-course-btn" id="next-course-btn" onclick="goToNextCourse()">部長コースに挑戦する</button>
                 </div>
 
-                <!-- 市長（上級）試験 -->
-                <div id="advanced-exam" class="exam-section">
-                    <h2>市長 - 上級編</h2>
-                    <div class="progress-container">
-                        <div class="progress-bar">
-                            <div id="advanced-progress" class="progress-fill"></div>
-                        </div>
-                    </div>
-                    <div id="advanced-questions"></div>
-                    <div class="button-group">
-                        <button class="btn" onclick="submitAnswers('advanced')">採点する</button>
-                        <button class="btn" onclick="backToDifficulty()" style="background: #6c757d;">難易度選択に戻る</button>
-                    </div>
+                <!-- SNSシェアボタン -->
+                <div class="share-buttons">
+                    <button class="share-btn" onclick="shareOnTwitter()">𝕏でシェア</button>
+                    <button class="share-btn" onclick="shareOnFacebook()">Facebookでシェア</button>
+                    <button class="share-btn" onclick="shareOnLine()">LINEでシェア</button>
+                    <button class="share-btn" onclick="copyLink()">リンクをコピー</button>
                 </div>
 
-                <!-- 結果表示 -->
-                <div id="result-section">
-                    <div class="result-header">
-                        <div class="result-message" id="result-message"></div>
-                        <div class="result-score" id="result-score">0点</div>
-                        <div class="result-rank" id="result-rank"></div>
-                        <div class="user-count" id="result-user-count"></div>
-                    </div>
+                <div class="answer-review">
+                    <h3>📄 回答確認</h3>
+                    <div id="answer-review-content"></div>
+                </div>
 
-                    <!-- デジタル認定証 -->
-                    <div class="certificate-section" id="certificate-section" style="display: none;">
-                        <h3>🎖️ デジタル認定証</h3>
-                        <div class="certificate-card" id="certificate-card">
-                            <div class="certificate-badge" id="certificate-badge">🏛️</div>
-                            <div class="certificate-title">宗像検定</div>
-                            <div class="certificate-level" id="certificate-level">課長コース</div>
-                            <div class="certificate-score" id="certificate-score-display">合格</div>
-                            <div class="certificate-date" id="certificate-date"></div>
-                        </div>
-                        <div class="certificate-actions">
-                            <button class="certificate-btn" onclick="downloadCertificate()">📥 認定証を保存</button>
-                            <button class="certificate-btn" onclick="shareCertificate()">📤 SNSでシェア</button>
-                        </div>
-                    </div>
-
-                    <!-- 次のコースへの誘導 -->
-                    <div class="next-course-banner" id="next-course-banner" style="display: none;">
-                        <h3 id="next-course-title">次は部長コースに挑戦！</h3>
-                        <p id="next-course-desc">課長コースをクリアしたあなたなら、部長コースも突破できるはず！</p>
-                        <button class="next-course-btn" id="next-course-btn"
-                            onclick="goToNextCourse()">部長コースに挑戦する</button>
-                    </div>
-
-                    <!-- SNSシェアボタン -->
-                    <div class="share-buttons">
-                        <button class="share-btn" onclick="shareOnTwitter()">𝕏でシェア</button>
-                        <button class="share-btn" onclick="shareOnFacebook()">Facebookでシェア</button>
-                        <button class="share-btn" onclick="shareOnLine()">LINEでシェア</button>
-                        <button class="share-btn" onclick="copyLink()">リンクをコピー</button>
-                    </div>
-
-                    <div class="answer-review">
-                        <h3>📄 回答確認</h3>
-                        <div id="answer-review-content"></div>
-                    </div>
-
-                    <!-- LP誘導 -->
-                    <div class="lp-links">
-                        <div class="lp-banner">
-                            <p>宗像検定についてもっと知る</p>
-                            <a href="../index.html">検定公式サイトへ</a>
-                        </div>
-                        <div class="lp-link-grid">
-                            <a href="../index.html#concept" class="lp-link-item">検定の目的</a>
-                            <a href="../index.html#courses" class="lp-link-item">コース紹介</a>
-                            <a href="../index.html#benefits" class="lp-link-item">特典・メリット</a>
-                            <a href="https://camp-fire.jp/projects/920270/preview?token=3jhx8ucq" target="_blank"
-                                class="lp-link-item" style="color:var(--cf-green-dark);border-color:var(--cf-green);">
-                                支援する (CF)
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="button-group">
-                        <button class="btn" onclick="retryExam()">もう一度受験する</button>
-                    </div>
+                <div class="button-group">
+                    <button class="btn" onclick="retryExam()">もう一度受験する</button>
                 </div>
             </div>
         </div>
     </div>
-
-    <footer>
-        <p>&copy; 2024 宗像検定実行委員会</p>
-        <p>協力：宗像市、宗像観光協会</p>
-    </footer>
 
     <script>
         // 問題データ
         const allQuestions = {
             "beginner": [
-                { "id": "q1", "question": "福岡市と北九州市の中間に位置する宗像市。北側はどの海に面しているでしょうか？", "options": ["有明海", "玄界灘", "瀬戸内海"], "correct": 1, "explanation": "宗像市は玄界灘に面しており、この海は古代から大陸との交易の重要な航路でした。" },
-                { "id": "q2", "question": "平成29年（2017年）にユネスコ世界文化遺産に登録された遺産群の名称は、「『〇〇〇島』宗像・沖ノ島と関連遺産群」です。〇に入る言葉は？", "options": ["宝の", "神宿る", "祈りの"], "correct": 1, "explanation": "正式名称は「『神宿る島』宗像・沖ノ島と関連遺産群」で、沖ノ島は神聖な島として崇められてきました。" },
-                { "id": "q3", "question": "宗像市出身の実業家で、出光興産の創業者であり、小説『海賊とよばれた男』のモデルとしても知られる人物は誰でしょうか？", "options": ["出光佐三", "松下幸之助", "渋沢栄一"], "correct": 0, "explanation": "出光佐三は宗像市出身の実業家で、出光興産を創業し、その波乱万丈な人生は小説『海賊とよばれた男』のモデルとなりました。" },
-                { "id": "q4", "question": "宗像市の「市の木」の一つで、市内の文化施設「宗像ユリックス」の名前の由来にもなっている木は何でしょうか？", "options": ["スギ", "マツ", "クスノキ"], "correct": 2, "explanation": "クスノキは宗像市の市の木の一つで、「ユリックス」の名前は「ユリ」（市の花）と「クス」（クスノキ）から名付けられました。" },
-                { "id": "q5", "question": "宗像市の「市の魚」に制定されており、市内では「玄ちゃん」の愛称でも親しまれている魚は何でしょうか？", "options": ["マアジ", "タイ", "イカ"], "correct": 0, "explanation": "マアジが宗像市の市の魚で、玄界灘で獲れることから「玄ちゃん」という愛称で親しまれています。" },
-                { "id": "q6", "question": "宗像市の「市の花」で、市が自生の北限とされているユリの名前は何でしょうか？", "options": ["テッポウユリ", "カノコユリ", "ヤマユリ"], "correct": 1, "explanation": "カノコユリは宗像市の市の花で、宗像市がこのユリの自生の北限地とされています。" },
-                { "id": "q7", "question": "宗像大社が祀っている神様は、「宗像〇女神」と呼ばれています。数字の〇に入るのは？", "options": ["三", "五", "七"], "correct": 0, "explanation": "宗像大社は「宗像三女神」を祀っており、これらの女神は古代日本で重要な信仰対象でした。" },
-                { "id": "q8", "question": "宗像市にあるJR鹿児島本線の主要駅で、市役所の最寄り駅（バス利用）でもある駅はどこでしょうか？", "options": ["赤間駅", "東郷駅", "教育大前駅"], "correct": 0, "explanation": "赤間駅はJR鹿児島本線の主要駅で、宗像市役所の最寄り駅です。" },
-                { "id": "q9", "question": "宗像市で最も標高が高い山（499.0メートル）の名前は何でしょうか？", "options": ["城山", "孔大寺山", "許斐山"], "correct": 1, "explanation": "孔大寺山が宗像市で最も標高が高い山で、499.0メートルです。" },
-                { "id": "q10", "question": "世界遺産の構成資産の一つで、海を隔てて沖ノ島を拝むために大島に作られた場所を何というでしょうか？", "options": ["沖津宮遥拝所", "中津宮", "辺津宮"], "correct": 0, "explanation": "沖津宮遥拝所は大島に作られた場所で、沖ノ島を拝むために造営されました。" },
-                { "id": "q11", "question": "令7年12月、宗像ユリックス内に開業した、株式会社くりえいとが関わる「全天候型こども広場」の愛称は何でしょうか？", "options": ["Mu-Mo（ムーモ）", "Aso-Bo（アソボ）", "Muna-Kids（ムナキッズ）"], "correct": 0, "explanation": "令7年12月に宗像ユリックス内に開業した全天候型こども広場の愛称はMu-Mo（ムーモ）です。" }
+                {"id": "q1", "question": "福岡市と北九州市の中間に位置する宗像市。北側はどの海に面しているでしょうか？", "options": ["有明海", "玄界灘", "瀬戸内海"], "correct": 1, "explanation": "宗像市は玄界灘に面しており、この海は古代から大陸との交易の重要な航路でした。"},
+                {"id": "q2", "question": "平成29年（2017年）にユネスコ世界文化遺産に登録された遺産群の名称は、「『〇〇〇島』宗像・沖ノ島と関連遺産群」です。〇に入る言葉は？", "options": ["宝の", "神宿る", "祈りの"], "correct": 1, "explanation": "正式名称は「『神宿る島』宗像・沖ノ島と関連遺産群」で、沖ノ島は神聖な島として崇められてきました。"},
+                {"id": "q3", "question": "宗像市出身の実業家で、出光興産の創業者であり、小説『海賊とよばれた男』のモデルとしても知られる人物は誰でしょうか？", "options": ["出光佐三", "松下幸之助", "渋沢栄一"], "correct": 0, "explanation": "出光佐三は宗像市出身の実業家で、出光興産を創業し、その波乱万丈な人生は小説『海賊とよばれた男』のモデルとなりました。"},
+                {"id": "q4", "question": "宗像市の「市の木」の一つで、市内の文化施設「宗像ユリックス」の名前の由来にもなっている木は何でしょうか？", "options": ["スギ", "マツ", "クスノキ"], "correct": 2, "explanation": "クスノキは宗像市の市の木の一つで、「ユリックス」の名前は「ユリ」（市の花）と「クス」（クスノキ）から名付けられました。"},
+                {"id": "q5", "question": "宗像市の「市の魚」に制定されており、市内では「玄ちゃん」の愛称でも親しまれている魚は何でしょうか？", "options": ["マアジ", "タイ", "イカ"], "correct": 0, "explanation": "マアジが宗像市の市の魚で、玄界灘で獲れることから「玄ちゃん」という愛称で親しまれています。"},
+                {"id": "q6", "question": "宗像市の「市の花」で、市が自生の北限とされているユリの名前は何でしょうか？", "options": ["テッポウユリ", "カノコユリ", "ヤマユリ"], "correct": 1, "explanation": "カノコユリは宗像市の市の花で、宗像市がこのユリの自生の北限地とされています。"},
+                {"id": "q7", "question": "宗像大社が祀っている神様は、「宗像〇女神」と呼ばれています。数字の〇に入るのは？", "options": ["三", "五", "七"], "correct": 0, "explanation": "宗像大社は「宗像三女神」を祀っており、これらの女神は古代日本で重要な信仰対象でした。"},
+                {"id": "q8", "question": "宗像市にあるJR鹿児島本線の主要駅で、市役所の最寄り駅（バス利用）でもある駅はどこでしょうか？", "options": ["赤間駅", "東郷駅", "教育大前駅"], "correct": 0, "explanation": "赤間駅はJR鹿児島本線の主要駅で、宗像市役所の最寄り駅です。"},
+                {"id": "q9", "question": "宗像市で最も標高が高い山（499.0メートル）の名前は何でしょうか？", "options": ["城山", "孔大寺山", "許斐山"], "correct": 1, "explanation": "孔大寺山が宗像市で最も標高が高い山で、499.0メートルです。"},
+                {"id": "q10", "question": "世界遺産の構成資産の一つで、海を隔てて沖ノ島を拝むために大島に作られた場所を何というでしょうか？", "options": ["沖津宮遥拝所", "中津宮", "辺津宮"], "correct": 0, "explanation": "沖津宮遥拝所は大島に作られた場所で、沖ノ島を拝むために造営されました。"},
+                {"id": "q11", "question": "令7年12月、宗像ユリックス内に開業した、株式会社くりえいとが関わる「全天候型こども広場」の愛称は何でしょうか？", "options": ["Mu-Mo（ムーモ）", "Aso-Bo（アソボ）", "Muna-Kids（ムナキッズ）"], "correct": 0, "explanation": "令7年12月に宗像ユリックス内に開業した全天候型こども広場の愛称はMu-Mo（ムーモ）です。"}
             ],
             "intermediate": [
-                { "id": "q11", "question": "平成15年（2003年）に旧宗像市と合併して「新しい宗像市」となった町はどこでしょうか？", "options": ["津屋崎町", "玄海町", "大島村"], "correct": 1, "explanation": "平成15年に旧宗像市と玄海町が合併して、新しい宗像市が誕生しました。" },
-                { "id": "q12", "question": "宗像市の市章は、宗像市の頭文字「m」ともう一つの文字を組み合わせてデザインされています。旧玄海町を表すその文字は何でしょうか？", "options": ["g", "k", "s"], "correct": 1, "explanation": "宗像市の市章は「m」と「k」（玄海町のK）を組み合わせてデザインされています。" },
-                { "id": "q13", "question": "宗像市の「市の鳥」であるオオミズナギドリは、天然記念物にも指定されていますが、主な生息地となっている島はどこでしょうか？", "options": ["大島", "地島", "沖ノ島"], "correct": 0, "explanation": "オオミズナギドリは宗像市の市の鳥で、大島が主な生息地です。" },
-                { "id": "q14", "question": "宗像市と姉妹都市を締結している、古代日本との交流の歴史も深い韓国の都市はどこでしょうか？", "options": ["釜山市", "ソウル市", "金海市"], "correct": 2, "explanation": "宗像市は韓国の金海市と姉妹都市を締結しており、古代からの交流の歴史があります。" },
-                { "id": "q15", "question": "出光佐三が創業した出光興産の本社が置かれている都市はどこでしょうか？", "options": ["東京", "大阪", "福岡"], "correct": 0, "explanation": "出光興産の本社は東京に置かれています。" },
-                { "id": "q16", "question": "宗像大社の本殿などの改修が完了した「昭和の御造営」は昭和何年でしょうか？", "options": ["昭和38年", "昭和46年", "昭和56年"], "correct": 2, "explanation": "昭和56年に宗像大社の「昭和の御造営」として本殿などの改修が完了しました。" },
-                { "id": "q17", "question": "千葉県にある出光興産の千葉製油所には、宗像大社の本殿を模した神社が建立されています。その大きさは実物の何分の一でしょうか？", "options": ["1/2", "1/5", "1/10"], "correct": 2, "explanation": "千葉製油所の神社は宗像大社の本殿を模した1/10の大きさで建立されています。" },
-                { "id": "q18", "question": "大島では、市の鳥である「オオミズナギドリ」のことを地元の方言で何と呼ぶでしょうか？", "options": ["オガチ", "ウミガラス", "カツオドリ"], "correct": 0, "explanation": "大島ではオオミズナギドリを「オガチ」と呼ぶ地元の方言があります。" },
-                { "id": "q19", "question": "旧玄海町と友好交流都市を締結していた韓国・済州島の「城山邑（ソンサンウプ）」は、行政改編により現在は何という市の一部になっているでしょうか？", "options": ["済州市", "西帰浦（ソギポ）市", "漢拏（ハルラ）市"], "correct": 0, "explanation": "城山邑は行政改編により、現在は済州市の一部になっています。" },
-                { "id": "q20", "question": "出光佐三の事業の基本理念であり、苦しい時代も貫き通した考え方は「〇〇〇本位」です。〇に入る言葉は？", "options": ["利益", "国家", "消費者"], "correct": 2, "explanation": "出光佐三の経営理念は「消費者本位」で、これは彼の事業の基本となりました。" }
+                {"id": "q11", "question": "平成15年（2003年）に旧宗像市と合併して「新しい宗像市」となった町はどこでしょうか？", "options": ["津屋崎町", "玄海町", "大島村"], "correct": 1, "explanation": "平成15年に旧宗像市と玄海町が合併して、新しい宗像市が誕生しました。"},
+                {"id": "q12", "question": "宗像市の市章は、宗像市の頭文字「m」ともう一つの文字を組み合わせてデザインされています。旧玄海町を表すその文字は何でしょうか？", "options": ["g", "k", "s"], "correct": 1, "explanation": "宗像市の市章は「m」と「k」（玄海町のK）を組み合わせてデザインされています。"},
+                {"id": "q13", "question": "宗像市の「市の鳥」であるオオミズナギドリは、天然記念物にも指定されていますが、主な生息地となっている島はどこでしょうか？", "options": ["大島", "地島", "沖ノ島"], "correct": 0, "explanation": "オオミズナギドリは宗像市の市の鳥で、大島が主な生息地です。"},
+                {"id": "q14", "question": "宗像市と姉妹都市を締結している、古代日本との交流の歴史も深い韓国の都市はどこでしょうか？", "options": ["釜山市", "ソウル市", "金海市"], "correct": 2, "explanation": "宗像市は韓国の金海市と姉妹都市を締結しており、古代からの交流の歴史があります。"},
+                {"id": "q15", "question": "出光佐三が創業した出光興産の本社が置かれている都市はどこでしょうか？", "options": ["東京", "大阪", "福岡"], "correct": 0, "explanation": "出光興産の本社は東京に置かれています。"},
+                {"id": "q16", "question": "宗像大社の本殿などの改修が完了した「昭和の御造営」は昭和何年でしょうか？", "options": ["昭和38年", "昭和46年", "昭和56年"], "correct": 2, "explanation": "昭和56年に宗像大社の「昭和の御造営」として本殿などの改修が完了しました。"},
+                {"id": "q17", "question": "千葉県にある出光興産の千葉製油所には、宗像大社の本殿を模した神社が建立されています。その大きさは実物の何分の一でしょうか？", "options": ["1/2", "1/5", "1/10"], "correct": 2, "explanation": "千葉製油所の神社は宗像大社の本殿を模した1/10の大きさで建立されています。"},
+                {"id": "q18", "question": "大島では、市の鳥である「オオミズナギドリ」のことを地元の方言で何と呼ぶでしょうか？", "options": ["オガチ", "ウミガラス", "カツオドリ"], "correct": 0, "explanation": "大島ではオオミズナギドリを「オガチ」と呼ぶ地元の方言があります。"},
+                {"id": "q19", "question": "旧玄海町と友好交流都市を締結していた韓国・済州島の「城山邑（ソンサンウプ）」は、行政改編により現在は何という市の一部になっているでしょうか？", "options": ["済州市", "西帰浦（ソギポ）市", "漢拏（ハルラ）市"], "correct": 0, "explanation": "城山邑は行政改編により、現在は済州市の一部になっています。"},
+                {"id": "q20", "question": "出光佐三の事業の基本理念であり、苦しい時代も貫き通した考え方は「〇〇〇本位」です。〇に入る言葉は？", "options": ["利益", "国家", "消費者"], "correct": 2, "explanation": "出光佐三の経営理念は「消費者本位」で、これは彼の事業の基本となりました。"}
             ],
             "advanced": [
-                { "id": "q21", "question": "昭和56年、旧宗像町は人口が何万人を突破したことを機に「旧宗像市」となったでしょうか？", "options": ["3万人", "5万人", "10万人"], "correct": 1, "explanation": "昭和56年、旧宗像町は人口が5万人を突破したことを機に「旧宗像市」となりました。" },
-                { "id": "q22", "question": "ブルガリアのカザンラック市で開催される「バラ祭り」の最終日に選ばれる女性の称号は何でしょうか？", "options": ["バラの女王", "ローズプリンセス", "花の女神"], "correct": 0, "explanation": "ブルガリアのカザンラック市で開催される「バラ祭り」の最終日に選ばれる女性の称号は「バラの女王」です。" },
-                { "id": "q23", "question": "宗像市の文化財である「宗像大社辺津宮本殿」は、何時代の建築様式を示しているでしょうか？", "options": ["平安時代", "室町時代", "江戸時代"], "correct": 2, "explanation": "宗像大社辺津宮本殿は江戸時代の建築様式を示しており、国の重要文化財に指定されています。" },
-                { "id": "q24", "question": "宗像市が実施している「宗像ユリックス24時間駅伝」は、第何回大会でしょうか？", "options": ["第30回", "第32回", "第35回"], "correct": 1, "explanation": "宗像ユリックス24時間駅伝は第32回大会が開催されており、240分部門が新設されました。" },
-                { "id": "q25", "question": "宗像市内で栽培される「宗像サーモン」は、どのような方法で養殖されているでしょうか？", "options": ["海水養殖", "陸上養殖", "池での養殖"], "correct": 1, "explanation": "宗像サーモンは地下水を利用した陸上養殖で、西日本最大級の施設で生産されています。" },
-                { "id": "q26", "question": "宗像市の「市民の日」は、いつに制定されているでしょうか？", "options": ["1月1日", "3月20日", "11月3日"], "correct": 1, "explanation": "宗像市の「市民の日」は3月20日に制定されています。" },
-                { "id": "q27", "question": "宗像大社の沖津宮が鎮座する沖ノ島は、女人禁制の島として知られていますが、この禁制は何年から続いているでしょうか？", "options": ["約1000年", "約1500年", "約2000年"], "correct": 1, "explanation": "沖ノ島の女人禁制は約1500年前から続いており、古代からの伝統が守られています。" },
-                { "id": "q28", "question": "宗像市にある「道の駅むなかた」では、地域特産品の販売が行われていますが、最近注目を集めている特産品は何でしょうか？", "options": ["宗像ユリ", "宗像サーモン", "玄ちゃんアジ"], "correct": 1, "explanation": "道の駅むなかたでは、陸上養殖の「宗像サーモン」が注目を集めており、12月から販売が開始されました。" },
-                { "id": "q29", "question": "宗像市の歴史を学ぶことができる施設「宗像大社神宝館」には、どのような文化財が展示されているでしょうか？", "options": ["陶芸作品", "古代の祭祀遺物", "現代美術"], "correct": 1, "explanation": "宗像大社神宝館には、古代の祭祀遺物や宗像大社に関連する重要な文化財が展示されています。" },
-                { "id": "q30", "question": "宗像市を代表する観光地「宗像大社」の参拝者数は、年間何万人程度でしょうか？", "options": ["約50万人", "約100万人", "約200万人"], "correct": 1, "explanation": "宗像大社の年間参拝者数は約100万人で、宗像市を代表する観光地となっています。" }
+                {"id": "q21", "question": "昭和56年、旧宗像町は人口が何万人を突破したことを機に「旧宗像市」となったでしょうか？", "options": ["3万人", "5万人", "10万人"], "correct": 1, "explanation": "昭和56年、旧宗像町は人口が5万人を突破したことを機に「旧宗像市」となりました。"},
+                {"id": "q22", "question": "ブルガリアのカザンラック市で開催される「バラ祭り」の最終日に選ばれる女性の称号は何でしょうか？", "options": ["バラの女王", "ローズプリンセス", "花の女神"], "correct": 0, "explanation": "ブルガリアのカザンラック市で開催される「バラ祭り」の最終日に選ばれる女性の称号は「バラの女王」です。"},
+                {"id": "q23", "question": "宗像市の文化財である「宗像大社辺津宮本殿」は、何時代の建築様式を示しているでしょうか？", "options": ["平安時代", "室町時代", "江戸時代"], "correct": 2, "explanation": "宗像大社辺津宮本殿は江戸時代の建築様式を示しており、国の重要文化財に指定されています。"},
+                {"id": "q24", "question": "宗像市が実施している「宗像ユリックス24時間駅伝」は、第何回大会でしょうか？", "options": ["第30回", "第32回", "第35回"], "correct": 1, "explanation": "宗像ユリックス24時間駅伝は第32回大会が開催されており、240分部門が新設されました。"},
+                {"id": "q25", "question": "宗像市内で栽培される「宗像サーモン」は、どのような方法で養殖されているでしょうか？", "options": ["海水養殖", "陸上養殖", "池での養殖"], "correct": 1, "explanation": "宗像サーモンは地下水を利用した陸上養殖で、西日本最大級の施設で生産されています。"},
+                {"id": "q26", "question": "宗像市の「市民の日」は、いつに制定されているでしょうか？", "options": ["1月1日", "3月20日", "11月3日"], "correct": 1, "explanation": "宗像市の「市民の日」は3月20日に制定されています。"},
+                {"id": "q27", "question": "宗像大社の沖津宮が鎮座する沖ノ島は、女人禁制の島として知られていますが、この禁制は何年から続いているでしょうか？", "options": ["約1000年", "約1500年", "約2000年"], "correct": 1, "explanation": "沖ノ島の女人禁制は約1500年前から続いており、古代からの伝統が守られています。"},
+                {"id": "q28", "question": "宗像市にある「道の駅むなかた」では、地域特産品の販売が行われていますが、最近注目を集めている特産品は何でしょうか？", "options": ["宗像ユリ", "宗像サーモン", "玄ちゃんアジ"], "correct": 1, "explanation": "道の駅むなかたでは、陸上養殖の「宗像サーモン」が注目を集めており、12月から販売が開始されました。"},
+                {"id": "q29", "question": "宗像市の歴史を学ぶことができる施設「宗像大社神宝館」には、どのような文化財が展示されているでしょうか？", "options": ["陶芸作品", "古代の祭祀遺物", "現代美術"], "correct": 1, "explanation": "宗像大社神宝館には、古代の祭祀遺物や宗像大社に関連する重要な文化財が展示されています。"},
+                {"id": "q30", "question": "宗像市を代表する観光地「宗像大社」の参拝者数は、年間何万人程度でしょうか？", "options": ["約50万人", "約100万人", "約200万人"], "correct": 1, "explanation": "宗像大社の年間参拝者数は約100万人で、宗像市を代表する観光地となっています。"}
             ]
         };
 
@@ -320,19 +1210,19 @@
 
             questions.forEach((q, idx) => {
                 const questionHTML = `
-                <div class="question-item" id="${q.id}">
-                    <div class="question-number">第${idx + 1}問 / 全${questions.length}問</div>
-                    <div class="question-text">${q.question}</div>
-                    <div class="options">
-                        ${q.options.map((opt, optIdx) => `
-                            <label class="option">
-                                <input type="radio" name="${q.id}" value="${optIdx}" onchange="updateProgress('${difficulty}')">
-                                <span>${opt}</span>
-                            </label>
-                        `).join('')}
+                    <div class="question-item" id="${q.id}">
+                        <div class="question-number">第${idx + 1}問 / 全${questions.length}問</div>
+                        <div class="question-text">${q.question}</div>
+                        <div class="options">
+                            ${q.options.map((opt, optIdx) => `
+                                <label class="option">
+                                    <input type="radio" name="${q.id}" value="${optIdx}" onchange="updateProgress('${difficulty}')">
+                                    <span>${opt}</span>
+                                </label>
+                            `).join('')}
+                        </div>
                     </div>
-                </div>
-            `;
+                `;
                 container.innerHTML += questionHTML;
             });
         }
@@ -397,17 +1287,17 @@
             const isPassed = score >= 60;
 
             if (score >= 80) {
-                message = '<span class="result-icon-s success">★</span> 素晴らしい成績です！';
+                message = '🌟 素晴らしい成績です！';
                 rank = '評価: 優秀（80点以上）';
             } else if (score >= 60) {
-                message = '<span class="result-icon-s good">✓</span> 良好な成績です！';
+                message = '👍 良好な成績です！';
                 rank = '評価: 合格（60点以上）';
             } else {
-                message = '<span class="result-icon-s retry">!</span> もう一度チャレンジしてみましょう！';
+                message = '📚 もう一度チャレンジしてみましょう！';
                 rank = '評価: 再受検推奨（60点未満）';
             }
 
-            document.getElementById('result-message').innerHTML = message;
+            document.getElementById('result-message').textContent = message;
             document.getElementById('result-rank').textContent = rank;
             document.getElementById('result-user-count').textContent = `あなたは${userCount}番目の受講生です！`;
 
@@ -421,7 +1311,7 @@
             }
 
             displayAnswerReview(answers);
-
+            
             // 結果セクションにスクロール
             setTimeout(() => {
                 document.getElementById('result-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -435,23 +1325,19 @@
                 'advanced': '市長コース'
             };
 
-            // Remove emoji badges, use images if needed or just styling
-            const badgeImages = {
-                'beginner': 'images/beginner_icon.png',
-                'intermediate': 'images/intermediate_icon.png',
-                'advanced': 'images/advanced_icon.png'
+            const badges = {
+                'beginner': '👨‍💼',
+                'intermediate': '👔',
+                'advanced': '🏆'
             };
 
             document.getElementById('certificate-section').style.display = 'block';
             document.getElementById('certificate-level').textContent = levelNames[difficulty];
             document.getElementById('certificate-score-display').textContent = score >= 80 ? '優秀合格' : '合格';
-
-            // Use innerHTML to add image instead of emoji text
-            const badgeContainer = document.getElementById('certificate-badge');
-            badgeContainer.innerHTML = `<img src="${badgeImages[difficulty]}" alt="Badge" style="width:100%; height:100%; object-fit:contain; border-radius:12px;">`;
-
+            document.getElementById('certificate-badge').textContent = badges[difficulty];
+            
             const today = new Date();
-            document.getElementById('certificate-date').textContent =
+            document.getElementById('certificate-date').textContent = 
                 `${today.getFullYear()}年${today.getMonth() + 1}月${today.getDate()}日 認定`;
         }
 
@@ -465,19 +1351,19 @@
 
             if (difficulty === 'beginner') {
                 banner.classList.add('intermediate-next');
-                title.textContent = '次は部長コースに挑戦！';
+                title.textContent = '🎉 次は部長コースに挑戦！';
                 desc.textContent = '課長コースをクリアしたあなたなら、部長コースも突破できるはず！';
                 btn.textContent = '部長コースに挑戦する';
                 btn.onclick = () => goToNextCourse('intermediate');
             } else if (difficulty === 'intermediate') {
                 banner.classList.add('advanced-next');
-                title.textContent = 'いよいよ市長コースへ！';
+                title.textContent = '🔥 いよいよ市長コースへ！';
                 desc.textContent = '部長コースをクリア！最高難度の市長コースで宗像マスターを目指そう！';
                 btn.textContent = '市長コースに挑戦する';
                 btn.onclick = () => goToNextCourse('advanced');
             } else if (difficulty === 'advanced') {
                 banner.classList.add('ambassador');
-                title.textContent = 'おめでとうございます！宗像アンバサダー認定！';
+                title.textContent = '🎊 おめでとうございます！宗像アンバサダー認定！';
                 desc.textContent = '全コースをクリア！あなたは宗像の魅力を世界に発信できるアンバサダーです！';
                 btn.textContent = '特典を確認する';
                 btn.onclick = () => window.open('https://nakamura-munakata.github.io/munakata-kentei-lp/#benefits', '_blank');
@@ -489,7 +1375,7 @@
         function goToNextCourse(nextDifficulty) {
             document.getElementById('result-section').classList.remove('active');
             document.getElementById('difficulty-selection').classList.remove('hidden');
-
+            
             setTimeout(() => {
                 startExam(nextDifficulty);
             }, 100);
@@ -502,67 +1388,146 @@
             let questionIndex = 1;
             Object.values(answers).forEach((answer) => {
                 const itemClass = answer.isCorrect ? 'correct' : 'incorrect';
-                // Use Checkmark CSS class instead of emoji
-                const icon = answer.isCorrect ? '<span class="review-icon correct">✓</span>' : '<span class="review-icon incorrect">×</span>';
+                const icon = answer.isCorrect ? '✅' : '❌';
                 const selectedText = answer.selected >= 0 ? answer.options[answer.selected] : '未回答';
                 const correctText = answer.options[answer.correct];
 
                 const html = `
-                <div class="answer-item ${itemClass}">
-                    <div class="answer-item-icon">${icon}</div>
-                    <div class="answer-item-title">第${questionIndex}問: ${answer.question}</div>
-
-                    <div class="answer-item-content">
-                        <strong>あなたの回答:</strong> ${selectedText}
+                    <div class="answer-item ${itemClass}">
+                        <div class="answer-item-icon">${icon}</div>
+                        <div class="answer-item-title">第${questionIndex}問: ${answer.question}</div>
+                        <div class="answer-item-content">
+                            <strong>あなたの回答:</strong> ${selectedText}
+                        </div>
+                        <div class="answer-item-content">
+                            <strong>正解:</strong> ${correctText}
+                        </div>
+                        <div class="answer-item-explanation">
+                            <strong>📖 解説:</strong> ${answer.explanation}
+                        </div>
                     </div>
-                    ${!answer.isCorrect ? `<div class="answer-item-content" style="color:var(--vermilion);"><strong>正解:</strong> ${correctText}</div>` : ''}
-                    <div class="answer-item-explanation">
-                        <strong>解説:</strong> ${answer.explanation}
-                    </div>
-                </div>
                 `;
                 reviewContent.innerHTML += html;
                 questionIndex++;
             });
         }
 
-        // SNS Share functions
+        // ローカルストレージ関連
+        function getUserCount() {
+            if (!window.munakatakentei_globalcount) {
+                let count = localStorage.getItem('munakatakentei_usercount_global');
+                window.munakatakentei_globalcount = count ? parseInt(count) : 0;
+            }
+            return window.munakatakentei_globalcount;
+        }
+
+        function incrementUserCount() {
+            let count = getUserCount();
+            count++;
+            window.munakatakentei_globalcount = count;
+            localStorage.setItem('munakatakentei_usercount_global', count);
+            
+            // LP用の統計データも更新
+            updateQuizStats(true, false);
+            
+            return count;
+        }
+
+        function saveExamResult(difficulty, score) {
+            const results = JSON.parse(localStorage.getItem('munakatakentei_results') || '[]');
+            const passed = score >= 80; // 80%以上で合格
+            results.push({
+                difficulty: difficulty,
+                score: score,
+                date: new Date().toISOString(),
+                passed: passed
+            });
+            localStorage.setItem('munakatakentei_results', JSON.stringify(results));
+            
+            // LP用の統計データも更新（合格の場合）
+            if (passed) {
+                updateQuizStats(false, true);
+            }
+        }
+        
+        // LP用の統計データを更新する関数
+        function updateQuizStats(incrementExams, incrementPassed) {
+            const stats = JSON.parse(localStorage.getItem('munakata_quiz_stats') || '{"totalExams": 0, "totalPassed": 0}');
+            
+            if (incrementExams) {
+                stats.totalExams = (stats.totalExams || 0) + 1;
+            }
+            if (incrementPassed) {
+                stats.totalPassed = (stats.totalPassed || 0) + 1;
+            }
+            
+            localStorage.setItem('munakata_quiz_stats', JSON.stringify(stats));
+            
+            // 本日の受験者数も更新
+            const today = new Date().toDateString();
+            const todayStats = JSON.parse(localStorage.getItem('munakata_today_stats') || '{}');
+            
+            if (todayStats.date !== today) {
+                // 日付が変わったらリセット
+                todayStats.date = today;
+                todayStats.count = 0;
+            }
+            
+            if (incrementExams) {
+                todayStats.count = (todayStats.count || 0) + 1;
+            }
+            
+            localStorage.setItem('munakata_today_stats', JSON.stringify(todayStats));
+        }
+
+        // SNSシェア機能
         function shareOnTwitter() {
-            const text = `宗像検定に挑戦しました！\n難易度: ${document.getElementById('certificate-level').textContent}\nスコア: ${currentScore}点\n#宗像検定 #宗像市`;
-            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(window.location.href)}`, '_blank');
+            const score = document.getElementById('result-score').textContent;
+            const levelNames = {
+                'beginner': '課長',
+                'intermediate': '部長',
+                'advanced': '市長'
+            };
+            const level = levelNames[currentDifficulty] || '';
+            const isPassed = currentScore >= 60;
+            const passText = isPassed ? '合格しました！🎉' : '挑戦しました！';
+            
+            const text = `宗像検定【${level}コース】に${passText}\nスコア: ${score}\n\n世界遺産・宗像の歴史を学ぼう！\n#宗像検定 #宗像市 #世界遺産`;
+            const url = 'https://nakamura-munakata.github.io/munakata-kentei-lp/';
+            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`);
         }
 
         function shareOnFacebook() {
-            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank');
+            const url = 'https://nakamura-munakata.github.io/munakata-kentei-lp/';
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`);
         }
 
         function shareOnLine() {
-            window.open(`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(window.location.href)}`, '_blank');
+            const score = document.getElementById('result-score').textContent;
+            const levelNames = {
+                'beginner': '課長',
+                'intermediate': '部長',
+                'advanced': '市長'
+            };
+            const level = levelNames[currentDifficulty] || '';
+            const text = `宗像検定【${level}コース】に挑戦しました！スコア: ${score} 🏛️`;
+            window.open(`https://line.me/R/msg/text/${encodeURIComponent(text + '\nhttps://nakamura-munakata.github.io/munakata-kentei-lp/')}`);
         }
 
         function copyLink() {
-            navigator.clipboard.writeText(window.location.href).then(() => {
+            const url = 'https://nakamura-munakata.github.io/munakata-kentei-lp/';
+            navigator.clipboard.writeText(url).then(() => {
                 alert('リンクをコピーしました！');
             });
         }
 
-        // Keep track of user count (mock)
-        function incrementUserCount() {
-            let count = localStorage.getItem('userCount') || 384;
-            count = parseInt(count) + 1;
-            localStorage.setItem('userCount', count);
-            return count;
+        // 認定証機能
+        function downloadCertificate() {
+            alert('認定証の画像保存機能は準備中です。\nスクリーンショットで保存してください。');
         }
 
-        // Save result
-        function saveExamResult(difficulty, score) {
-            const results = JSON.parse(localStorage.getItem('munakataQuizResults') || '[]');
-            results.push({
-                difficulty: difficulty,
-                score: score,
-                date: new Date().toISOString()
-            });
-            localStorage.setItem('munakataQuizResults', JSON.stringify(results));
+        function shareCertificate() {
+            shareOnTwitter();
         }
 
         function backToDifficulty() {
@@ -577,12 +1542,6 @@
             document.getElementById('result-section').classList.remove('active');
             document.getElementById('difficulty-selection').classList.remove('hidden');
         }
-
-        // Menu toggle function
-        function toggleMenu() {
-            document.getElementById('navLinks').classList.toggle('active');
-        }
     </script>
 </body>
-
 </html>
