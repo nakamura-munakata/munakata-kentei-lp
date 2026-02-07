@@ -90,7 +90,7 @@
 
     <!-- Hero Section -->
     <section class="hero"
-        style="background-image: linear-gradient(rgba(26, 35, 50, 0.55), rgba(26, 35, 50, 0.65)), url('images/kanko_bg.jpg');">
+        style="background-image: linear-gradient(rgba(26, 35, 50, 0.55), rgba(26, 35, 50, 0.65)), url('../images/tourism_scene.jpg');">
         <div class="hero-content">
             <h1>宗像検定<br>観光編</h1>
             <p>宗像大社、海の幸、絶景スポット…<br>宗像の魅力をどれだけ知っていますか？</p>
@@ -111,8 +111,8 @@
 
                     <div class="difficulty-card beginner" onclick="startExam('kanko')"
                         style="border-color: var(--vermilion); max-width: 500px; margin: 0 auto;">
-                        <img src="images/kanko_icon.png" alt="観光" class="difficulty-icon"
-                            onerror="this.src='../quiz/images/beginner_icon.png'">
+                        <img src="../images/course_kacho.webp" alt="観光" class="difficulty-icon"
+                            style="object-fit:cover;" onerror="this.src='../quiz/images/beginner_icon.png'">
                         <h3>観光コース</h3>
                         <p class="difficulty-desc">全10問！目指せ観光マスター！</p>
                         <ul class="difficulty-info">
@@ -128,21 +128,24 @@
                         <h3 style="text-align:center; color:#555; font-size:1.1em;">宗像の魅力スポット</h3>
                         <div class="spot-grid">
                             <div class="spot-card">
-                                <div class="spot-img" style="background-image: url('images/okitsumiya.jpg');"></div>
-                                <!-- ダミー画像 -->
+                                <div class="spot-img"
+                                    style="background-image: url('../images/munakata_shrine_path.jpg');"></div>
                                 <div class="spot-name">宗像大社</div>
                             </div>
                             <div class="spot-card">
-                                <div class="spot-img" style="background-image: url('images/oshima.jpg');"></div>
-                                <div class="spot-name">大島</div>
+                                <div class="spot-img" style="background-image: url('../images/hero_okinoshima.jpg');">
+                                </div>
+                                <div class="spot-name">世界遺産・沖ノ島</div>
                             </div>
                             <div class="spot-card">
-                                <div class="spot-img" style="background-image: url('images/michinoeki.jpg');"></div>
-                                <div class="spot-name">道の駅むなかた</div>
+                                <div class="spot-img" style="background-image: url('../images/local_cuisine.jpg');">
+                                </div>
+                                <div class="spot-name">道の駅・地元グルメ</div>
                             </div>
                             <div class="spot-card">
-                                <div class="spot-img" style="background-image: url('images/beach.jpg');"></div>
-                                <div class="spot-name">さつき松原</div>
+                                <div class="spot-img" style="background-image: url('../images/miare_festival.jpg');">
+                                </div>
+                                <div class="spot-name">みあれ祭</div>
                             </div>
                         </div>
                     </div>
@@ -338,7 +341,7 @@
 
         function displayResults(score, answers) {
             const userCount = incrementUserCount();
-            
+
             document.getElementById('kanko-exam').classList.remove('active');
             document.getElementById('result-section').classList.add('active');
 
@@ -387,7 +390,7 @@
             document.getElementById('certificate-section').style.display = 'block';
             document.getElementById('certificate-level').textContent = level;
             document.getElementById('certificate-score-display').textContent = score + '点';
-            
+
             // Image badge
             const badgeContainer = document.getElementById('certificate-badge');
             // ダミー画像ハンドリング
@@ -427,7 +430,7 @@
                 questionIndex++;
             });
         }
-        
+
         // SNS Share functions
         function shareOnTwitter() {
             const text = `宗像検定【観光編】に挑戦しました！\n結果: ${document.getElementById('result-rank').textContent}\nスコア: ${currentScore}点\n#宗像検定 #宗像観光`;

@@ -8,6 +8,16 @@
             --light-gray: #e8e6e0;
             --cf-green: #00c853;
             --cf-green-dark: #00a844;
+            --cf-green-light: #69f0ae;
+            --tap-size: 48px;
+            --tap-gap: 12px;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
         }
 
         * {
@@ -501,7 +511,7 @@
             width: 80px;
             height: 80px;
             border-radius: 12px;
-            object-fit: contain;
+            object-fit: cover;
             margin-bottom: 16px;
             background: white;
         }
@@ -1176,7 +1186,7 @@
         .review-icon.correct {
             background-color: var(--navy);
         }
-        
+
         .review-icon.incorrect {
             background-color: #e74c3c;
         }
